@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://https://septsea.github.io/</id>
+    <id>https://septsea.github.io/</id>
     <title>septsea&apos;s website</title>
-    <updated>2020-03-04T10:31:30.923Z</updated>
+    <updated>2020-03-04T10:31:45.630Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://https://septsea.github.io/"/>
-    <link rel="self" href="https://https://septsea.github.io/atom.xml"/>
+    <link rel="alternate" href="https://septsea.github.io/"/>
+    <link rel="self" href="https://septsea.github.io/atom.xml"/>
     <subtitle>This is septsea&apos;s website.</subtitle>
-    <logo>https://https://septsea.github.io/images/avatar.png</logo>
-    <icon>https://https://septsea.github.io/favicon.ico</icon>
+    <logo>https://septsea.github.io/images/avatar.png</logo>
+    <icon>https://septsea.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, septsea&apos;s website</rights>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://https://septsea.github.io/post/hello-gridea/</id>
-        <link href="https://https://septsea.github.io/post/hello-gridea/">
+        <id>https://septsea.github.io/post/hello-gridea/</id>
+        <link href="https://septsea.github.io/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
