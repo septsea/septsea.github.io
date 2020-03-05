@@ -4,94 +4,98 @@
     <meta charset="utf-8" >
 
 <title>A mnemonic device for Cauchy-Riemann equations | septsea</title>
-<meta name="description" content="This is septsea&#39;s website.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583388373668">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583395031048">
 <link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
 
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
+
+    <meta name="description" content="Recall that if z=x+iyz = x + iyz=x+iy, where xxx and yyy are real, then
+x=z+zˉ2,y=z−zˉ2i.x = \frac{z + \bar{z}} {2}, \qu..." />
+    <meta name="keywords" content="math" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
   </head>
   <body>
-  
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://septsea.github.io/">septsea</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://septsea.github.io/">
+        <img src="https://septsea.github.io//images/avatar.png?v=1583395031048" class="site-logo">
+        <h1 class="site-title">septsea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
         
-          <li>
-            
-              <a href="/" class="menu">
-                Home Page
-              </a>
-            
-          </li>
+          <a href="/" class="site-nav">
+            Home Page
+          </a>
         
-          <li>
-            
-              <a href="/archives" class="menu">
-                Archives
-              </a>
-            
-          </li>
+      
         
-          <li>
-            
-              <a href="/tags" class="menu">
-                Tags
-              </a>
-            
-          </li>
+          <a href="/archives" class="site-nav">
+            Archives
+          </a>
         
-          <li>
-            
-              <a href="/post/about" class="menu">
-                About
-              </a>
-            
-          </li>
+      
         
-      </ul>
+          <a href="/tags" class="site-nav">
+            Tags
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            About
+          </a>
+        
+      
     </div>
   </div>
-</nav>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      This is septsea's website.
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>.
+    </div>
+  </div>
+</div>
 
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>A mnemonic device for Cauchy-Riemann equations</h1>
-            <p class="article-meta">
-              Tuesday, January 21st 2020, 11:01:44 am
-              
-                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
-                  math
-                </a>
-              
-            </p>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">A mnemonic device for Cauchy-Riemann equations</h2>
+            <div class="post-date">Tuesday, January 21st 2020, 11:01:44 am</div>
             
-            <div class="post-content">
+            <div class="post-content" v-pre>
               <p>Recall that if <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>z</mi><mo>=</mo><mi>x</mi><mo>+</mo><mi>i</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">z = x + iy</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span>, where <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> are real, then</p>
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>=</mo><mfrac><mrow><mi>z</mi><mo>+</mo><mover accent="true"><mi>z</mi><mo>ˉ</mo></mover></mrow><mn>2</mn></mfrac><mo separator="true">,</mo><mspace width="1em"/><mi>y</mi><mo>=</mo><mfrac><mrow><mi>z</mi><mo>−</mo><mover accent="true"><mi>z</mi><mo>ˉ</mo></mover></mrow><mrow><mn>2</mn><mi>i</mi></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">x = \frac{z + \bar{z}} {2}, \quad y = \frac{z - \bar{z}} {2i}.
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.9463300000000001em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2603300000000002em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;">ˉ</span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.9463300000000001em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2603300000000002em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathdefault">i</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.56778em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.04398em;">z</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.19444em;">ˉ</span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord">.</span></span></span></span></span></p>
@@ -125,172 +129,54 @@
 <p>Thanks.</p>
 
             </div>
-          </article>
-        </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                next
+            
+              <div class="tag-container">
+                
+                  <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="tag">
+                    math
+                  </a>
+                
               </div>
-              <a href="https://septsea.github.io/post/find-an/">
-                <h3 class="post-title">
-                  Find A^n
-                </h3>
-              </a>
-            </div>
-          
+            
+            
+              <div class="next-post">
+                <div class="next">next</div>
+                <a href="https://septsea.github.io/post/find-an/">
+                  <h3 class="post-title">
+                    Find A^n
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
         </div>
-        
       </div>
-
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://septsea.github.io//images/avatar.png?v=1583388373668" class="no-responsive avatar">
-    <div class="text-muted">This is septsea's website.</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      the latest
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0008/">水 (0008)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0007/">水 (0007)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0006/">水 (0006)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0005/">水 (0005)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/yin-shi-fen-jie/">因式分解</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0004/">水 (0004)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/yi-ge-dui-diao-liao-de-fang-cheng/">一个对调了的方程</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0003/">水 (0003)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0002/">水 (0002)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0001/">水 (0001)</a>
-            </li>
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      tags
-    </div>
-    <div class="row">
-      
-        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge warning">
-          programming
-        </a>
-      
-        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge warning">
-          math
-        </a>
-      
-        <a href="https://septsea.github.io/tag/2UpWodjEn/" class="badge warning">
-          info
-        </a>
-      
-    </div>
-  </div>
-  <div class="paper">
-    Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>. | <a class="rss" href="https://septsea.github.io//atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-
-
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
 <script type="application/javascript">
 
 AOS.init();
 
-hljs.initHighlightingOnLoad()
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
 </script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
 
 
 

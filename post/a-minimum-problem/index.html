@@ -4,98 +4,97 @@
     <meta charset="utf-8" >
 
 <title>A minimum problem | septsea</title>
-<meta name="description" content="This is septsea&#39;s website.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583388373668">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583395031048">
 <link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
 
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
+
+    <meta name="description" content="A set SSS consists of 7 distinct integers x0&lt;x1&lt;⋯&lt;x6x_0 &lt; x_1 &lt; \cdots &lt; x_6x0​&lt;x1​&lt;⋯&lt;x6​. If..." />
+    <meta name="keywords" content="programming,math" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
   </head>
   <body>
-  
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://septsea.github.io/">septsea</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://septsea.github.io/">
+        <img src="https://septsea.github.io//images/avatar.png?v=1583395031048" class="site-logo">
+        <h1 class="site-title">septsea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
         
-          <li>
-            
-              <a href="/" class="menu">
-                Home Page
-              </a>
-            
-          </li>
+          <a href="/" class="site-nav">
+            Home Page
+          </a>
         
-          <li>
-            
-              <a href="/archives" class="menu">
-                Archives
-              </a>
-            
-          </li>
+      
         
-          <li>
-            
-              <a href="/tags" class="menu">
-                Tags
-              </a>
-            
-          </li>
+          <a href="/archives" class="site-nav">
+            Archives
+          </a>
         
-          <li>
-            
-              <a href="/post/about" class="menu">
-                About
-              </a>
-            
-          </li>
+      
         
-      </ul>
+          <a href="/tags" class="site-nav">
+            Tags
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            About
+          </a>
+        
+      
     </div>
   </div>
-</nav>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      This is septsea's website.
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>.
+    </div>
+  </div>
+</div>
 
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>A minimum problem</h1>
-            <p class="article-meta">
-              Thursday, January 16th 2020, 8:00:00 am
-              
-                <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge warning">
-                  programming
-                </a>
-              
-                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge ">
-                  math
-                </a>
-              
-            </p>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">A minimum problem</h2>
+            <div class="post-date">Thursday, January 16th 2020, 8:00:00 am</div>
             
-            <div class="post-content">
+            <div class="post-content" v-pre>
               <p>A set <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span> <strong>consists of</strong> 7 distinct integers <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mn>0</mn></msub><mo>&lt;</mo><msub><mi>x</mi><mn>1</mn></msub><mo>&lt;</mo><mo>⋯</mo><mo>&lt;</mo><msub><mi>x</mi><mn>6</mn></msub></mrow><annotation encoding="application/x-tex">x_0 &lt; x_1 &lt; \cdots &lt; x_6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.6891em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>. If the set { <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mo>−</mo><mi>y</mi><mo>:</mo><mtext> </mtext><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>∈</mo><mi>S</mi><mo separator="true">,</mo><mtext>  </mtext><mi>x</mi><mi mathvariant="normal">≠</mi><mi>y</mi></mrow><annotation encoding="application/x-tex">x-y: \ x,y\in S, \ \ x \neq y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mspace"> </span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace"> </span><span class="mspace"> </span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> } has 42 elements, find the minimum of <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>x</mi><mn>6</mn></msub><mo>−</mo><msub><mi>x</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">x_6-x_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">6</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>.</p>
 <p><s>Generalize the problem. (***This is too hard for me...***)</s></p>
 <p><em><strong>Answer.</strong></em> 25.</p>
@@ -484,172 +483,58 @@ Time elapsed: 281277 milliseconds.
 <p>I also wonder how to solve the problem more elegantly (or, more mathematically). Do not hesitate to tell me your ideas. Thanks!</p>
 
             </div>
-          </article>
-        </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                next
+            
+              <div class="tag-container">
+                
+                  <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="tag">
+                    programming
+                  </a>
+                
+                  <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="tag">
+                    math
+                  </a>
+                
               </div>
-              <a href="https://septsea.github.io/post/arranging-coins/">
-                <h3 class="post-title">
-                  Arranging Coins
-                </h3>
-              </a>
-            </div>
-          
+            
+            
+              <div class="next-post">
+                <div class="next">next</div>
+                <a href="https://septsea.github.io/post/arranging-coins/">
+                  <h3 class="post-title">
+                    Arranging Coins
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
         </div>
-        
       </div>
-
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://septsea.github.io//images/avatar.png?v=1583388373668" class="no-responsive avatar">
-    <div class="text-muted">This is septsea's website.</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      the latest
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0008/">水 (0008)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0007/">水 (0007)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0006/">水 (0006)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0005/">水 (0005)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/yin-shi-fen-jie/">因式分解</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0004/">水 (0004)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/yi-ge-dui-diao-liao-de-fang-cheng/">一个对调了的方程</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0003/">水 (0003)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0002/">水 (0002)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0001/">水 (0001)</a>
-            </li>
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      tags
-    </div>
-    <div class="row">
-      
-        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge success">
-          programming
-        </a>
-      
-        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge warning">
-          math
-        </a>
-      
-        <a href="https://septsea.github.io/tag/2UpWodjEn/" class="badge ">
-          info
-        </a>
-      
-    </div>
-  </div>
-  <div class="paper">
-    Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>. | <a class="rss" href="https://septsea.github.io//atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-
-
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
 <script type="application/javascript">
 
 AOS.init();
 
-hljs.initHighlightingOnLoad()
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
 </script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
 
 
 

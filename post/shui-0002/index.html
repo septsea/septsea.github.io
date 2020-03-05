@@ -4,98 +4,101 @@
     <meta charset="utf-8" >
 
 <title>水 (0002) | septsea</title>
-<meta name="description" content="This is septsea&#39;s website.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583388373668">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583395031048">
 <link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
 
 
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
+
+    <meta name="description" content="正月初一! 新年快乐呀!
+我今年呆在家过年了, 不去拜年了。
+好了, 今天我们看二个题。
+问 1. (昨日的题的一个变式) A, B, C, D, E, F, G, H, I 表示 1~9, 且任意二个字母表示不同的数字。解方程
+AB / ..." />
+    <meta name="keywords" content="programming,math" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
   </head>
   <body>
-  
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://septsea.github.io/">septsea</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://septsea.github.io/">
+        <img src="https://septsea.github.io//images/avatar.png?v=1583395031048" class="site-logo">
+        <h1 class="site-title">septsea</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
         
-          <li>
-            
-              <a href="/" class="menu">
-                Home Page
-              </a>
-            
-          </li>
+          <a href="/" class="site-nav">
+            Home Page
+          </a>
         
-          <li>
-            
-              <a href="/archives" class="menu">
-                Archives
-              </a>
-            
-          </li>
+      
         
-          <li>
-            
-              <a href="/tags" class="menu">
-                Tags
-              </a>
-            
-          </li>
+          <a href="/archives" class="site-nav">
+            Archives
+          </a>
         
-          <li>
-            
-              <a href="/post/about" class="menu">
-                About
-              </a>
-            
-          </li>
+      
         
-      </ul>
+          <a href="/tags" class="site-nav">
+            Tags
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            About
+          </a>
+        
+      
     </div>
   </div>
-</nav>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      This is septsea's website.
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>.
+    </div>
+  </div>
+</div>
 
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>水 (0002)</h1>
-            <p class="article-meta">
-              Saturday, January 25th 2020, 8:00:00 am
-              
-                <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
-                  programming
-                </a>
-              
-                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
-                  math
-                </a>
-              
-            </p>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">水 (0002)</h2>
+            <div class="post-date">Saturday, January 25th 2020, 8:00:00 am</div>
             
-            <div class="post-content">
+            <div class="post-content" v-pre>
               <p>正月初一! 新年快乐呀!</p>
 <p>我今年呆在家过年了, 不去拜年了。</p>
 <p>好了, 今天我们看二个题。</p>
@@ -726,172 +729,58 @@ Time elapsed: 6518 milliseconds.
 </code></pre>
 
             </div>
-          </article>
-        </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                next
+            
+              <div class="tag-container">
+                
+                  <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="tag">
+                    programming
+                  </a>
+                
+                  <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="tag">
+                    math
+                  </a>
+                
               </div>
-              <a href="https://septsea.github.io/post/shui-0001/">
-                <h3 class="post-title">
-                  水 (0001)
-                </h3>
-              </a>
-            </div>
-          
+            
+            
+              <div class="next-post">
+                <div class="next">next</div>
+                <a href="https://septsea.github.io/post/shui-0001/">
+                  <h3 class="post-title">
+                    水 (0001)
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
         </div>
-        
       </div>
-
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://septsea.github.io//images/avatar.png?v=1583388373668" class="no-responsive avatar">
-    <div class="text-muted">This is septsea's website.</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      the latest
-    </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0008/">水 (0008)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0007/">水 (0007)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0006/">水 (0006)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0005/">水 (0005)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/yin-shi-fen-jie/">因式分解</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0004/">水 (0004)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/yi-ge-dui-diao-liao-de-fang-cheng/">一个对调了的方程</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0003/">水 (0003)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0002/">水 (0002)</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://septsea.github.io/post/shui-0001/">水 (0001)</a>
-            </li>
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      tags
-    </div>
-    <div class="row">
-      
-        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
-          programming
-        </a>
-      
-        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
-          math
-        </a>
-      
-        <a href="https://septsea.github.io/tag/2UpWodjEn/" class="badge secondary">
-          info
-        </a>
-      
-    </div>
-  </div>
-  <div class="paper">
-    Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>. | <a class="rss" href="https://septsea.github.io//atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-
-
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
 <script type="application/javascript">
 
 AOS.init();
 
-hljs.initHighlightingOnLoad()
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
 </script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
 
 
 
