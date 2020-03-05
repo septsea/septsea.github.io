@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>水 (0008) | septsea&#39;s website</title>
+<meta name="description" content="This is septsea&#39;s website.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583386737026">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
+
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://septsea.github.io/">septsea&#39;s website</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                Home Page
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                Archives
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                Tags
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                About
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>水 (0008)</h1>
+            <p class="article-meta">
+              Sunday, February 2nd 2020, 8:00:00 am
+              
+                <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge success">
+                  programming
+                </a>
+              
+                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge ">
+                  math
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <p>我想休息 e 下了。</p>
+<p>今日有二道水题。逻辑解法可以分享呀!</p>
+<p>问 1. 设一个正整数 N 至少有二种方式表示为二个正整数的立方的和, 求 N 的最小值。</p>
+<p>答. 1729。1729 = 9^3 + 10^3 = 1^3 + 12^3。</p>
+<p>值得一提的是, 如果削除 &quot;二个正整数的立方的和&quot; 的 &quot;正&quot; 字, 那么 (表面上) 就有 aaa - bbb = ccc - ddd 与 aaa + bbb = ccc - ddd 二种形式, 实则只有仅有后者是新问题, 前者仍为问 1。这激发了问 2:</p>
+<p>问 2. 设一个正整数 N 的立方可以写为二个正整数的立方的和 + 非负整数的立方, 求 N 的最小值。</p>
+<p>答. 6。6^3 = 3^3 + 4^3 + 5^3。</p>
+<p>所以, 下面的问 1' 的答案就是 91 (= 6^3 + (-5)^3 = 3^3 + 4^3):</p>
+<p>问 1'. 设一个正整数 N 至少有二种方式表示为二个整数的立方的和, 求 N 的最小值。</p>
+<p>问 1:</p>
+<pre><code class="language-java">package math_puzzle;
+
+/**
+ * Pr_68
+ */
+public class Pr_68 {
+
+    final static public void main(final String... args) {
+        new MathPuzzle() {
+
+            @Override
+            public void solve() {
+                int smallest = 1;
+                while (true) {
+                    if (this.hasMultiple(smallest)) {
+                        this.findsAllExpressions(smallest);
+                        break;
+                    } else {
+                        smallest++;
+                    }
+                }
+            }
+
+            public boolean hasMultiple(final int n) {
+                // Checks whether there are &gt;= 2 ways to express n as the sum of two cubes
+                int counter = 0;
+                int b = 1;
+                while (true) {
+                    for (int a = 1; a &lt;= b; a++) {
+                        if (a * a * a + b * b * b == n) {
+                            counter++;
+                        }
+                    }
+                    if (counter &gt; 1) {
+                        return true;
+                    }
+                    if (b * b * b &lt;= n) {
+                        b++;
+                    } else {
+                        break;
+                    }
+                }
+                return false;
+            }
+
+            public void findsAllExpressions(final int n) {
+                int counter = 0;
+                int b = 1;
+                while (true) {
+                    for (int a = 1; a &lt;= b; a++) {
+                        if (a * a * a + b * b * b == n) {
+                            counter++;
+                            System.out.println(String.format(&quot;%d ^ 3 + %d ^ 3 = %d&quot;, a, b, n));
+                        }
+                    }
+                    if (b * b * b &lt;= n) {
+                        b++;
+                    } else {
+                        break;
+                    }
+                }
+                if (counter &lt; 2) {
+                    System.out.println(String.format(&quot;\nThere is %d way.&quot;, counter));
+                } else {
+                    System.out.println(String.format(&quot;\nThere are %d ways.&quot;, counter));
+                }
+            }
+
+        }.execute();
+    }
+
+}
+
+</code></pre>
+<p>问 2:</p>
+<pre><code class="language-java">package math_puzzle;
+
+/**
+ * Pr_69
+ */
+public class Pr_69 {
+
+    final static public void main(final String... args) {
+        new MathPuzzle() {
+
+            @Override
+            public void solve() {
+                // i1^3 + i2^3 + i3^3 = l^3
+                // i1 &gt;= 0, i2, i3 &gt;= 1, l is an integer
+                // i1 &lt;= i2 &lt;= i3
+                int l = 1;
+                while (true) {
+                    if (this.is3Cubes(l * l * l)) {
+                        System.out.println(String.format(&quot;%d = %d ^ 3&quot;, l * l * l, l));
+                        this.expressesItAs3Cubes(l * l * l);
+                        break;
+                    } else {
+                        l++;
+                    }
+                }
+            }
+
+            public int int_curt(final int n) {
+                // If there exists a positive INTEGER l such that l^3 = n, it returns l
+                // Otherwise, it returns -1
+                int l = 0;
+                while (true) {
+                    if (l * l * l &gt; n) {
+                        break;
+                    }
+                    if (l * l * l == n) {
+                        return l;
+                    }
+                    l++;
+                }
+                return -1;
+            }
+
+            public boolean is3Cubes(final int n) {
+                // Checks whether there exist 3 integers
+                // 0 &lt;= i1, 1 &lt; i2, 1 &lt; i3, i1 &lt;= i2 &lt;= i3
+                // such that n = i1^3 + i2^3 + i3^3
+                int i3 = -1;
+                for (int i1 = 0; i1 * i1 * i1 &lt;= n; i1++) {
+                    for (int i2 = 1; i2 * i2 * i2 &lt;= n; i2++) {
+                        if (i1 &gt; i2) {
+                            continue;
+                        }
+                        if (n &lt;= i1 * i1 * i1 + i2 * i2 * i2) {
+                            continue;
+                        }
+                        i3 = this.int_curt(n - i1 * i1 * i1 - i2 * i2 * i2);
+                        // If i3 &gt;= i2, of course i3 != -1
+                        if (i3 &gt;= i2) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+
+            public void expressesItAs3Cubes(final int n) {
+                int i3 = -1;
+                for (int i1 = 0; i1 * i1 * i1 &lt;= n; i1++) {
+                    for (int i2 = 1; i2 * i2 * i2 &lt;= n; i2++) {
+                        if (i1 &gt; i2) {
+                            continue;
+                        }
+                        if (n &lt;= i1 * i1 * i1 + i2 * i2 * i2) {
+                            continue;
+                        }
+                        i3 = this.int_curt(n - i1 * i1 * i1 - i2 * i2 * i2);
+                        if (i3 &gt;= i2) {
+                            System.out.println(String.format(&quot;%d = %d ^ 3 + %d ^ 3 + %d ^ 3&quot;, n, i1, i2, i3));
+                        }
+                    }
+                }
+            }
+
+        }.execute();
+    }
+
+}
+
+</code></pre>
+<p>就这样。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                next
+              </div>
+              <a href="https://septsea.github.io/post/shui-0007/">
+                <h3 class="post-title">
+                  水 (0007)
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://septsea.github.io//images/avatar.png?v=1583386737026" class="no-responsive avatar">
+    <div class="text-muted">This is septsea's website.</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      the latest
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0008/">水 (0008)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0007/">水 (0007)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0006/">水 (0006)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0005/">水 (0005)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/yin-shi-fen-jie/">因式分解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0004/">水 (0004)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/yi-ge-dui-diao-liao-de-fang-cheng/">一个对调了的方程</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0003/">水 (0003)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0002/">水 (0002)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0001/">水 (0001)</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      tags
+    </div>
+    <div class="row">
+      
+        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
+          programming
+        </a>
+      
+        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge success">
+          math
+        </a>
+      
+        <a href="https://septsea.github.io/tag/2UpWodjEn/" class="badge success">
+          info
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>. | <a class="rss" href="https://septsea.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

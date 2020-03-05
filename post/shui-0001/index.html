@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>水 (0001) | septsea&#39;s website</title>
+<meta name="description" content="This is septsea&#39;s website.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583386737026">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
+
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://septsea.github.io/">septsea&#39;s website</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                Home Page
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                Archives
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                Tags
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                About
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>水 (0001)</h1>
+            <p class="article-meta">
+              Friday, January 24th 2020, 8:00:00 am
+              
+                <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge success">
+                  programming
+                </a>
+              
+                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge success">
+                  math
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <p>今天是除夕! 真好。</p>
+<p>前面发了 6 篇英语文章。全都是蹩脚的表达, 实在抱歉。</p>
+<p>好了, 今天我们再来看一个题。</p>
+<p>A, B, C, D, E, F, G, H, I 表示 1~9, 且任意二个字母表示不同的数字。解方程</p>
+<p>A / BC + D / EF = G / HI</p>
+<p>逻辑解法太难想了, 就留给大佬吧。今天用 &quot;三国语言&quot; 解题嗷。</p>
+<p>这是老干部 Python 跟二个小伙子 Java, JavaScript 的对决。我没说错! Python 就是比这二个语言老。</p>
+<p>JavaScript 既可以在 Node.js 里运行, 也可以在浏览器里运行。我是在 Node.js 里运行的。</p>
+<p>可以打开开发人员工具的 Console, 把代码放进去, 试着运行。</p>
+<p>这里我只想说, TypeScript 真香!</p>
+<p>不管怎么样, 答案先给出来嗷。</p>
+<p>1 / 26 + 5 / 78 = 4 / 39</p>
+<p>1 / 32 + 5 / 96 = 7 / 84</p>
+<p>1 / 32 + 7 / 96 = 5 / 48</p>
+<p>1 / 78 + 4 / 39 = 6 / 52</p>
+<p>1 / 96 + 7 / 48 = 5 / 32</p>
+<p>2 / 68 + 9 / 34 = 5 / 17</p>
+<p>2 / 68 + 9 / 51 = 7 / 34</p>
+<p>4 / 56 + 7 / 98 = 3 / 21</p>
+<p>8 / 51 + 6 / 34 = 9 / 27</p>
+<p>9 / 78 + 5 / 26 = 4 / 13</p>
+<p>祝所有人新年快乐!</p>
+<p>Python:</p>
+<pre><code class="language-python">from time import time
+from math import ceil
+
+
+def main(*args) -&gt; None:
+    t: float = 0
+    t = time()
+    print(&quot;&quot;)
+    solve()
+    t = time() - t
+    ms: int = ceil(1000 * t)
+    print(&quot;\nTime elapsed: &quot; + str(ms) + &quot; millisecond&quot; +
+          (&quot;&quot; if ms &lt; 2 else &quot;s&quot;) + &quot;.\n&quot;)
+
+
+def isDistinct(*elements) -&gt; bool:
+    l: int = len(elements)
+    for i in range(0, l - 1):
+        for j in range(i + 1, l):
+            if (elements[i] == elements[j]):
+                return False
+    return True
+
+
+def solve() -&gt; None:
+    # A / BC + D / EF = G / HI
+    # This is
+    # (A * EF + D * BC) * HI = G * BC * EF
+    counter: int = 0
+    for i1 in range(1, 10):
+        for i2 in range(1, 10):
+            for i3 in range(1, 10):
+                for i4 in range(1, 10):
+                    for i5 in range(1, 10):
+                        for i6 in range(1, 10):
+                            for i7 in range(1, 10):
+                                for i8 in range(1, 10):
+                                    for i9 in range(1, 10):
+                                        # Checks whether the numbers are distinct
+                                        if (not isDistinct(i1, i2, i3, i4, i5, i6, i7, i8, i9)):
+                                            continue
+                                        # Since both a + b and b + a are fine, WLOG let's display only one
+                                        if (i1 * (10 * i5 + i6) &gt; i4 * (10 * i2 + i3)):
+                                            continue
+                                        if (i1 * (10 * i5 + i6) == i4 * (10 * i2 + i3) and i1 &gt; i4):
+                                            continue
+                                        if ((i1 * (10 * i5 + i6) + i4 * (10 * i2 + i3)) * (10 * i8 + i9) == i7 * (10 * i2 + i3) * (10 * i5 + i6)):
+                                            counter += 1
+                                            print(&quot;%d / %d%d + %d / %d%d = %d / %d%d&quot; %
+                                                  (i1, i2, i3, i4, i5, i6, i7, i8, i9))
+    if (counter &lt; 2):
+        print(&quot;\nThere is %d solution.&quot; % (counter))
+    else:
+        print(&quot;\nThere are %d solutions.&quot; % (counter))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+
+</code></pre>
+<p>Python Output:</p>
+<pre><code class="language-python">
+1 / 26 + 5 / 78 = 4 / 39
+1 / 32 + 5 / 96 = 7 / 84
+1 / 32 + 7 / 96 = 5 / 48
+1 / 78 + 4 / 39 = 6 / 52
+1 / 96 + 7 / 48 = 5 / 32
+2 / 68 + 9 / 34 = 5 / 17
+2 / 68 + 9 / 51 = 7 / 34
+4 / 56 + 7 / 98 = 3 / 21
+8 / 51 + 6 / 34 = 9 / 27
+9 / 78 + 5 / 26 = 4 / 13
+
+There are 10 solutions.
+
+Time elapsed: 642010 milliseconds.
+
+</code></pre>
+<p>Java:</p>
+<p><em>Package name</em>: <code>math_puzzle</code>; <em>File name</em>: <code>Pr_1.java</code></p>
+<pre><code class="language-java">package math_puzzle;
+
+/**
+ * Pr_1
+ */
+public class Pr_1 {
+
+    public static void main(final String... args) {
+        long time = 0;
+        time = System.currentTimeMillis();
+        System.out.println(&quot;&quot;);
+        Pr_1.solve();
+        time = System.currentTimeMillis() - time;
+        System.out.println(String.format(&quot;\nTime elapsed: %d millisecond&quot;, time) + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
+    }
+
+    public static boolean isDistinct(final int... elements) {
+        final int l = elements.length;
+        for (int i = 0; i &lt; l - 1; i++) {
+            for (int j = i + 1; j &lt; l; j++) {
+                if (elements[i] == elements[j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void solve() {
+        // A / BC + D / EF = G / HI
+        // This is
+        // (A * EF + D * BC) * HI = G * BC * EF
+        int counter = 0;
+        for (int i1 = 1; i1 &lt; 10; i1++) {
+            for (int i2 = 1; i2 &lt; 10; i2++) {
+                for (int i3 = 1; i3 &lt; 10; i3++) {
+                    for (int i4 = 1; i4 &lt; 10; i4++) {
+                        for (int i5 = 1; i5 &lt; 10; i5++) {
+                            for (int i6 = 1; i6 &lt; 10; i6++) {
+                                for (int i7 = 1; i7 &lt; 10; i7++) {
+                                    for (int i8 = 1; i8 &lt; 10; i8++) {
+                                        for (int i9 = 1; i9 &lt; 10; i9++) {
+                                            // Checks whether the numbers are distinct
+                                            if (!Pr_1.isDistinct(i1, i2, i3, i4, i5, i6, i7, i8, i9)) {
+                                                continue;
+                                            }
+                                            // Since both a + b and b + a are fine, WLOG let's display only one
+                                            if (i1 * (10 * i5 + i6) &gt; i4 * (10 * i2 + i3)) {
+                                                continue;
+                                            }
+                                            if (i1 * (10 * i5 + i6) == i4 * (10 * i2 + i3) &amp;&amp; i1 &gt; i4) {
+                                                continue;
+                                            }
+                                            if ((i1 * (10 * i5 + i6) + i4 * (10 * i2 + i3)) * (10 * i8 + i9) == i7
+                                                    * (10 * i2 + i3) * (10 * i5 + i6)) {
+                                                counter++;
+                                                System.out.println(String.format(&quot;%d / %d%d + %d / %d%d = %d / %d%d&quot;,
+                                                        i1, i2, i3, i4, i5, i6, i7, i8, i9));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (counter &lt; 2) {
+            System.out.println(String.format(&quot;\nThere is %d solution.&quot;, counter));
+        } else {
+            System.out.println(String.format(&quot;\nThere are %d solutions.&quot;, counter));
+        }
+    }
+
+}
+
+</code></pre>
+<p>Java Output:</p>
+<pre><code class="language-java">
+1 / 26 + 5 / 78 = 4 / 39
+1 / 32 + 5 / 96 = 7 / 84
+1 / 32 + 7 / 96 = 5 / 48
+1 / 78 + 4 / 39 = 6 / 52
+1 / 96 + 7 / 48 = 5 / 32
+2 / 68 + 9 / 34 = 5 / 17
+2 / 68 + 9 / 51 = 7 / 34
+4 / 56 + 7 / 98 = 3 / 21
+8 / 51 + 6 / 34 = 9 / 27
+9 / 78 + 5 / 26 = 4 / 13
+
+There are 10 solutions.
+
+Time elapsed: 6806 milliseconds.
+
+</code></pre>
+<p>JavaScript:</p>
+<pre><code class="language-javascript">&quot;use strict&quot;;
+
+function main() {
+    let args = [];
+    for (let _i = 0; _i &lt; arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    let time = 0;
+    time = (new Date()).valueOf();
+    console.log(&quot;&quot;);
+    solve();
+    time = (new Date()).valueOf() - time;
+    console.log(`\nTime elapsed: ${time} millisecond` + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
+}
+
+function isDistinct() {
+    let elements = [];
+    for (let _i = 0; _i &lt; arguments.length; _i++) {
+        elements[_i] = arguments[_i];
+    }
+    let l = elements.length;
+    for (let i = 0; i &lt; l - 1; i++) {
+        for (let j = i + 1; j &lt; l; j++) {
+            if (elements[i] === elements[j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function solve() {
+    // A / BC + D / EF = G / HI
+    // This is
+    // (A * EF + D * BC) * HI = G * BC * EF
+    let counter = 0;
+    for (let i1 = 1; i1 &lt; 10; i1++) {
+        for (let i2 = 1; i2 &lt; 10; i2++) {
+            for (let i3 = 1; i3 &lt; 10; i3++) {
+                for (let i4 = 1; i4 &lt; 10; i4++) {
+                    for (let i5 = 1; i5 &lt; 10; i5++) {
+                        for (let i6 = 1; i6 &lt; 10; i6++) {
+                            for (let i7 = 1; i7 &lt; 10; i7++) {
+                                for (let i8 = 1; i8 &lt; 10; i8++) {
+                                    for (let i9 = 1; i9 &lt; 10; i9++) {
+                                        // Checks whether the numbers are distinct
+                                        if (!isDistinct(i1, i2, i3, i4, i5, i6, i7, i8, i9)) {
+                                            continue;
+                                        }
+                                        // Since both a + b and b + a are fine, WLOG let's display only one
+                                        if (i1 * (10 * i5 + i6) &gt; i4 * (10 * i2 + i3)) {
+                                            continue;
+                                        }
+                                        if (i1 * (10 * i5 + i6) === i4 * (10 * i2 + i3) &amp;&amp; i1 &gt; i4) {
+                                            continue;
+                                        }
+                                        if ((i1 * (10 * i5 + i6) + i4 * (10 * i2 + i3)) * (10 * i8 + i9) === i7 * (10 * i2 + i3) * (10 * i5 + i6)) {
+                                            counter++;
+                                            console.log(`${i1} / ${i2}${i3} + ${i4} / ${i5}${i6} = ${i7} / ${i8}${i9}`);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (counter &lt; 2) {
+        console.log(`\nThere is ${counter} solution.`);
+    }
+    else {
+        console.log(`\nThere are ${counter} solutions.`);
+    }
+}
+
+main();
+
+</code></pre>
+<p>JavaScript Output:</p>
+<pre><code class="language-javascript">
+1 / 26 + 5 / 78 = 4 / 39
+1 / 32 + 5 / 96 = 7 / 84
+1 / 32 + 7 / 96 = 5 / 48
+1 / 78 + 4 / 39 = 6 / 52
+1 / 96 + 7 / 48 = 5 / 32
+2 / 68 + 9 / 34 = 5 / 17
+2 / 68 + 9 / 51 = 7 / 34
+4 / 56 + 7 / 98 = 3 / 21
+8 / 51 + 6 / 34 = 9 / 27
+9 / 78 + 5 / 26 = 4 / 13
+
+There are 10 solutions.
+
+Time elapsed: 35266 milliseconds.
+
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                next
+              </div>
+              <a href="https://septsea.github.io/post/whether-the-propositions-are-true-or-false/">
+                <h3 class="post-title">
+                  Whether the propositions are true or false
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://septsea.github.io//images/avatar.png?v=1583386737026" class="no-responsive avatar">
+    <div class="text-muted">This is septsea's website.</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      the latest
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0008/">水 (0008)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0007/">水 (0007)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0006/">水 (0006)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0005/">水 (0005)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/yin-shi-fen-jie/">因式分解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0004/">水 (0004)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/yi-ge-dui-diao-liao-de-fang-cheng/">一个对调了的方程</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0003/">水 (0003)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0002/">水 (0002)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0001/">水 (0001)</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      tags
+    </div>
+    <div class="row">
+      
+        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
+          programming
+        </a>
+      
+        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge warning">
+          math
+        </a>
+      
+        <a href="https://septsea.github.io/tag/2UpWodjEn/" class="badge warning">
+          info
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>. | <a class="rss" href="https://septsea.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

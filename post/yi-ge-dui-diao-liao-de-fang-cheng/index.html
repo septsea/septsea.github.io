@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>最大乘积 | septsea&#39;s website</title>
+<title>一个对调了的方程 | septsea&#39;s website</title>
 <meta name="description" content="This is septsea&#39;s website.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,32 +81,42 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>最大乘积</h1>
+            <h1>一个对调了的方程</h1>
             <p class="article-meta">
-              Friday, January 17th 2020, 8:00:00 am
+              Monday, January 27th 2020, 8:00:00 am
               
-                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
+                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge ">
                   math
                 </a>
               
             </p>
             
             <div class="post-content">
-              <p>我, septsea, 又来水了。<em>Wow, I can really water experience.</em></p>
-<p>有一些正整数和为 n, 求它们最大乘积。</p>
-<p>我们简单分析 e 下。</p>
-<p>首先, 如果有 r 个 1, 那么就相当于 r - k 个 &gt; 1 个数在相乘 (r 是数字个数)。2 * (w - 1) 不比 1 * w 香?</p>
-<p>其次, 对于一个数 w 而言, 2 * (w - 2) = w + (w - 4), 3 * (w - 3) = w + (2w - 9), 所以, 不小于 5 的数 w 应当拆开。</p>
-<p>4 可以写成 2 + 2 (当然也可以写成 2 * 2), 所以 WLOG (您觉得这该怎么读呢?), 把 4 拆为 2 个 2。</p>
-<p>对于 6 而言, 6 = 2 + 2 + 2 = 3 + 3, 因为 2 * 2 * 2 &lt; 3 * 3, 所以每 3 个 2 都应用 2 个 3 代替。</p>
-<p>所以, 只要 n &gt;= 2, 为了使乘积最大, 绝对不应出现 1, 尽可能用 3 填满, 剩下的用 2 填。</p>
-<p>n = 1 时没得说, 乘积就是 1。n = 2 时, 1 个 2 就可, 从而最大乘积为 2。n = 3 时, 1 个 3 就可, 从而最大乘积为 3。n = 4 时, 2 个 2 就可, 从而最大乘积为 4。</p>
-<p>n &gt;= 5 时, 尽可能用 3 填满。设 n = 3q + r, 0 &lt;= r &lt;= 2。</p>
-<p>r = 0 意味着可以全部用 3 填满, 从而最大乘积为 3 * 3 ^ (q - 1)。</p>
-<p>r = 1 时应当用 q - 1 个 3 与 2 个 2 填满, 从而最大乘积为 4 * 3 ^ (q - 1)。</p>
-<p>r = 2 意味着可以用 q 个 3 与 1 个 2 填满, 从而最大乘积为 6 * 3 ^ (q - 1)。</p>
-<p>q = [n / 3], r = n - 3q, [x] 是不超过 x 的最大整数。</p>
-<p>今日就到这里吧。</p>
+              <p>正月初三! 新年快乐呀!</p>
+<p>已知 C 是正整数, AB 是大于 9 的二位数, 且 A 不等于 B。</p>
+<p>方程 xx - Cx + AB = 0 与 xx + Cx - BA = 0 有公共根。</p>
+<p>求公共根。</p>
+<p>设 xx - Cx + AB = 0 的两根为 x0, x1; xx + Cx - BA = 0 的两根为 x0, x2。</p>
+<p>从而</p>
+<p>x0 + x1 = C,  x0 * x1 = AB;</p>
+<p>x0 + x2 = -C, x0 * x2 = -BA。</p>
+<p>那么</p>
+<p>2 * x0 + (x1 + x2) = 0</p>
+<p>x0 * (x1 + x2) = AB - BA = 9 * (A - B)</p>
+<p>x1 + x2 = -2 * x0</p>
+<p>x0 * (-2 * x0) = 9 * (A - B)</p>
+<p>2 * x0 * x0 = 9 * (B - A)</p>
+<p>因为 A 不等于 B, 所以 x0 一定是 3 的非零倍数, 且 B - A 一定是正偶数。</p>
+<p>由于 B - A &lt;= 9 + (-1) = 8, 所以 2 * x0 * x0 &lt;= 72 =&gt; x0 = 3, -3, 6 or -6。</p>
+<p>并且</p>
+<p>x1 - x2 = 2 * C, x1 + x2 = -2 * x0</p>
+<p>x0 * (x1 - x2) = 11 * (A + B)</p>
+<p>2 * C * x0 = 11 * (A + B)</p>
+<p>因为 11 不整除 x0, 所以 C 是 11 的倍数。A + B 一定是 3 的倍数, 又因为 A + B 是偶数 (B - A 是偶数), 所以 A + B 可能为 6, 12 (18 = 9 + 9, 不合题意)。并且, 由于 C &gt; 0, 必有 x0 &gt; 0。</p>
+<p>A + B = 6 =&gt; 2 * C * x0 = 66 =&gt; C * x0 = 33 =&gt; (C, x0) = (11, 3)。这时 2 * 9 = 9 * (B - A), B - A = 2。解出 A = 2, B = 4。经检验, xx - 11x + 24 = 0 与 xx + 11x - 42 = 0 都有一个根为 3。</p>
+<p>A + B = 12 =&gt; 2 * C * x0 = 132 =&gt; C * x0 = 66 =&gt; (C, x0) = (22, 3) or (11, 6)。x0 为 3 时解出 B - A = 2, 从而 A = 5, B = 7。经检验, xx - 22x + 57 = 0 与 xx + 22x - 75 = 0 都有一个根为 3。x0 为 6 时 B - A = 8, 从而 A = 2, B = 10 (舍弃)。</p>
+<p>结论: 公共根 = 3。</p>
+<p>就这样。</p>
 
             </div>
           </article>
@@ -117,9 +127,9 @@
               <div class="next">
                 next
               </div>
-              <a href="https://septsea.github.io/post/a-minimum-problem/">
+              <a href="https://septsea.github.io/post/shui-0003/">
                 <h3 class="post-title">
-                  A minimum problem
+                  水 (0003)
                 </h3>
               </a>
             </div>
@@ -248,7 +258,7 @@
           programming
         </a>
       
-        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge success">
+        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
           math
         </a>
       

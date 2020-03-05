@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>WRONG + WRONG = RIGHT | septsea&#39;s website</title>
+<title>水 (0005) | septsea&#39;s website</title>
 <meta name="description" content="This is septsea&#39;s website.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,132 +81,169 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>WRONG + WRONG = RIGHT</h1>
+            <h1>水 (0005)</h1>
             <p class="article-meta">
-              Saturday, January 18th 2020, 8:00:00 am
+              Thursday, January 30th 2020, 8:00:00 am
               
-                <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
+                <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge ">
                   programming
                 </a>
               
-                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge warning">
+                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge success">
                   math
                 </a>
               
             </p>
             
             <div class="post-content">
-              <p>Solve the following puzzle, where <code>O = 0</code> and no two distinct letters stand for the same integer.</p>
-<pre><code class="language-l">  W R O N G
-+ W R O N G
-------------
-  R I G H T
-
-</code></pre>
-<p>First, let's replace <code>O</code> by <code>0</code>. Then</p>
-<pre><code class="language-l">  W R 0 N G
-+ W R 0 N G
-------------
-  R I G H T
-
-</code></pre>
-<p>Since <code>'NG' &lt;= 99</code>, we see that <code>'GHT' &lt;= 198</code>. Since <code>G</code> is not <code>0</code>, <code>G</code> must be <code>1</code>. Then</p>
-<pre><code class="language-l">  W R 0 N 1
-+ W R 0 N 1
-------------
-  R I 1 H 2
-
-</code></pre>
-<p>It is not hard to see <code>N &gt;= 5</code>. <code>H</code> is of course <code>2N - 10</code>. <code>H</code> cannot be <code>0</code>, <code>1</code> or <code>2</code>, so <code>H = 2N - 10 &gt;= 3</code>, which implies that <code>N</code> is <code>7</code>, <code>8</code> or <code>9</code>.</p>
-<p>Note that <code>'WR' + 'WR' = 'RI'</code>. This means <code>20W + 2R = 10R + I</code>, or <code>I = 20W - 8R</code>. Hence <code>I</code> is <code>4</code> or <code>8</code>.</p>
-<p>If <code>I</code> is 4, then <code>1 = 5W - 2R</code> -&gt; <code>W = 1 + 2t, R = 2 + 5t</code>. <code>R</code> must be <code>7</code> -&gt; <code>W</code> must be <code>3</code>. Then</p>
-<pre><code class="language-l">  3 7 0 N 1
-+ 3 7 0 N 1
-------------
-  7 4 1 H 2
-
-</code></pre>
-<p>Now <code>N</code> cannot be <code>7</code>. If <code>N = 8</code>, then <code>H = 6</code>; if <code>N = 9</code>, then <code>H = 8</code>. Both are perfectly acceptable solutions.</p>
-<pre><code class="language-l">  3 7 0 8 1                     3 7 0 9 1
-+ 3 7 0 8 1         or        + 3 7 0 9 1
-------------                  ------------
-  7 4 1 6 2                     7 4 1 8 2
-
-</code></pre>
-<p>If <code>I</code> is 8, then <code>2 = 5W - 2R</code> -&gt; <code>W = 2 + 2t, R = 4 + 5t</code>. <code>W</code> cannot be <code>2</code>, so <code>W = 4, R = 9</code>. Then</p>
-<pre><code class="language-l">  4 9 0 N 1
-+ 4 9 0 N 1
-------------
-  9 8 1 H 2
-
-</code></pre>
-<p>Now <code>N</code> cannot be <code>8</code> or <code>9</code>. Then <code>N = 7</code>. However, this implies that <code>H = 4</code>, a contradiction.</p>
-<p>Conclusion: the only two solutions are</p>
-<pre><code class="language-l">  3 7 0 8 1                     3 7 0 9 1
-+ 3 7 0 8 1         or        + 3 7 0 9 1
-------------                  ------------
-  7 4 1 6 2                     7 4 1 8 2
-
-</code></pre>
-<p>Of course, we can solve it by Java. Here is the code, whose file name is <code>Main.java</code> and belongs to package <code>wrong_right</code>.</p>
-<pre><code class="language-java">package wrong_right;
+              <p>今日的水题跟武汉有一点关系:</p>
+<p>JIA * YOU = WU * HAN</p>
+<p>每个字母代表 1~9 的数字, 任意二个不同的字母代表不同的数字, 且 WU * HAN 的结果 (自然是十进制) 不含 0。</p>
+<p>答. 123 * 564 = 94 * 738 = 69372。</p>
+<p>以后我就写一个语言 (Java) 的代码好了, 毕竟它快, 而且比 C/C++ 容易。</p>
+<p>代码在老地方。根据反馈, 想看的自然知道去哪儿看, 不想看的摆在哪儿也不会看。</p>
+<p>欢迎交流 tricks。</p>
+<p>其实本来是今日写完后明日休息, 但假期还有三日呀。那我就再写三日吧。</p>
+<p>首先我们写一个接口。我昨日花了点时间写了个接口。毕竟每次都那么多代码, 看着也累。</p>
+<pre><code class="language-java">package math_puzzle;
 
 /**
- * Main
+ * MathPuzzle
  */
-public class Main {
+@FunctionalInterface
+public interface MathPuzzle {
 
-    public static void main(String... args) {
-        long time = System.currentTimeMillis();
+    /**
+     * The executor of the mathematical puzzle.
+     */
+    public default void execute() {
+        long time = 0;
+        time = System.currentTimeMillis();
         System.out.println(&quot;&quot;);
-        Main.solve();
-        System.out.println(&quot;Time elapsed: &quot; + (System.currentTimeMillis() - time) + &quot; milliseconds.\n&quot;);
+        this.solve();
+        time = System.currentTimeMillis() - time;
+        System.out.println(String.format(&quot;\nTime elapsed: %d millisecond&quot;, time) + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
     }
 
-    public static boolean beDistinct(int... integers) {
-        for (int i = 0; i &lt; integers.length - 1; i++) {
-            for (int j = i + 1; j &lt; integers.length; j++) {
-                if (integers[i] == integers[j]) {
-                    return false;
-                }
+    /**
+     * The solver to be implemented.
+     */
+    public void solve();
+
+    /**
+     * Returns the factorial of an {@code int} value.
+     * 
+     * @param n the argument whose factorial is to be determined.
+     * @return the absolute value of the argument.
+     */
+    public static int factorial(final int n) {
+        int result = 1;
+        if (n &gt; 1) {
+            for (int i = 2; i &lt;= n; i++) {
+                result *= i;
             }
         }
-        return true;
+        return result;
     }
 
-    public static void solve() {
-        // The variables are W, R, O, N, G, I, H, T, where O = 0.
-        for (int w = 0; w &lt;= 9; w++) {
-            for (int r = 0; r &lt;= 9; r++) {
-                for (int n = 0; n &lt;= 9; n++) {
-                    for (int g = 0; g &lt;= 9; g++) {
-                        for (int i = 0; i &lt;= 9; i++) {
-                            for (int h = 0; h &lt;= 9; h++) {
-                                for (int t = 0; t &lt;= 9; t++) {
-                                    if (!Main.beDistinct(w, r, 0, n, g, i, h, t)) {
-                                        continue;
-                                    } else {
-                                        if (2 * (10000 * w + 1000 * r + 10 * n + g) == 10000 * r + 1000 * i + 100 * g
-                                                + 10 * h + t) {
-                                            System.out.println(String.format(&quot;  %d %d %d %d %d&quot;, w, r, 0, n, g));
-                                            System.out.println(String.format(&quot;+ %d %d %d %d %d&quot;, w, r, 0, n, g));
-                                            System.out.println(&quot;------------&quot;);
-                                            System.out.println(String.format(&quot;  %d %d %d %d %d&quot;, r, i, g, h, t));
-                                            System.out.println(&quot;&quot;);
-                                        }
-                                    }
-                                }
-                            }
-                        }
+    /**
+     * Returns the permutations of r integers taken from {@code int[] numbers}. If r
+     * &gt; l = {@code numbers.length} or r &lt; 0, then an empty array is returned.
+     * 
+     * @param r       the length of the permutation.
+     * @param numbers the integers to be taken from.
+     * @return the permutations of r integers taken from {@code int[] numbers}.
+     */
+    public static int[][] permutations(final int r, final int... numbers) {
+        final int l = numbers.length;
+        if (r &gt; l || r &lt; 0) {
+            return new int[][] {};
+        } else if (r == 0) {
+            return new int[][] { {} };
+        } else if (r == 1) {
+            final int[][] result = new int[l][1];
+            for (int i = 0; i &lt; l; i++) {
+                result[i][0] = numbers[i];
+            }
+            return result;
+        } else {
+            final int[][] result = new int[MathPuzzle.factorial(l) / MathPuzzle.factorial(l - r)][r];
+            int counter = 0;
+            for (int i = 0; i &lt; l; i++) {
+                final int[] temp = new int[l - 1];
+                for (int j = 0; j &lt; l; j++) {
+                    if (j &lt; i) {
+                        temp[j] = numbers[j];
+                    } else if (j &gt; i) {
+                        temp[j - 1] = numbers[j];
                     }
                 }
+                final int[][] temp_perms = MathPuzzle.permutations(r - 1, temp);
+                for (final int[] temp_perm : temp_perms) {
+                    result[counter][0] = numbers[i];
+                    for (int j = 0; j &lt; r - 1; j++) {
+                        result[counter][j + 1] = temp_perm[j];
+                    }
+                    counter++;
+                }
             }
+            return result;
         }
     }
 
 }
 
 </code></pre>
+<p>然后, 解题:</p>
+<pre><code class="language-java">package math_puzzle;
+
+/**
+ * Pr_64
+ */
+public class Pr_64 {
+
+    final static public void main(final String... args) {
+        // There is only one method to be implemented, so lambda expressions are OK.
+        ((MathPuzzle) () -&gt; {
+            // JIA * YOU = WU * HAN
+            // J, I, A, Y, O, U; W, H, N: 1~9
+            // The condition that the result of WU * HAN not contain 0
+            // is temporarily ignored.
+            int counter = 0;
+            final int[][] perms = MathPuzzle.permutations(9, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+            for (final int[] p : perms) {
+                final int n1 = 100 * p[0] + 10 * p[1] + p[2];
+                final int n2 = 100 * p[3] + 10 * p[4] + p[5];
+                final int n3 = 10 * p[6] + p[5];
+                final int n4 = 100 * p[7] + 10 * p[2] + p[8];
+                if (n1 * n2 == n3 * n4) {
+                    counter++;
+                    System.out.println(String.format(&quot;%d * %d = %d * %d = %d&quot;, n1, n2, n3, n4, n1 * n2));
+                }
+            }
+            if (counter &lt; 2) {
+                System.out.println(String.format(&quot;\nThere is %d solution.&quot;, counter));
+            } else {
+                System.out.println(String.format(&quot;\nThere are %d solutions.&quot;, counter));
+            }
+        }).execute();
+    }
+
+}
+
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-java">
+123 * 564 = 94 * 738 = 69372
+374 * 215 = 85 * 946 = 80410
+
+There are 2 solutions.
+
+Time elapsed: 151 milliseconds.
+
+</code></pre>
+<p>显然第二个应当舍弃。所以只有第一个符合要求了。</p>
+<p>就这样了, 谢谢大家的阅读。</p>
 
             </div>
           </article>
@@ -217,9 +254,9 @@ public class Main {
               <div class="next">
                 next
               </div>
-              <a href="https://septsea.github.io/post/zui-da-cheng-ji/">
+              <a href="https://septsea.github.io/post/yin-shi-fen-jie/">
                 <h3 class="post-title">
-                  最大乘积
+                  因式分解
                 </h3>
               </a>
             </div>
@@ -344,7 +381,7 @@ public class Main {
     </div>
     <div class="row">
       
-        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
+        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge success">
           programming
         </a>
       
@@ -352,7 +389,7 @@ public class Main {
           math
         </a>
       
-        <a href="https://septsea.github.io/tag/2UpWodjEn/" class="badge warning">
+        <a href="https://septsea.github.io/tag/2UpWodjEn/" class="badge success">
           info
         </a>
       

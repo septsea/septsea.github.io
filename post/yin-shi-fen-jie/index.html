@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>最大乘积 | septsea&#39;s website</title>
+<title>因式分解 | septsea&#39;s website</title>
 <meta name="description" content="This is septsea&#39;s website.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,9 +81,9 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>最大乘积</h1>
+            <h1>因式分解</h1>
             <p class="article-meta">
-              Friday, January 17th 2020, 8:00:00 am
+              Wednesday, January 29th 2020, 8:00:00 am
               
                 <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
                   math
@@ -92,21 +92,21 @@
             </p>
             
             <div class="post-content">
-              <p>我, septsea, 又来水了。<em>Wow, I can really water experience.</em></p>
-<p>有一些正整数和为 n, 求它们最大乘积。</p>
-<p>我们简单分析 e 下。</p>
-<p>首先, 如果有 r 个 1, 那么就相当于 r - k 个 &gt; 1 个数在相乘 (r 是数字个数)。2 * (w - 1) 不比 1 * w 香?</p>
-<p>其次, 对于一个数 w 而言, 2 * (w - 2) = w + (w - 4), 3 * (w - 3) = w + (2w - 9), 所以, 不小于 5 的数 w 应当拆开。</p>
-<p>4 可以写成 2 + 2 (当然也可以写成 2 * 2), 所以 WLOG (您觉得这该怎么读呢?), 把 4 拆为 2 个 2。</p>
-<p>对于 6 而言, 6 = 2 + 2 + 2 = 3 + 3, 因为 2 * 2 * 2 &lt; 3 * 3, 所以每 3 个 2 都应用 2 个 3 代替。</p>
-<p>所以, 只要 n &gt;= 2, 为了使乘积最大, 绝对不应出现 1, 尽可能用 3 填满, 剩下的用 2 填。</p>
-<p>n = 1 时没得说, 乘积就是 1。n = 2 时, 1 个 2 就可, 从而最大乘积为 2。n = 3 时, 1 个 3 就可, 从而最大乘积为 3。n = 4 时, 2 个 2 就可, 从而最大乘积为 4。</p>
-<p>n &gt;= 5 时, 尽可能用 3 填满。设 n = 3q + r, 0 &lt;= r &lt;= 2。</p>
-<p>r = 0 意味着可以全部用 3 填满, 从而最大乘积为 3 * 3 ^ (q - 1)。</p>
-<p>r = 1 时应当用 q - 1 个 3 与 2 个 2 填满, 从而最大乘积为 4 * 3 ^ (q - 1)。</p>
-<p>r = 2 意味着可以用 q 个 3 与 1 个 2 填满, 从而最大乘积为 6 * 3 ^ (q - 1)。</p>
-<p>q = [n / 3], r = n - 3q, [x] 是不超过 x 的最大整数。</p>
-<p>今日就到这里吧。</p>
+              <p>正月初五! 新年快乐呀!</p>
+<p>求正整数 A, B (WLOG, 设 A &lt;= B) 使得 xx + Ax + B 与 xx + Bx + A 都能在整数范围内因式分解。</p>
+<p>Case 1. A = B</p>
+<p>当 A 是偶数 2k 时, xx + 2kx + 2k = (x + k)^2 - ((k - 1)^2 - 1), 只要 (k - 1)^2 - 1 可以写为 l^2 (l 为整数), 就可以在整数范围内因式分解了。由 (k - 1)^2 - 1 = l^2 可知 (k+l-1)(k-l-1) = 1, 所以必有 k+l-1 = k-l-1 = 1 or -1, 从而得到 k = 2 or 0, l = 0。从而 A = B = 0 (舍弃) or A = B = 4。</p>
+<p>当 A 是奇数 2k+1 时, xx + (2k+1)x + (2k+1) = (x + (2k+1)/2)^2 - ((k-1/2)^2 - 1), 只要 (k-1/2)^2 - 1 可以写为 (l-1/2)^2 (l 为整数), 就可以在整数范围内因式分解了。由 (k-1/2)^2 - 1 = (l-1/2)^2 可知 (k - l)(k + l - 1) = 1, 所以必有 k - l = k + l - 1 = 1 or -1, 从而可得 1 = 2l, a contradiction!</p>
+<p>综上, (A, B) = (4, 4)。</p>
+<p>Case 2. A &lt; B</p>
+<p>设 (x+r)(x+s) = xx + Ax + B, r &lt;= s;</p>
+<p>设 (x+u)(x+v) = xx + Bx + A, u &lt;= v。</p>
+<p>也就是 A = uv = r+s, B = u+v = rs, 从而 uv &lt; u+v, rs &gt; r+s。</p>
+<p>因 u, v, r, s &gt; 0, 从而 1 &lt; 1/u + 1/v &lt;= 2/u, 1 &gt; 1/r + 1/s &gt;= 2/s, 也就是 u &lt; 2, s &gt; 2, 从而 u = 1, s &gt;= 3。</p>
+<p>从而 1+r+s = rs, 那么 (r-1)(s-1) = 2。</p>
+<p>s-1 &gt;= 2, 从而 s-1 = 2, r-1 = 1。也就是 A = 3+2 = 5, B = 3*2 = 6。</p>
+<p>(A, B) 的另一个解为 (5, 6)。</p>
+<p>综上, (A, B) = (4, 4) or (5, 6)。</p>
 
             </div>
           </article>
@@ -117,9 +117,9 @@
               <div class="next">
                 next
               </div>
-              <a href="https://septsea.github.io/post/a-minimum-problem/">
+              <a href="https://septsea.github.io/post/shui-0004/">
                 <h3 class="post-title">
-                  A minimum problem
+                  水 (0004)
                 </h3>
               </a>
             </div>
@@ -244,11 +244,11 @@
     </div>
     <div class="row">
       
-        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge warning">
+        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge success">
           programming
         </a>
       
-        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge success">
+        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge ">
           math
         </a>
       

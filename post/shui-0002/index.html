@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>水 (0002) | septsea&#39;s website</title>
+<meta name="description" content="This is septsea&#39;s website.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583386737026">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
+
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://septsea.github.io/">septsea&#39;s website</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                Home Page
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                Archives
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                Tags
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                About
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>水 (0002)</h1>
+            <p class="article-meta">
+              Saturday, January 25th 2020, 8:00:00 am
+              
+                <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge ">
+                  programming
+                </a>
+              
+                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge warning">
+                  math
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <p>正月初一! 新年快乐呀!</p>
+<p>我今年呆在家过年了, 不去拜年了。</p>
+<p>好了, 今天我们看二个题。</p>
+<p>问 1. (昨日的题的一个变式) A, B, C, D, E, F, G, H, I 表示 1~9, 且任意二个字母表示不同的数字。解方程</p>
+<p>AB / C + DE / F = GH / I</p>
+<p>这个应该比昨日的简单嗷。</p>
+<p>而且, 用 PC 解题就是方便, 我只是小改了一下代码, 就又可以算题了。</p>
+<p>顺带一提, Python 好慢啊。</p>
+<p>答案太长了, 一共 41 个解。</p>
+<p>Python:</p>
+<pre><code class="language-python">from time import time
+from math import ceil
+
+
+def main(*args) -&gt; None:
+    t: float = 0
+    t = time()
+    print(&quot;&quot;)
+    solve()
+    t = time() - t
+    ms: int = ceil(1000 * t)
+    print(&quot;\nTime elapsed: &quot; + str(ms) + &quot; millisecond&quot; +
+          (&quot;&quot; if ms &lt; 2 else &quot;s&quot;) + &quot;.\n&quot;)
+
+
+def isDistinct(*elements) -&gt; bool:
+    l: int = len(elements)
+    for i in range(0, l - 1):
+        for j in range(i + 1, l):
+            if (elements[i] == elements[j]):
+                return False
+    return True
+
+
+def solve() -&gt; None:
+    # AB / C + DE / F = GH / I
+    # This is
+    # (AB * F + DE * C) * I = GH * C * F
+    counter: int = 0
+    for i1 in range(1, 10):
+        for i2 in range(1, 10):
+            for i3 in range(1, 10):
+                for i4 in range(1, 10):
+                    for i5 in range(1, 10):
+                        for i6 in range(1, 10):
+                            for i7 in range(1, 10):
+                                for i8 in range(1, 10):
+                                    for i9 in range(1, 10):
+                                        # Checks whether the numbers are distinct
+                                        if (not isDistinct(i1, i2, i3, i4, i5, i6, i7, i8, i9)):
+                                            continue
+                                        # Since both a + b and b + a are fine, WLOG let's display only one
+                                        if ((10 * i1 + i2) * i6 &gt; (10 * i4 + i5) * i3):
+                                            continue
+                                        if ((10 * i1 + i2) * i6 == (10 * i4 + i5) * i3 and (10 * i1 + i2) &gt; (10 * i4 + i5)):
+                                            continue
+                                        if (((10 * i1 + i2) * i6 + (10 * i4 + i5) * i3) * i9 == (10 * i7 + i8) * i3 * i6):
+                                            counter += 1
+                                            print(&quot;%d%d / %d + %d%d / %d = %d%d / %d&quot; %
+                                                  (i1, i2, i3, i4, i5, i6, i7, i8, i9))
+    if (counter &lt; 2):
+        print(&quot;\nThere is %d solution.&quot; % (counter))
+    else:
+        print(&quot;\nThere are %d solutions.&quot; % (counter))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+
+</code></pre>
+<p>Python Output:</p>
+<pre><code class="language-python">
+13 / 2 + 45 / 6 = 98 / 7
+14 / 2 + 96 / 8 = 57 / 3
+14 / 6 + 32 / 8 = 57 / 9
+15 / 9 + 28 / 7 = 34 / 6
+15 / 9 + 67 / 3 = 48 / 2
+16 / 8 + 92 / 4 = 75 / 3
+17 / 2 + 58 / 4 = 69 / 3
+18 / 3 + 54 / 9 = 72 / 6
+18 / 3 + 72 / 9 = 56 / 4
+18 / 6 + 54 / 9 = 27 / 3
+18 / 9 + 35 / 7 = 42 / 6
+18 / 9 + 46 / 2 = 75 / 3
+21 / 7 + 96 / 8 = 45 / 3
+21 / 9 + 73 / 6 = 58 / 4
+23 / 6 + 18 / 4 = 75 / 9
+24 / 6 + 35 / 7 = 81 / 9
+24 / 8 + 16 / 3 = 75 / 9
+27 / 9 + 15 / 3 = 48 / 6
+27 / 9 + 15 / 3 = 64 / 8
+27 / 9 + 18 / 3 = 54 / 6
+27 / 9 + 84 / 6 = 51 / 3
+32 / 8 + 54 / 6 = 91 / 7
+35 / 7 + 14 / 2 = 96 / 8
+41 / 3 + 89 / 6 = 57 / 2
+45 / 6 + 37 / 1 = 89 / 2
+45 / 9 + 81 / 6 = 37 / 2
+48 / 9 + 65 / 3 = 27 / 1
+49 / 7 + 58 / 2 = 36 / 1
+54 / 3 + 98 / 2 = 67 / 1
+54 / 6 + 98 / 7 = 23 / 1
+54 / 9 + 21 / 3 = 78 / 6
+54 / 9 + 37 / 1 = 86 / 2
+54 / 9 + 76 / 8 = 31 / 2
+56 / 7 + 81 / 9 = 34 / 2
+57 / 9 + 18 / 2 = 46 / 3
+58 / 4 + 97 / 2 = 63 / 1
+58 / 6 + 97 / 3 = 42 / 1
+81 / 9 + 75 / 6 = 43 / 2
+87 / 9 + 46 / 3 = 25 / 1
+95 / 6 + 74 / 3 = 81 / 2
+96 / 8 + 45 / 3 = 27 / 1
+
+There are 41 solutions.
+
+Time elapsed: 638795 milliseconds.
+
+</code></pre>
+<p>Java:</p>
+<p><em>Package name</em>: <code>math_puzzle</code>; <em>File name</em>: <code>Pr_2.java</code></p>
+<pre><code class="language-java">package math_puzzle;
+
+/**
+ * Pr_2
+ */
+public class Pr_2 {
+
+    public static void main(final String... args) {
+        long time = 0;
+        time = System.currentTimeMillis();
+        System.out.println(&quot;&quot;);
+        Pr_2.solve();
+        time = System.currentTimeMillis() - time;
+        System.out.println(String.format(&quot;\nTime elapsed: %d millisecond&quot;, time) + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
+    }
+
+    public static boolean isDistinct(final int... elements) {
+        final int l = elements.length;
+        for (int i = 0; i &lt; l - 1; i++) {
+            for (int j = i + 1; j &lt; l; j++) {
+                if (elements[i] == elements[j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void solve() {
+        // AB / C + DE / F = GH / I
+        // This is
+        // (AB * F + DE * C) * I = GH * C * F
+        int counter = 0;
+        for (int i1 = 1; i1 &lt; 10; i1++) {
+            for (int i2 = 1; i2 &lt; 10; i2++) {
+                for (int i3 = 1; i3 &lt; 10; i3++) {
+                    for (int i4 = 1; i4 &lt; 10; i4++) {
+                        for (int i5 = 1; i5 &lt; 10; i5++) {
+                            for (int i6 = 1; i6 &lt; 10; i6++) {
+                                for (int i7 = 1; i7 &lt; 10; i7++) {
+                                    for (int i8 = 1; i8 &lt; 10; i8++) {
+                                        for (int i9 = 1; i9 &lt; 10; i9++) {
+                                            // Checks whether the numbers are distinct
+                                            if (!Pr_2.isDistinct(i1, i2, i3, i4, i5, i6, i7, i8, i9)) {
+                                                continue;
+                                            }
+                                            // Since both a + b and b + a are fine, WLOG let's display only one
+                                            if ((10 * i1 + i2) * i6 &gt; (10 * i4 + i5) * i3) {
+                                                continue;
+                                            }
+                                            if ((10 * i1 + i2) * i6 == (10 * i4 + i5) * i3
+                                                    &amp;&amp; (10 * i1 + i2) &gt; (10 * i4 + i5)) {
+                                                continue;
+                                            }
+                                            if (((10 * i1 + i2) * i6 + (10 * i4 + i5) * i3) * i9 == (10 * i7 + i8) * i3
+                                                    * i6) {
+                                                counter++;
+                                                System.out.println(String.format(&quot;%d%d / %d + %d%d / %d = %d%d / %d&quot;,
+                                                        i1, i2, i3, i4, i5, i6, i7, i8, i9));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (counter &lt; 2) {
+            System.out.println(String.format(&quot;\nThere is %d solution.&quot;, counter));
+        } else {
+            System.out.println(String.format(&quot;\nThere are %d solutions.&quot;, counter));
+        }
+    }
+
+}
+
+</code></pre>
+<p>Java Output:</p>
+<pre><code class="language-java">
+13 / 2 + 45 / 6 = 98 / 7
+14 / 2 + 96 / 8 = 57 / 3
+14 / 6 + 32 / 8 = 57 / 9
+15 / 9 + 28 / 7 = 34 / 6
+15 / 9 + 67 / 3 = 48 / 2
+16 / 8 + 92 / 4 = 75 / 3
+17 / 2 + 58 / 4 = 69 / 3
+18 / 3 + 54 / 9 = 72 / 6
+18 / 3 + 72 / 9 = 56 / 4
+18 / 6 + 54 / 9 = 27 / 3
+18 / 9 + 35 / 7 = 42 / 6
+18 / 9 + 46 / 2 = 75 / 3
+21 / 7 + 96 / 8 = 45 / 3
+21 / 9 + 73 / 6 = 58 / 4
+23 / 6 + 18 / 4 = 75 / 9
+24 / 6 + 35 / 7 = 81 / 9
+24 / 8 + 16 / 3 = 75 / 9
+27 / 9 + 15 / 3 = 48 / 6
+27 / 9 + 15 / 3 = 64 / 8
+27 / 9 + 18 / 3 = 54 / 6
+27 / 9 + 84 / 6 = 51 / 3
+32 / 8 + 54 / 6 = 91 / 7
+35 / 7 + 14 / 2 = 96 / 8
+41 / 3 + 89 / 6 = 57 / 2
+45 / 6 + 37 / 1 = 89 / 2
+45 / 9 + 81 / 6 = 37 / 2
+48 / 9 + 65 / 3 = 27 / 1
+49 / 7 + 58 / 2 = 36 / 1
+54 / 3 + 98 / 2 = 67 / 1
+54 / 6 + 98 / 7 = 23 / 1
+54 / 9 + 21 / 3 = 78 / 6
+54 / 9 + 37 / 1 = 86 / 2
+54 / 9 + 76 / 8 = 31 / 2
+56 / 7 + 81 / 9 = 34 / 2
+57 / 9 + 18 / 2 = 46 / 3
+58 / 4 + 97 / 2 = 63 / 1
+58 / 6 + 97 / 3 = 42 / 1
+81 / 9 + 75 / 6 = 43 / 2
+87 / 9 + 46 / 3 = 25 / 1
+95 / 6 + 74 / 3 = 81 / 2
+96 / 8 + 45 / 3 = 27 / 1
+
+There are 41 solutions.
+
+Time elapsed: 6489 milliseconds.
+
+</code></pre>
+<p>JavaScript:</p>
+<pre><code class="language-javascript">&quot;use strict&quot;;
+
+function main() {
+    let args = [];
+    for (let _i = 0; _i &lt; arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    let time = 0;
+    time = (new Date()).valueOf();
+    console.log(&quot;&quot;);
+    solve();
+    time = (new Date()).valueOf() - time;
+    console.log(`\nTime elapsed: ${time} millisecond` + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
+}
+
+function isDistinct() {
+    let elements = [];
+    for (let _i = 0; _i &lt; arguments.length; _i++) {
+        elements[_i] = arguments[_i];
+    }
+    let l = elements.length;
+    for (let i = 0; i &lt; l - 1; i++) {
+        for (let j = i + 1; j &lt; l; j++) {
+            if (elements[i] === elements[j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function solve() {
+    // AB / C + DE / F = GH / I
+    // This is
+    // (AB * F + DE * C) * I = GH * C * F
+    let counter = 0;
+    for (let i1 = 1; i1 &lt; 10; i1++) {
+        for (let i2 = 1; i2 &lt; 10; i2++) {
+            for (let i3 = 1; i3 &lt; 10; i3++) {
+                for (let i4 = 1; i4 &lt; 10; i4++) {
+                    for (let i5 = 1; i5 &lt; 10; i5++) {
+                        for (let i6 = 1; i6 &lt; 10; i6++) {
+                            for (let i7 = 1; i7 &lt; 10; i7++) {
+                                for (let i8 = 1; i8 &lt; 10; i8++) {
+                                    for (let i9 = 1; i9 &lt; 10; i9++) {
+                                        // Checks whether the numbers are distinct
+                                        if (!isDistinct(i1, i2, i3, i4, i5, i6, i7, i8, i9)) {
+                                            continue;
+                                        }
+                                        // Since both a + b and b + a are fine, WLOG let's display only one
+                                        if ((10 * i1 + i2) * i6 &gt; (10 * i4 + i5) * i3) {
+                                            continue;
+                                        }
+                                        if ((10 * i1 + i2) * i6 === (10 * i4 + i5) * i3 &amp;&amp; (10 * i1 + i2) &gt; (10 * i4 + i5)) {
+                                            continue;
+                                        }
+                                        if (((10 * i1 + i2) * i6 + (10 * i4 + i5) * i3) * i9 === (10 * i7 + i8) * i3 * i6) {
+                                            counter++;
+                                            console.log(`${i1}${i2} / ${i3} + ${i4}${i5} / ${i6} = ${i7}${i8} / ${i9}`);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (counter &lt; 2) {
+        console.log(`\nThere is ${counter} solution.`);
+    }
+    else {
+        console.log(`\nThere are ${counter} solutions.`);
+    }
+}
+
+main();
+
+</code></pre>
+<p>JavaScript Output:</p>
+<pre><code class="language-javascript">
+13 / 2 + 45 / 6 = 98 / 7
+14 / 2 + 96 / 8 = 57 / 3
+14 / 6 + 32 / 8 = 57 / 9
+15 / 9 + 28 / 7 = 34 / 6
+15 / 9 + 67 / 3 = 48 / 2
+16 / 8 + 92 / 4 = 75 / 3
+17 / 2 + 58 / 4 = 69 / 3
+18 / 3 + 54 / 9 = 72 / 6
+18 / 3 + 72 / 9 = 56 / 4
+18 / 6 + 54 / 9 = 27 / 3
+18 / 9 + 35 / 7 = 42 / 6
+18 / 9 + 46 / 2 = 75 / 3
+21 / 7 + 96 / 8 = 45 / 3
+21 / 9 + 73 / 6 = 58 / 4
+23 / 6 + 18 / 4 = 75 / 9
+24 / 6 + 35 / 7 = 81 / 9
+24 / 8 + 16 / 3 = 75 / 9
+27 / 9 + 15 / 3 = 48 / 6
+27 / 9 + 15 / 3 = 64 / 8
+27 / 9 + 18 / 3 = 54 / 6
+27 / 9 + 84 / 6 = 51 / 3
+32 / 8 + 54 / 6 = 91 / 7
+35 / 7 + 14 / 2 = 96 / 8
+41 / 3 + 89 / 6 = 57 / 2
+45 / 6 + 37 / 1 = 89 / 2
+45 / 9 + 81 / 6 = 37 / 2
+48 / 9 + 65 / 3 = 27 / 1
+49 / 7 + 58 / 2 = 36 / 1
+54 / 3 + 98 / 2 = 67 / 1
+54 / 6 + 98 / 7 = 23 / 1
+54 / 9 + 21 / 3 = 78 / 6
+54 / 9 + 37 / 1 = 86 / 2
+54 / 9 + 76 / 8 = 31 / 2
+56 / 7 + 81 / 9 = 34 / 2
+57 / 9 + 18 / 2 = 46 / 3
+58 / 4 + 97 / 2 = 63 / 1
+58 / 6 + 97 / 3 = 42 / 1
+81 / 9 + 75 / 6 = 43 / 2
+87 / 9 + 46 / 3 = 25 / 1
+95 / 6 + 74 / 3 = 81 / 2
+96 / 8 + 45 / 3 = 27 / 1
+
+There are 41 solutions.
+
+Time elapsed: 34001 milliseconds.
+
+</code></pre>
+<p>问 2. H, A, P, Y, N, E, W, R 表示 0, 1, 3, 4, 5, 6, 7, 8, 9, 且任意二个字母表示不同的数字。解方程</p>
+<p>HAPPY - NEW = YEAR * 2</p>
+<p>这个应该更简单吧。答案有且只有一个:</p>
+<p>14776 - 890 = 6943 * 2</p>
+<p>Python:</p>
+<pre><code class="language-python">from time import time
+from math import ceil
+
+
+def main(*args) -&gt; None:
+    t: float = 0
+    t = time()
+    print(&quot;&quot;)
+    solve()
+    t = time() - t
+    ms: int = ceil(1000 * t)
+    print(&quot;\nTime elapsed: &quot; + str(ms) + &quot; millisecond&quot; +
+          (&quot;&quot; if ms &lt; 2 else &quot;s&quot;) + &quot;.\n&quot;)
+
+
+def isDistinct(*elements) -&gt; bool:
+    l: int = len(elements)
+    for i in range(0, l - 1):
+        for j in range(i + 1, l):
+            if (elements[i] == elements[j]):
+                return False
+    return True
+
+
+def solve() -&gt; None:
+    # HAPPY - NEW = YEAR * 2
+    # H, A, P, Y, N, E, W, R: 0 ~ 9
+    # H, Y, N &gt; 0
+    # No letter can stand for 2
+    # No two distinct letters stand for the same integer
+    counter: int = 0
+    HAPPY: int = 0
+    NEW: int = 0
+    YEAR: int = 0
+    for i1 in range(1, 10):
+        for i2 in range(0, 10):
+            for i3 in range(0, 10):
+                for i4 in range(1, 10):
+                    for i5 in range(1, 10):
+                        for i6 in range(0, 10):
+                            for i7 in range(0, 10):
+                                for i8 in range(0, 10):
+                                    if (not isDistinct(i1, i2, i3, i4, i5, i6, i7, i8, 2)):
+                                        continue
+                                    HAPPY = 10000 * i1 + 1000 * i2 + 100 * i3 + 10 * i3 + i4
+                                    NEW = 100 * i5 + 10 * i6 + i7
+                                    YEAR = 1000 * i4 + 100 * i6 + 10 * i2 + i8
+                                    if (HAPPY - NEW == YEAR * 2):
+                                        counter += 1
+                                        print(&quot;%d - %d = %d * 2&quot; % (HAPPY, NEW, YEAR))
+    if (counter &lt; 2):
+        print(&quot;\nThere is %d solution.&quot; % (counter))
+    else:
+        print(&quot;\nThere are %d solutions.&quot; % (counter))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+
+</code></pre>
+<p>Python Output:</p>
+<pre><code class="language-python">
+14776 - 890 = 6943 * 2
+
+There is 1 solution.
+
+Time elapsed: 128850 milliseconds.
+
+</code></pre>
+<p>Java:</p>
+<p><em>Package name</em>: <code>math_puzzle</code>; <em>File name</em>: <code>Pr_22.java</code></p>
+<pre><code class="language-java">package math_puzzle;
+
+/**
+ * Pr_22
+ */
+public class Pr_22 {
+
+    public static void main(final String... args) {
+        long time = 0;
+        time = System.currentTimeMillis();
+        System.out.println(&quot;&quot;);
+        Pr_22.solve();
+        time = System.currentTimeMillis() - time;
+        System.out.println(String.format(&quot;\nTime elapsed: %d millisecond&quot;, time) + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
+    }
+
+    public static boolean isDistinct(final int... elements) {
+        final int l = elements.length;
+        for (int i = 0; i &lt; l - 1; i++) {
+            for (int j = i + 1; j &lt; l; j++) {
+                if (elements[i] == elements[j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void solve() {
+        // HAPPY - NEW = YEAR * 2
+        // H, A, P, Y, N, E, W, R: 0 ~ 9
+        // H, Y, N &gt; 0
+        // No letter can stand for 2
+        // No two distinct letters stand for the same integer
+        int counter = 0;
+        int HAPPY = 0;
+        int NEW = 0;
+        int YEAR = 0;
+        for (int i1 = 1; i1 &lt; 10; i1++) {
+            for (int i2 = 0; i2 &lt; 10; i2++) {
+                for (int i3 = 0; i3 &lt; 10; i3++) {
+                    for (int i4 = 1; i4 &lt; 10; i4++) {
+                        for (int i5 = 1; i5 &lt; 10; i5++) {
+                            for (int i6 = 0; i6 &lt; 10; i6++) {
+                                for (int i7 = 0; i7 &lt; 10; i7++) {
+                                    for (int i8 = 0; i8 &lt; 10; i8++) {
+                                        // Checks whether the numbers are distinct
+                                        if (!Pr_22.isDistinct(i1, i2, i3, i4, i5, i6, i7, i8, 2)) {
+                                            continue;
+                                        }
+                                        HAPPY = 10000 * i1 + 1000 * i2 + 100 * i3 + 10 * i3 + i4;
+                                        NEW = 100 * i5 + 10 * i6 + i7;
+                                        YEAR = 1000 * i4 + 100 * i6 + 10 * i2 + i8;
+                                        if (HAPPY - NEW == YEAR * 2) {
+                                            counter++;
+                                            System.out.println(String.format(&quot;%d - %d = %d * 2&quot;, HAPPY, NEW, YEAR));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (counter &lt; 2) {
+            System.out.println(String.format(&quot;\nThere is %d solution.&quot;, counter));
+        } else {
+            System.out.println(String.format(&quot;\nThere are %d solutions.&quot;, counter));
+        }
+    }
+
+}
+
+</code></pre>
+<p>Java Output:</p>
+<pre><code class="language-java">
+14776 - 890 = 6943 * 2
+
+There is 1 solution.
+
+Time elapsed: 1633 milliseconds.
+
+</code></pre>
+<p>JavaScript:</p>
+<pre><code class="language-javascript">&quot;use strict&quot;;
+
+function main() {
+    let args = [];
+    for (let _i = 0; _i &lt; arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    let time = 0;
+    time = (new Date()).valueOf();
+    console.log(&quot;&quot;);
+    solve();
+    time = (new Date()).valueOf() - time;
+    console.log(`\nTime elapsed: ${time} millisecond` + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
+}
+
+function isDistinct() {
+    let elements = [];
+    for (let _i = 0; _i &lt; arguments.length; _i++) {
+        elements[_i] = arguments[_i];
+    }
+    let l = elements.length;
+    for (let i = 0; i &lt; l - 1; i++) {
+        for (let j = i + 1; j &lt; l; j++) {
+            if (elements[i] === elements[j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function solve() {
+    // HAPPY - NEW = YEAR * 2
+    // H, A, P, Y, N, E, W, R: 0 ~ 9
+    // H, Y, N &gt; 0
+    // No letter can stand for 2
+    // No two distinct letters stand for the same integer
+    let counter = 0;
+    let HAPPY = 0;
+    let NEW = 0;
+    let YEAR = 0;
+    for (let i1 = 1; i1 &lt; 10; i1++) {
+        for (let i2 = 0; i2 &lt; 10; i2++) {
+            for (let i3 = 0; i3 &lt; 10; i3++) {
+                for (let i4 = 1; i4 &lt; 10; i4++) {
+                    for (let i5 = 1; i5 &lt; 10; i5++) {
+                        for (let i6 = 0; i6 &lt; 10; i6++) {
+                            for (let i7 = 0; i7 &lt; 10; i7++) {
+                                for (let i8 = 0; i8 &lt; 10; i8++) {
+                                    // Checks whether the numbers are distinct
+                                    if (!isDistinct(i1, i2, i3, i4, i5, i6, i7, i8, 2)) {
+                                        continue;
+                                    }
+                                    HAPPY = 10000 * i1 + 1000 * i2 + 100 * i3 + 10 * i3 + i4;
+                                    NEW = 100 * i5 + 10 * i6 + i7;
+                                    YEAR = 1000 * i4 + 100 * i6 + 10 * i2 + i8;
+                                    if (HAPPY - NEW === YEAR * 2) {
+                                        counter++;
+                                        console.log(`${HAPPY} - ${NEW} = ${YEAR} * 2`);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if (counter &lt; 2) {
+        console.log(`\nThere is ${counter} solution.`);
+    }
+    else {
+        console.log(`\nThere are ${counter} solutions.`);
+    }
+}
+
+main();
+
+</code></pre>
+<p>JavaScript Output:</p>
+<pre><code class="language-javascript">
+14776 - 890 = 6943 * 2
+
+There is 1 solution.
+
+Time elapsed: 6518 milliseconds.
+
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                next
+              </div>
+              <a href="https://septsea.github.io/post/shui-0001/">
+                <h3 class="post-title">
+                  水 (0001)
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://septsea.github.io//images/avatar.png?v=1583386737026" class="no-responsive avatar">
+    <div class="text-muted">This is septsea's website.</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      the latest
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0008/">水 (0008)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0007/">水 (0007)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0006/">水 (0006)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0005/">水 (0005)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/yin-shi-fen-jie/">因式分解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0004/">水 (0004)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/yi-ge-dui-diao-liao-de-fang-cheng/">一个对调了的方程</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0003/">水 (0003)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0002/">水 (0002)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0001/">水 (0001)</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      tags
+    </div>
+    <div class="row">
+      
+        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge success">
+          programming
+        </a>
+      
+        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
+          math
+        </a>
+      
+        <a href="https://septsea.github.io/tag/2UpWodjEn/" class="badge secondary">
+          info
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>. | <a class="rss" href="https://septsea.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

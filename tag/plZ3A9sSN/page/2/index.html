@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>最大乘积 | septsea&#39;s website</title>
+<title>programming | septsea&#39;s website</title>
 <meta name="description" content="This is septsea&#39;s website.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,7 +23,6 @@
 
   </head>
   <body>
-  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://septsea.github.io/">septsea&#39;s website</a></h3>
@@ -80,54 +79,48 @@
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <article class="article">
-            <h1>最大乘积</h1>
-            <p class="article-meta">
-              Friday, January 17th 2020, 8:00:00 am
-              
-                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
-                  math
-                </a>
-              
-            </p>
-            
-            <div class="post-content">
-              <p>我, septsea, 又来水了。<em>Wow, I can really water experience.</em></p>
-<p>有一些正整数和为 n, 求它们最大乘积。</p>
-<p>我们简单分析 e 下。</p>
-<p>首先, 如果有 r 个 1, 那么就相当于 r - k 个 &gt; 1 个数在相乘 (r 是数字个数)。2 * (w - 1) 不比 1 * w 香?</p>
-<p>其次, 对于一个数 w 而言, 2 * (w - 2) = w + (w - 4), 3 * (w - 3) = w + (2w - 9), 所以, 不小于 5 的数 w 应当拆开。</p>
-<p>4 可以写成 2 + 2 (当然也可以写成 2 * 2), 所以 WLOG (您觉得这该怎么读呢?), 把 4 拆为 2 个 2。</p>
-<p>对于 6 而言, 6 = 2 + 2 + 2 = 3 + 3, 因为 2 * 2 * 2 &lt; 3 * 3, 所以每 3 个 2 都应用 2 个 3 代替。</p>
-<p>所以, 只要 n &gt;= 2, 为了使乘积最大, 绝对不应出现 1, 尽可能用 3 填满, 剩下的用 2 填。</p>
-<p>n = 1 时没得说, 乘积就是 1。n = 2 时, 1 个 2 就可, 从而最大乘积为 2。n = 3 时, 1 个 3 就可, 从而最大乘积为 3。n = 4 时, 2 个 2 就可, 从而最大乘积为 4。</p>
-<p>n &gt;= 5 时, 尽可能用 3 填满。设 n = 3q + r, 0 &lt;= r &lt;= 2。</p>
-<p>r = 0 意味着可以全部用 3 填满, 从而最大乘积为 3 * 3 ^ (q - 1)。</p>
-<p>r = 1 时应当用 q - 1 个 3 与 2 个 2 填满, 从而最大乘积为 4 * 3 ^ (q - 1)。</p>
-<p>r = 2 意味着可以用 q 个 3 与 1 个 2 填满, 从而最大乘积为 6 * 3 ^ (q - 1)。</p>
-<p>q = [n / 3], r = n - 3q, [x] 是不超过 x 的最大整数。</p>
-<p>今日就到这里吧。</p>
+          <h2 class="current-tag">Tag: programming</h2>
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://septsea.github.io/post/a-minimum-problem/">A minimum problem</a>
+    </h2>
+    <p class="article-meta">
+      Thursday, January 16th 2020, 8:00:00 am
+      
+        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
+          programming
+        </a>
+      
+        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
+          math
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://septsea.github.io/post/a-minimum-problem/" class="readmore-link">
+        <button>
+          read more
+        </button>
+      </a>
+    </div>
+  </article>
 
-            </div>
-          </article>
+
         </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                next
-              </div>
-              <a href="https://septsea.github.io/post/a-minimum-problem/">
-                <h3 class="post-title">
-                  A minimum problem
-                </h3>
-              </a>
-            </div>
-          
-        </div>
-        
+        <div class="row flex-edges">
+  
+    <a href="https://septsea.github.io/tag/plZ3A9sSN" class="paper-btn">
+      previous
+    </a>
+  
+  
+</div>
+
       </div>
-
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://septsea.github.io//images/avatar.png?v=1583386737026" class="no-responsive avatar">
@@ -248,7 +241,7 @@
           programming
         </a>
       
-        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge success">
+        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge warning">
           math
         </a>
       
@@ -262,7 +255,6 @@
     Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>. | <a class="rss" href="https://septsea.github.io//atom.xml" target="_blank">RSS</a>
   </div>
 </div>
-
 
     </div>
 

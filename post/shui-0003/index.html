@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>水 (0003) | septsea&#39;s website</title>
+<meta name="description" content="This is septsea&#39;s website.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583386737026">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
+
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://septsea.github.io/">septsea&#39;s website</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                Home Page
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                Archives
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                Tags
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                About
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>水 (0003)</h1>
+            <p class="article-meta">
+              Sunday, January 26th 2020, 8:00:00 am
+              
+                <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge warning">
+                  programming
+                </a>
+              
+                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge ">
+                  math
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <p>正月初二! 新年快乐呀!</p>
+<p>好了, 今天我们再来看一个题。</p>
+<p>ATOM = (A + TO + M) squared</p>
+<p>A, T, O, M 的取值范围是 1 ~ 9 的整数, 且任意二个字母代表不同的数字。</p>
+<p>思考一下, 一个完全平方数, 末尾必定是 0, 1, 4, 9, 6, 5 的一个。</p>
+<p>从而 M 只有可能是 1, 4, 5, 6, 9 的一个。</p>
+<p>既然 ATOM 是 4 位数, 那么 A + TO + M 必定不小于 32。</p>
+<p>嗯, 事实上 32, 33, 34, 35 都不行 (要么就是有 0, 要么就是有重复出现的数字)。</p>
+<p>36 squared = 1296, 1 + 29 + 6 = 36。一个解就这么找到了。</p>
+<p>有没有什么窍门呀。毕竟, 这个暴力求解很快的, 但是人到 20, 智商滑坡。</p>
+<p>有什么好办法一定要告诉我呀。</p>
+<p>还有, 这次 Python 挺快的。</p>
+<p>还有, 第二个 (没有第三个了) 解是 6724。</p>
+<p>Python:</p>
+<pre><code class="language-python">from time import time
+from math import ceil
+
+
+def main(*args) -&gt; None:
+    t: float = 0
+    t = time()
+    print(&quot;&quot;)
+    solve()
+    t = time() - t
+    ms: int = ceil(1000 * t)
+    print(&quot;\nTime elapsed: &quot; + str(ms) + &quot; millisecond&quot; +
+          (&quot;&quot; if ms &lt; 2 else &quot;s&quot;) + &quot;.\n&quot;)
+
+
+def isDistinct(*elements) -&gt; bool:
+    l: int = len(elements)
+    for i in range(0, l - 1):
+        for j in range(i + 1, l):
+            if (elements[i] == elements[j]):
+                return False
+    return True
+
+
+def solve() -&gt; None:
+    # ATOM = (A + TO + M) squared
+    counter: int = 0
+    for i1 in range(1, 10):
+        for i2 in range(1, 10):
+            for i3 in range(1, 10):
+                for i4 in range(1, 10):
+                    # Checks whether the numbers are distinct
+                    if (not isDistinct(i1, i2, i3, i4)):
+                        continue
+                    if ((1000 * i1 + 100 * i2 + 10 * i3 + i4) == (i1 + 10 * i2 + i3 + i4) * (i1 + 10 * i2 + i3 + i4)):
+                        counter += 1
+                        print(&quot;%d%d%d%d = (%d + %d%d + %d) squared&quot; %
+                              (i1, i2, i3, i4, i1, i2, i3, i4))
+    if (counter &lt; 2):
+        print(&quot;\nThere is %d solution.&quot; % (counter))
+    else:
+        print(&quot;\nThere are %d solutions.&quot; % (counter))
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+
+</code></pre>
+<p>Python Output:</p>
+<pre><code class="language-python">
+1296 = (1 + 29 + 6) squared
+6724 = (6 + 72 + 4) squared
+
+There are 2 solutions.
+
+Time elapsed: 13 milliseconds.
+
+</code></pre>
+<p>Java:</p>
+<p><em>Package name</em>: <code>math_puzzle</code>; <em>File name</em>: <code>Pr_3.java</code></p>
+<pre><code class="language-java">package math_puzzle;
+
+/**
+ * Pr_3
+ */
+public class Pr_3 {
+
+    public static void main(final String... args) {
+        long time = 0;
+        time = System.currentTimeMillis();
+        System.out.println(&quot;&quot;);
+        Pr_3.solve();
+        time = System.currentTimeMillis() - time;
+        System.out.println(String.format(&quot;\nTime elapsed: %d millisecond&quot;, time) + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
+    }
+
+    public static boolean isDistinct(final int... elements) {
+        final int l = elements.length;
+        for (int i = 0; i &lt; l - 1; i++) {
+            for (int j = i + 1; j &lt; l; j++) {
+                if (elements[i] == elements[j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static void solve() {
+        // ATOM = (A + TO + M) squared
+        int counter = 0;
+        for (int i1 = 1; i1 &lt; 10; i1++) {
+            for (int i2 = 1; i2 &lt; 10; i2++) {
+                for (int i3 = 1; i3 &lt; 10; i3++) {
+                    for (int i4 = 1; i4 &lt; 10; i4++) {
+                        // Checks whether the numbers are distinct
+                        if (!Pr_3.isDistinct(i1, i2, i3, i4)) {
+                            continue;
+                        }
+                        if ((1000 * i1 + 100 * i2 + 10 * i3 + i4) == (i1 + 10 * i2 + i3 + i4)
+                                * (i1 + 10 * i2 + i3 + i4)) {
+                            counter++;
+                            System.out.println(String.format(&quot;%d%d%d%d = (%d + %d%d + %d) squared&quot;, i1, i2, i3, i4, i1,
+                                    i2, i3, i4));
+                        }
+                    }
+                }
+            }
+        }
+        if (counter &lt; 2) {
+            System.out.println(String.format(&quot;\nThere is %d solution.&quot;, counter));
+        } else {
+            System.out.println(String.format(&quot;\nThere are %d solutions.&quot;, counter));
+        }
+    }
+
+}
+
+</code></pre>
+<p>Java Output:</p>
+<pre><code class="language-java">
+1296 = (1 + 29 + 6) squared
+6724 = (6 + 72 + 4) squared
+
+There are 2 solutions.
+
+Time elapsed: 5 milliseconds.
+
+</code></pre>
+<p>JavaScript:</p>
+<pre><code class="language-javascript">&quot;use strict&quot;;
+
+function main() {
+    let args = [];
+    for (let _i = 0; _i &lt; arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    let time = 0;
+    time = (new Date()).valueOf();
+    console.log(&quot;&quot;);
+    solve();
+    time = (new Date()).valueOf() - time;
+    console.log(`\nTime elapsed: ${time} millisecond` + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
+}
+
+function isDistinct() {
+    let elements = [];
+    for (let _i = 0; _i &lt; arguments.length; _i++) {
+        elements[_i] = arguments[_i];
+    }
+    let l = elements.length;
+    for (let i = 0; i &lt; l - 1; i++) {
+        for (let j = i + 1; j &lt; l; j++) {
+            if (elements[i] === elements[j]) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function solve() {
+    // ATOM = (A + TO + M) squared
+    let counter = 0;
+    for (let i1 = 1; i1 &lt; 10; i1++) {
+        for (let i2 = 1; i2 &lt; 10; i2++) {
+            for (let i3 = 1; i3 &lt; 10; i3++) {
+                for (let i4 = 1; i4 &lt; 10; i4++) {
+                    // Checks whether the numbers are distinct
+                    if (!isDistinct(i1, i2, i3, i4)) {
+                        continue;
+                    }
+                    if ((1000 * i1 + 100 * i2 + 10 * i3 + i4) == (i1 + 10 * i2 + i3 + i4) * (i1 + 10 * i2 + i3 + i4)) {
+                        counter++;
+                        console.log(`${i1}${i2}${i3}${i4} = (${i1} + ${i2}${i3} + ${i4}) squared`);
+                    }
+                }
+            }
+        }
+    }
+    if (counter &lt; 2) {
+        console.log(`\nThere is ${counter} solution.`);
+    }
+    else {
+        console.log(`\nThere are ${counter} solutions.`);
+    }
+}
+
+main();
+
+</code></pre>
+<p>JavaScript Output:</p>
+<pre><code class="language-javascript">
+1296 = (1 + 29 + 6) squared
+6724 = (6 + 72 + 4) squared
+
+There are 2 solutions.
+
+Time elapsed: 8 milliseconds.
+
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                next
+              </div>
+              <a href="https://septsea.github.io/post/shui-0002/">
+                <h3 class="post-title">
+                  水 (0002)
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://septsea.github.io//images/avatar.png?v=1583386737026" class="no-responsive avatar">
+    <div class="text-muted">This is septsea's website.</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      the latest
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0008/">水 (0008)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0007/">水 (0007)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0006/">水 (0006)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0005/">水 (0005)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/yin-shi-fen-jie/">因式分解</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0004/">水 (0004)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/yi-ge-dui-diao-liao-de-fang-cheng/">一个对调了的方程</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0003/">水 (0003)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0002/">水 (0002)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/shui-0001/">水 (0001)</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      tags
+    </div>
+    <div class="row">
+      
+        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
+          programming
+        </a>
+      
+        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
+          math
+        </a>
+      
+        <a href="https://septsea.github.io/tag/2UpWodjEn/" class="badge success">
+          info
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>. | <a class="rss" href="https://septsea.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

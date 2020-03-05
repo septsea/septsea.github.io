@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>最大乘积 | septsea&#39;s website</title>
+<title>水 (0006) | septsea&#39;s website</title>
 <meta name="description" content="This is septsea&#39;s website.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,9 +81,13 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>最大乘积</h1>
+            <h1>水 (0006)</h1>
             <p class="article-meta">
-              Friday, January 17th 2020, 8:00:00 am
+              Friday, January 31st 2020, 8:00:00 am
+              
+                <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge success">
+                  programming
+                </a>
               
                 <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
                   math
@@ -92,21 +96,57 @@
             </p>
             
             <div class="post-content">
-              <p>我, septsea, 又来水了。<em>Wow, I can really water experience.</em></p>
-<p>有一些正整数和为 n, 求它们最大乘积。</p>
-<p>我们简单分析 e 下。</p>
-<p>首先, 如果有 r 个 1, 那么就相当于 r - k 个 &gt; 1 个数在相乘 (r 是数字个数)。2 * (w - 1) 不比 1 * w 香?</p>
-<p>其次, 对于一个数 w 而言, 2 * (w - 2) = w + (w - 4), 3 * (w - 3) = w + (2w - 9), 所以, 不小于 5 的数 w 应当拆开。</p>
-<p>4 可以写成 2 + 2 (当然也可以写成 2 * 2), 所以 WLOG (您觉得这该怎么读呢?), 把 4 拆为 2 个 2。</p>
-<p>对于 6 而言, 6 = 2 + 2 + 2 = 3 + 3, 因为 2 * 2 * 2 &lt; 3 * 3, 所以每 3 个 2 都应用 2 个 3 代替。</p>
-<p>所以, 只要 n &gt;= 2, 为了使乘积最大, 绝对不应出现 1, 尽可能用 3 填满, 剩下的用 2 填。</p>
-<p>n = 1 时没得说, 乘积就是 1。n = 2 时, 1 个 2 就可, 从而最大乘积为 2。n = 3 时, 1 个 3 就可, 从而最大乘积为 3。n = 4 时, 2 个 2 就可, 从而最大乘积为 4。</p>
-<p>n &gt;= 5 时, 尽可能用 3 填满。设 n = 3q + r, 0 &lt;= r &lt;= 2。</p>
-<p>r = 0 意味着可以全部用 3 填满, 从而最大乘积为 3 * 3 ^ (q - 1)。</p>
-<p>r = 1 时应当用 q - 1 个 3 与 2 个 2 填满, 从而最大乘积为 4 * 3 ^ (q - 1)。</p>
-<p>r = 2 意味着可以用 q 个 3 与 1 个 2 填满, 从而最大乘积为 6 * 3 ^ (q - 1)。</p>
-<p>q = [n / 3], r = n - 3q, [x] 是不超过 x 的最大整数。</p>
-<p>今日就到这里吧。</p>
+              <p>今日的水题有一点点独特的地方:</p>
+<p>ONE + TWO + TWO + THREE + THREE = ELEVEN</p>
+<p>各个字母自然是 0~9 之间的数, O, E, T 不为 0, 且一个数字至多替换一个字母。</p>
+<p>如果您愿意看 e 下这个表达式, 并且您愿意看 English, you will realize that this is actually an example of the so-called &quot;double true cryptarithms&quot;, which are alphametics where the letters spell the words describing numbers so that the actual wording is also true.</p>
+<p>答. 391 + 803 + 803 + 84611 + 84611 = 171219。</p>
+<p>MathPuzzle 自然是昨日用剩的接口。</p>
+<pre><code class="language-java">package math_puzzle;
+
+/**
+ * Pr_65
+ */
+public class Pr_65 {
+
+    final static public void main(final String... args) {
+        ((MathPuzzle) () -&gt; {
+            // ONE + TWO + TWO + THREE + THREE = ELEVEN
+            // O, N, E; T, W; H, R; L, V: 0~9
+            // O, E, T &gt; 0
+            int counter = 0;
+            final int[][] perms = MathPuzzle.permutations(9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+            for (final int[] p : perms) {
+                if (p[0] == 0) {
+                    continue;
+                }
+                if (p[2] == 0) {
+                    continue;
+                }
+                if (p[3] == 0) {
+                    continue;
+                }
+                final int n1 = 100 * p[0] + 10 * p[1] + p[2];
+                final int n2 = 100 * p[3] + 10 * p[4] + p[0];
+                final int n3 = 10000 * p[3] + 1000 * p[5] + 100 * p[6] + 11 * p[2];
+                final int n4 = 101010 * p[2] + 10000 * p[7] + 100 * p[8] + p[1];
+                if (n1 + n2 * 2 + n3 * 2 == n4) {
+                    counter++;
+                    System.out.println(String.format(&quot;%d + %d + %d + %d + %d = %d&quot;, n1, n2, n2, n3, n3, n4));
+                }
+            }
+            if (counter &lt; 2) {
+                System.out.println(String.format(&quot;\nThere is %d solution.&quot;, counter));
+            } else {
+                System.out.println(String.format(&quot;\nThere are %d solutions.&quot;, counter));
+            }
+        }).execute();
+    }
+
+}
+
+</code></pre>
+<p>就这样吧, 谢谢。</p>
 
             </div>
           </article>
@@ -117,9 +157,9 @@
               <div class="next">
                 next
               </div>
-              <a href="https://septsea.github.io/post/a-minimum-problem/">
+              <a href="https://septsea.github.io/post/shui-0005/">
                 <h3 class="post-title">
-                  A minimum problem
+                  水 (0005)
                 </h3>
               </a>
             </div>
@@ -244,11 +284,11 @@
     </div>
     <div class="row">
       
-        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge warning">
+        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
           programming
         </a>
       
-        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge success">
+        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge secondary">
           math
         </a>
       
