@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>One and Two | septsea&#39;s website</title>
+<meta name="description" content="This is septsea&#39;s website.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583381398539">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
+
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://septsea.github.io/">septsea&#39;s website</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                Home Page
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                Archives
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                Tags
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                About
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>One and Two</h1>
+            <p class="article-meta">
+              Sunday, January 19th 2020, 8:00:00 am
+              
+                <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
+                  programming
+                </a>
+              
+                <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge ">
+                  math
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <p>Here are some Java files.</p>
+<p><em>Package name:</em> <code>python_list</code></p>
+<p><em>File name:</em> <code>PyList.java</code></p>
+<pre><code class="language-java">package python_list;
+
+/**
+ * PyList: Emulates a Python list.
+ * &lt;/p&gt;
+ * To create a new String list called {@code ps}:
+ * &lt;/p&gt;
+ * {@code PyList&lt;String&gt; ps = new PyList&lt;String&gt;();}
+ * &lt;/p&gt;
+ * To create a new list called {@code po}, whose element type is undetermined:
+ * &lt;/p&gt;
+ * {@code PyList&lt;Object&gt; po = new PyList&lt;Object&gt;();}
+ */
+// The following line suppresses warnings concerning &quot;unchecked&quot;.
+@SuppressWarnings(&quot;unchecked&quot;)
+public class PyList&lt;E&gt; {
+
+    public static final int MAX_LENGTH = 150;
+    private final E[] list;
+    private int size;
+
+    /** Initializes the list. */
+    public PyList() {
+        this.list = (E[]) new Object[MAX_LENGTH];
+        this.resets();
+    }
+
+    /**
+     * Initializes the list with {@code data}. The elements of {@code data} will be
+     * appended to the list.
+     * 
+     * @param data the elements to be appended.
+     */
+    public PyList(final E... data) {
+        this();
+        this.appends(data);
+    }
+
+    /**
+     * Initializes the list with {@code py_lists}. The elements of {@code py_lists}
+     * will be appended to the list.
+     * 
+     * @param py_lists the lists to be appended.
+     */
+    public PyList(final PyList&lt;E&gt;... py_lists) {
+        this();
+        this.appends(py_lists);
+    }
+
+    /** Does nothing. */
+    public void appends() {
+
+    }
+
+    /**
+     * Appends the elements of {@code data} to the list.
+     * 
+     * @param data the elements to be appended.
+     */
+    public void appends(final E... data) {
+        for (final E datum : data) {
+            this.sets(this.length(), datum);
+        }
+    }
+
+    /**
+     * Appends the elements of {@code py_lists} to the list.
+     * 
+     * @param py_lists the lists to be appended.
+     */
+    public void appends(final PyList&lt;E&gt;... py_lists) {
+        for (final PyList&lt;E&gt; py_list : py_lists) {
+            for (int i = 0; i &lt; py_list.length(); i++) {
+                this.appends(py_list.visits(i));
+            }
+        }
+    }
+
+    /**
+     * Appends {@code element} to the list if it was not in the list.
+     * 
+     * @param element the element to be appended.
+     * @return {@code true} if and only if {@code element} was not in the list.
+     */
+    public boolean appendsIfAbsent(final E element) {
+        if (!this.contains(element)) {
+            this.appends(element);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Validates whether {@code element} is in the list.
+     * 
+     * @param element the element to be searched.
+     * @return {@code true} if and only if {@code element} is in the list.
+     */
+    public boolean contains(final E element) {
+        return this.indexOf(element) != -1;
+    }
+
+    /**
+     * Validates whether the list contains only elements of {@code allowedElements}.
+     * 
+     * @param allowedElements the array of allowed elements.
+     * @return {@code true} if and only if the list contains only elements of
+     *         {@code allowedElements}.
+     */
+    public boolean containsOnly(final E... allowedElements) {
+        final PyList&lt;E&gt; allowedElements_list = new PyList&lt;E&gt;(allowedElements);
+        for (int i = 0; i &lt; this.length(); i++) {
+            if (!allowedElements_list.contains(this.visits(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof PyList) {
+            final PyList&lt;E&gt; py_list = (PyList&lt;E&gt;) other;
+            int n = this.length();
+            if (n == py_list.length()) {
+                int i = 0;
+                while (n != 0) {
+                    n--;
+                    if (this.visits(i) != py_list.visits(i)) {
+                        return false;
+                    }
+                    i++;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * A shortcut to {@code indexOf(element, 0)}.
+     * 
+     * @param element the element to be searched.
+     * @return {@code indexOf(element, 0)}.
+     */
+    public int indexOf(final E element) {
+        return this.indexOf(element, 0);
+    }
+
+    /**
+     * Looks for the index {@code i} with the properties that {@code beginIndex &lt; i}
+     * and that the element at index {@code i} is {@code element}. Gives -1 if no
+     * such index exists.
+     * 
+     * @param element    the element to be searched.
+     * @param beginIndex the beginning index.
+     * @return the index with the properties above, or -1 if no such index exists.
+     */
+    public int indexOf(final E element, final int beginIndex) {
+        if (element == null) {
+            for (int index = beginIndex; index &lt; this.length(); index++) {
+                if (this.visits(index) == null) {
+                    return index;
+                }
+            }
+        } else {
+            for (int index = beginIndex; index &lt; this.length(); index++) {
+                if (this.visits(index).equals(element)) {
+                    return index;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * Inserts {@code element} before {@code index}.
+     * 
+     * @param index   the index.
+     * @param element the element to be inserted.
+     */
+    public void inserts(final int index, final E element) {
+        if (index &gt;= this.length()) {
+            this.appends(element);
+        } else {
+            int i = this.length();
+            while (i != index) {
+                i--;
+                this.sets(i + 1, this.visits(i));
+            }
+            this.sets(index, element);
+        }
+    }
+
+    /**
+     * Gives the length of the list.
+     * 
+     * @return the length of the size.
+     */
+    public int length() {
+        return this.size;
+    }
+
+    /**
+     * Gives the last element and removes it.
+     * 
+     * @return the last element.
+     */
+    public E pops() {
+        return this.pops(this.length() - 1);
+    }
+
+    /**
+     * Gives the element at index {@code index} and removes it.
+     * 
+     * @param index the index.
+     * @return the element at index {@code index}.
+     */
+    public E pops(final int index) {
+        final PyList&lt;E&gt; temp_list = new PyList&lt;E&gt;();
+        final E integer_popped = this.visits(index);
+        for (int i = 0; i &lt; this.length(); i++) {
+            if (i != index) {
+                temp_list.appends(this.visits(i));
+            }
+        }
+        this.replacedBy(temp_list);
+        return (E) integer_popped;
+    }
+
+    /**
+     * Replaces the current list by {@code py_list}.
+     * 
+     * @param py_list the list.
+     */
+    public void replacedBy(final PyList&lt;E&gt; py_list) {
+        this.resets();
+        this.appends(py_list);
+    }
+
+    /** Resets the list. */
+    public void resets() {
+        for (int i = 0; i &lt; PyList.MAX_LENGTH; i++) {
+            this.list[i] = null;
+        }
+        this.size = 0;
+    }
+
+    /**
+     * Sets the element at index {@code index} to be {@code element}.
+     * 
+     * @param index   the index.
+     * @param element the element.
+     */
+    public void sets(final int index, final E element) {
+        this.list[index] = element;
+        if (index &gt;= this.size) {
+            this.size = index + 1;
+        }
+    }
+
+    /**
+     * Gives the sorted list of the given one.
+     * 
+     * @param py_list the list to be sorted.
+     * @return the sorted list.
+     */
+    public static PyList&lt;Integer&gt; sorted(final PyList&lt;Integer&gt; py_list) {
+        final PyList&lt;Integer&gt; sorted_list = new PyList&lt;Integer&gt;(py_list);
+        int temporary = 0;
+        for (int i = 0; i &lt; sorted_list.length() - 1; i++) {
+            for (int j = i + 1; j &lt; sorted_list.length(); j++) {
+                if (sorted_list.visits(i) &gt; sorted_list.visits(j)) {
+                    temporary = sorted_list.visits(i);
+                    sorted_list.sets(i, sorted_list.visits(j));
+                    sorted_list.sets(j, temporary);
+                }
+            }
+        }
+        return sorted_list;
+    }
+
+    /**
+     * Appends all elements of the list to a given array. Because of a bug, an array
+     * E[] must be passed as a parameter. Here is an example:
+     * &lt;/p&gt;
+     * {@code PyList&lt;String&gt; k = new PyList&lt;String&gt;(&quot;1a&quot;, &quot;2b&quot;);}
+     * &lt;/p&gt;
+     * {@code System.out.println(k.toArray(new String[k.length()])[1]);}
+     * &lt;/p&gt;
+     * This prints {@code 2b}.
+     * 
+     * @param array the array to be appended.
+     * @return an array consisting of elements of the list.
+     */
+    public E[] toArray(final E[] array) {
+        for (int i = 0; i &lt; this.length(); i++) {
+            array[i] = this.visits(i);
+        }
+        return array;
+    }
+
+    /**
+     * Converts the list to a set.
+     * 
+     * @return a list with no element occurring more than one time.
+     */
+    public PyList&lt;E&gt; toSet() {
+        final PyList&lt;E&gt; set = new PyList&lt;E&gt;();
+        for (int i = 0; i &lt; this.length(); i++) {
+            set.appendsIfAbsent(this.visits(i));
+        }
+        return set;
+    }
+
+    @Override
+    public String toString() {
+        String text = &quot;[&quot;;
+        int index = 0;
+        for (; index &lt; this.length() - 1; index++) {
+            text += &quot;&quot; + this.visits(index) + &quot;, &quot;;
+        }
+        text += &quot;&quot; + this.visits(index) + &quot;]&quot;;
+        return text;
+    }
+
+    /**
+     * Visits the element at index {@code index}.
+     * 
+     * @param index the index.
+     * @return the element at index {@code index}.
+     */
+    public E visits(final int index) {
+        return this.list[index];
+    }
+
+}
+
+</code></pre>
+<p><em>Package name:</em> <code>one_and_two</code></p>
+<p><em>File name:</em> <code>GCD.java</code></p>
+<pre><code class="language-java">package one_and_two;
+
+/**
+ * GCD
+ */
+public class GCD {
+
+    /**
+     * Gives a Bézout expression.
+     * 
+     * @param a the first integer.
+     * @param b the second integer.
+     * @return the expression &quot;au + bv = gcd(a, b)&quot; in the string form.
+     */
+    public static String Bézout(int a, int b) {
+        int[] t = GCD.Bézout_implementation(a, b);
+        return String.format(&quot;%d * %d + %d * %d = %d&quot;, a, t[0], b, t[1], t[2]);
+    }
+
+    /**
+     * Finds a pair of integers u, v such that au + bv = gcd(a, b).
+     * 
+     * @param a the first integer.
+     * @param b the second integer.
+     * @return { u, v, gcd(a, b) }.
+     */
+    public static int[] Bézout_implementation(final int a, final int b) {
+        // Set f = { a, b, -1 }. It is not hard to see
+        // inner_product(f0, t0) = 0
+        // inner_product(f0, t1) = 0
+        // Since all the 3D vectors are linear combinations of t0 and t1
+        // the result is also orthogonal to f
+        // The euclidean algorithm shows that the third component
+        // of the result is the GCD (greatest common divisor)
+        // of a and b
+        final int[] t0 = { 1, 0, a };
+        final int[] t1 = { 0, 1, b };
+        final int[] temp = { 1, 0, a };
+        int q = 0;
+        int r = 0;
+        while (t1[2] != 0) {
+            temp[0] = t0[0];
+            temp[1] = t0[1];
+            temp[2] = t0[2];
+            t0[0] = t1[0];
+            t0[1] = t1[1];
+            t0[2] = t1[2];
+            q = GCD.quotient(temp[2], t0[2]);
+            r = GCD.remainder(temp[2], t0[2]);
+            t1[0] = temp[0] - t0[0] * q;
+            t1[1] = temp[1] - t0[1] * q;
+            t1[2] = r;
+        }
+        // The GCD is usually nonnegative.
+        if (t0[2] &lt; 0) {
+            t0[0] *= -1;
+            t0[1] *= -1;
+            t0[2] *= -1;
+        }
+        return t0;
+    }
+
+    /**
+     * Gives the quotient.
+     * 
+     * @param a the dividend.
+     * @param b the divisor.
+     * @return the quotient.
+     * @throws ArithmeticException if b is zero.
+     */
+    public static int quotient(int a, int b) throws ArithmeticException {
+        if (b == 0) {
+            throw new ArithmeticException(&quot;Division by zero&quot;);
+        }
+        return GCD.division(a, b)[0];
+    }
+
+    /**
+     * Gives the remainder.
+     * 
+     * @param a the dividend.
+     * @param b the divisor.
+     * @return the remainder.
+     * @throws ArithmeticException if b is zero.
+     */
+    public static int remainder(int a, int b) throws ArithmeticException {
+        if (b == 0) {
+            throw new ArithmeticException(&quot;Division by zero&quot;);
+        }
+        return GCD.division(a, b)[1];
+    }
+
+    /**
+     * Performs division.
+     * 
+     * @param a the dividend.
+     * @param b the divisor.
+     * @return a 2-array consisting of the quotient and remainder.
+     * @throws ArithmeticException if b is zero.
+     */
+    public static int[] division(final int a, final int b) throws ArithmeticException {
+        if (b == 0) {
+            throw new ArithmeticException(&quot;Division by zero&quot;);
+        } else {
+            // Computes |a| / |b| and |a| % |b| first.
+            int quotient = Math.abs(a) / Math.abs(b);
+            int remainder = Math.abs(a) % Math.abs(b);
+            // Suppose a, b &gt; 0, with a = bq + r, 0 &lt;= r &lt; b. Then
+            // a = (-b)(-q) + r
+            // If r = 0, -a = b(-q) = (-b)q
+            // If r &gt; 0,
+            // -a = b(-q) - r = b(-q) + (b - r) - b = b(-q-1) + (b - r)
+            // -a = (-b)(q+1) + (-(-b) - r)
+            //
+            // If a &gt;= 0, this part is ignored
+            if (a &lt; 0) {
+                // If remainder = 0, this part is ignored
+                if (remainder &gt; 0) {
+                    remainder = Math.abs(b) - remainder;
+                    quotient = -quotient - 1;
+                }
+            }
+            // If b &gt; 0, this part is ignored
+            if (b &lt; 0) {
+                quotient *= -1;
+            }
+            final int[] result = { quotient, remainder };
+            return result;
+        }
+    }
+
+}
+
+</code></pre>
+<p><em>Package name:</em> <code>one_and_two</code></p>
+<p><em>File name:</em> <code>GCD.java</code></p>
+<pre><code class="language-java">package one_and_two;
+
+import python_list.PyList;
+
+/**
+ * Main
+ */
+public class Main {
+
+    public static void main(String... args) {
+        System.out.println(&quot;\nProblem:&quot;);
+        System.out.println(&quot;Find the least positive integer with the following properties:&quot;);
+        System.out.println(&quot;    (a) 23 divides l;&quot;);
+        System.out.println(&quot;    (b) 29 divides l + 1;&quot;);
+        System.out.println(&quot;    (c) The decimal expression of l contains only digits 1 and 2;&quot;);
+        System.out.println(&quot;    (d) The decimal expression of l + 1 contains only digits 1 and 2.&quot;);
+        System.out.println(&quot;\nSolution using some math:&quot;);
+        System.out.println(&quot;Let the integer be l. Then there exist two integers p, q such that&quot;);
+        System.out.println(&quot;    29q = 23p + 1    (l = 23p)&quot;);
+        System.out.println(&quot;A moment's thought gives&quot;);
+        System.out.println(&quot;    &quot; + GCD.Bézout(-23, 29));
+        System.out.println(&quot;Hence&quot;);
+        System.out.println(&quot;    p = 5 + 29t              q = 4 + 23t&quot;);
+        System.out.println(&quot;Since l consists of dights 1 and 2, l % 10 must be 1. Then&quot;);
+        System.out.println(&quot;    23(5 + 29t) = 10r + 1&quot;);
+        System.out.println(&quot;    10r - 667t = 114&quot;);
+        System.out.println(&quot;A moment's thought gives&quot;);
+        System.out.println(&quot;    &quot; + GCD.Bézout(10, -667));
+        System.out.println(&quot;Hence&quot;);
+        System.out.println(&quot;    r = -200 * 114 + 667s    t = -3 * 114 + 10s&quot;);
+        System.out.println(&quot;    r = 667s - 22800         t = 10s - 342&quot;);
+        System.out.println(&quot;    l = 23p = 23(5 + 29t) = 23(290s - 9913) &gt; 0&quot;);
+        System.out.println(&quot;Then s &gt; 9913/290. Then&quot;);
+        System.out.println(&quot;    s &gt;= 35&quot;);
+        System.out.println(&quot;Put s = 35        --&gt;        l = 5451&quot;);
+        System.out.println(&quot;Put s = 36        --&gt;        l = 12121&quot;);
+        System.out.println(&quot;Hence l = 12121. That is all.\n&quot;);
+        long time = 0;
+        time = System.currentTimeMillis();
+        System.out.println(&quot;Brute force solution:&quot;);
+        Main.solve_by_brute_force();
+        time = System.currentTimeMillis() - time;
+        System.out.println(&quot;\nTime elapsed: &quot; + time + (time &lt; 2 ? &quot; millisecond.&quot; : &quot; milliseconds.&quot;) + &quot;\n&quot;);
+    }
+
+    public static boolean containsNoMoreThan(String text, String... allowedCharacters) {
+        PyList&lt;String&gt; a = new PyList&lt;String&gt;();
+        for (int i = 0; i &lt; text.length(); i++) {
+            a.appendsIfAbsent(&quot;&quot; + text.charAt(i));
+        }
+        return a.containsOnly(allowedCharacters);
+    }
+
+    public static void solve_by_brute_force() {
+        int l = 0;
+        while (true) {
+            if (l % 23 != 0) {
+                l++;
+                continue;
+            }
+            if ((l + 1) % 29 != 0) {
+                l++;
+                continue;
+            }
+            if (!Main.containsNoMoreThan(&quot;&quot; + l, &quot;1&quot;, &quot;2&quot;)) {
+                l++;
+                continue;
+            }
+            if (!Main.containsNoMoreThan(&quot;&quot; + (l + 1), &quot;1&quot;, &quot;2&quot;)) {
+                l++;
+                continue;
+            } else {
+                System.out.println(l + &quot; / 23 = &quot; + l / 23);
+                System.out.println((l + 1) + &quot; / 29 = &quot; + (l + 1) / 29);
+                break;
+            }
+        }
+    }
+
+}
+
+</code></pre>
+<p>The output is</p>
+<pre><code class="language-bash">(base) a@dt:~/Documents/Code/Jaba$ /home/a/.local/java/jdk8u232-b09/bin/java -Dfile.encoding=UTF-8 -cp /home/a/Documents/Code/Jaba/bin one_and_two.Main 
+
+Problem:
+Find the least positive integer with the following properties:
+    (a) 23 divides l;
+    (b) 29 divides l + 1;
+    (c) The decimal expression of l contains only digits 1 and 2;
+    (d) The decimal expression of l + 1 contains only digits 1 and 2.
+
+Solution using some math:
+Let the integer be l. Then there exist two integers p, q such that
+    29q = 23p + 1    (l = 23p)
+A moment's thought gives
+    -23 * 5 + 29 * 4 = 1
+Hence
+    p = 5 + 29t              q = 4 + 23t
+Since l consists of dights 1 and 2, l % 10 must be 1. Then
+    23(5 + 29t) = 10r + 1
+    10r - 667t = 114
+A moment's thought gives
+    10 * -200 + -667 * -3 = 1
+Hence
+    r = -200 * 114 + 667s    t = -3 * 114 + 10s
+    r = 667s - 22800         t = 10s - 342
+    l = 23p = 23(5 + 29t) = 23(290s - 9913) &gt; 0
+Then s &gt; 9913/290. Then
+    s &gt;= 35
+Put s = 35        --&gt;        l = 5451
+Put s = 36        --&gt;        l = 12121
+Hence l = 12121. That is all.
+
+Brute force solution:
+12121 / 23 = 527
+12122 / 29 = 418
+
+Time elapsed: 2 milliseconds.
+
+(base) a@dt:~/Documents/Code/Jaba$ 
+
+</code></pre>
+<p>Thank you.</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                next arctile
+              </div>
+              <a href="https://septsea.github.io/post/wrong-wrong-right/">
+                <h3 class="post-title">
+                  WRONG + WRONG = RIGHT
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://septsea.github.io//images/avatar.png?v=1583381398539" class="no-responsive avatar">
+    <div class="text-muted">This is septsea's website.</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      the latest
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/a-mnemonic-device-for-cauchy-riemann-equations/">A mnemonic device for Cauchy-Riemann equations</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/find-an/">Find A^n</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/one-and-two/">One and Two</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/wrong-wrong-right/">WRONG + WRONG = RIGHT</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/zui-da-cheng-ji/">最大乘积</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/a-minimum-problem/">A minimum problem</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/arranging-coins/">Arranging Coins</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/qia-you-0-yu-2-gou-cheng-de-shen-fen-zheng-hao/">恰由 0 与 2 构成的身份证号</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://septsea.github.io/post/about/">About</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      tags
+    </div>
+    <div class="row">
+      
+        <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="badge warning">
+          math
+        </a>
+      
+        <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="badge secondary">
+          programming
+        </a>
+      
+        <a href="https://septsea.github.io/tag/2UpWodjEn/" class="badge ">
+          info
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>. | <a class="rss" href="https://septsea.github.io//atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>
