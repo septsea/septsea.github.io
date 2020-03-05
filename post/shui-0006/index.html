@@ -1,104 +1,109 @@
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+    
+<meta charset="utf-8" >
 
 <title>水 (0006) | septsea</title>
+<meta name="description" content="This is septsea&#39;s website.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583396084387">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1583401824226">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
 
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
 
-    <meta name="description" content="今日的水题有一点点独特的地方:
-ONE + TWO + TWO + THREE + THREE = ELEVEN
-各个字母自然是 0~9 之间的数, O, E, T 不为 0, 且一个数字至多替换一个字母。
-如果您愿意看 e 下这个表达式,..." />
-    <meta name="keywords" content="programming,math" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
   </head>
   <body>
     <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://septsea.github.io/">
-        <img src="https://septsea.github.io//images/avatar.png?v=1583396084387" class="site-logo">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://septsea.github.io/">
+        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1583401824226" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://septsea.github.io/">
         <h1 class="site-title">septsea</h1>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
       
         
-          <a href="/" class="site-nav">
+          <a href="/" class="menu purple-link">
             Home Page
           </a>
         
       
         
-          <a href="/archives" class="site-nav">
+          <a href="/archives" class="menu purple-link">
             Archives
           </a>
         
       
         
-          <a href="/tags" class="site-nav">
+          <a href="/tags" class="menu purple-link">
             Tags
           </a>
         
       
         
-          <a href="/post/about" class="site-nav">
+          <a href="/post/about" class="menu purple-link">
             About
           </a>
         
       
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      This is septsea's website.
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>.
-    </div>
-  </div>
-</div>
+</transition>
 
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">水 (0006)</h2>
-            <div class="post-date">Friday, January 31, 2020, 8:00:00 am</div>
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">水 (0006)</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> Friday, January 31, 2020, 8:00:00 am</span>
             
-            <div class="post-content" v-pre>
-              <p>今日的水题有一点点独特的地方:</p>
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://septsea.github.io/tag/plZ3A9sSN/">
+                    programming
+                    
+                      　
+                    
+                  </a>
+                
+                  <a href="https://septsea.github.io/tag/VOH2uCZDx/">
+                    math
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>今日的水题有一点点独特的地方:</p>
 <p>ONE + TWO + TWO + THREE + THREE = ELEVEN</p>
 <p>各个字母自然是 0~9 之间的数, O, E, T 不为 0, 且一个数字至多替换一个字母。</p>
 <p>如果您愿意看 e 下这个表达式, 并且您愿意看 English, you will realize that this is actually an example of the so-called &quot;double true cryptarithms&quot;, which are alphametics where the letters spell the words describing numbers so that the actual wording is also true.</p>
@@ -150,43 +155,45 @@ public class Pr_65 {
 </code></pre>
 <p>就这样吧, 谢谢。</p>
 
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://septsea.github.io/tag/plZ3A9sSN/" class="tag">
-                    programming
-                  </a>
-                
-                  <a href="https://septsea.github.io/tag/VOH2uCZDx/" class="tag">
-                    math
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">next</div>
-                <a href="https://septsea.github.io/post/shui-0005/">
-                  <h3 class="post-title">
-                    水 (0005)
-                  </h3>
-                </a>
-              </div>
-            
-
-            
-
           </div>
-
         </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://septsea.github.io/post/shui-0005/">
+              <h3 class="post-title">
+                next: 水 (0005)
+              </h3>
+            </a>
+          </div>
+          
       </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">This is septsea's website.</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/septsea/septsea.github.io">Github</a> & <a href="https://gridea.dev/">Gridea</a>.
+</div>
+
+
     </div>
+    <script type="application/javascript">
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-<script type="application/javascript">
-
-AOS.init();
+hljs.initHighlightingOnLoad()
 
 var app = new Vue({
   el: '#app',
@@ -196,13 +203,6 @@ var app = new Vue({
 })
 
 </script>
-
-
-  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>
-    hljs.initHighlightingOnLoad()
-  </script>
-
 
 
 
