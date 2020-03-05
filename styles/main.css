@@ -1163,7 +1163,7 @@ a:active,
 }
 a.purple-link {
   position: relative;
-  background: linear-gradient(180deg, transparent 70%, rgba(101, 125, 225, 0.4) 0);
+  text-decoration: underline;
 }
 .main {
   max-width: 768px;
@@ -1207,7 +1207,7 @@ a.purple-link {
 }
 .post-item .content .post-abstract a {
   font-weight: 600;
-  background: linear-gradient(180deg, transparent 70%, rgba(101, 125, 225, 0.4) 0);
+  text-decoration: underline;
 }
 .post-item .content .post-abstract code {
   padding: 0 3px;
@@ -1275,7 +1275,7 @@ a.purple-link {
   display: flex;
   align-items: center;
   padding: 2px 8px;
-  background: linear-gradient(180deg, transparent 70%, rgba(101, 125, 225, 0.4) 0);
+  text-decoration: underline;
 }
 .pagination-container .prev {
   float: left;
@@ -1319,7 +1319,7 @@ a.purple-link {
 }
 .post-content a {
   font-weight: 600;
-  background: linear-gradient(180deg, transparent 70%, rgba(101, 125, 225, 0.4) 0);
+  text-decoration: underline;
 }
 .post-content img {
   display: block;
