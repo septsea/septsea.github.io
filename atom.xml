@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://septsea.github.io/</id>
-    <title>septsea&apos;s website</title>
-    <updated>2020-03-05T05:45:52.419Z</updated>
+    <title>septsea</title>
+    <updated>2020-03-05T05:46:12.210Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://septsea.github.io/"/>
     <link rel="self" href="https://septsea.github.io/atom.xml"/>
     <subtitle>This is septsea&apos;s website.</subtitle>
     <logo>https://septsea.github.io/images/avatar.png</logo>
     <icon>https://septsea.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, septsea&apos;s website</rights>
+    <rights>All rights reserved 2020, septsea</rights>
     <entry>
         <title type="html"><![CDATA[水 (0008)]]></title>
         <id>https://septsea.github.io/post/shui-0008/</id>
