@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>水 (0006) | septsea</title>
+<title>Untitled 0000 | septsea</title>
 <meta name="description" content="This is septsea&#39;s website.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,19 +80,12 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">水 (0006)</h2>
+          <h2 class="post-title">Untitled 0000</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> Friday, January 31, 2020, 8:00:00 am</span>
+            <span><i class="icon-calendar-outline"></i> Friday, March 27, 2020, 3:36:05 pm</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
-                
-                  <a href="https://septsea.github.io/tag/plZ3A9sSN/">
-                    programming
-                    
-                      　
-                    
-                  </a>
                 
                   <a href="https://septsea.github.io/tag/VOH2uCZDx/">
                     math
@@ -103,66 +96,28 @@
             
           </div>
           <div class="post-content">
-            <p>今日的水题有一点点独特的地方:</p>
-<p>ONE + TWO + TWO + THREE + THREE = ELEVEN</p>
-<p>各个字母自然是 0~9 之间的数, O, E, T 不为 0, 且一个数字至多替换一个字母。</p>
-<p>如果您愿意看 e 下这个表达式, 并且您愿意看 English, you will realize that this is actually an example of the so-called &quot;double true cryptarithms&quot;, which are alphametics where the letters spell the words describing numbers so that the actual wording is also true.</p>
-<p>答. 391 + 803 + 803 + 84611 + 84611 = 171219。</p>
-<p>MathPuzzle 自然是昨日用剩的接口。</p>
-<pre><code class="language-java">package math_puzzle;
-
-/**
- * Pr_65
- */
-public class Pr_65 {
-
-    final static public void main(final String... args) {
-        ((MathPuzzle) () -&gt; {
-            // ONE + TWO + TWO + THREE + THREE = ELEVEN
-            // O, N, E; T, W; H, R; L, V: 0~9
-            // O, E, T &gt; 0
-            int counter = 0;
-            final int[][] perms = MathPuzzle.permutations(9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
-            for (final int[] p : perms) {
-                if (p[0] == 0) {
-                    continue;
-                }
-                if (p[2] == 0) {
-                    continue;
-                }
-                if (p[3] == 0) {
-                    continue;
-                }
-                final int n1 = 100 * p[0] + 10 * p[1] + p[2];
-                final int n2 = 100 * p[3] + 10 * p[4] + p[0];
-                final int n3 = 10000 * p[3] + 1000 * p[5] + 100 * p[6] + 11 * p[2];
-                final int n4 = 101010 * p[2] + 10000 * p[7] + 100 * p[8] + p[1];
-                if (n1 + n2 * 2 + n3 * 2 == n4) {
-                    counter++;
-                    System.out.println(String.format(&quot;%d + %d + %d + %d + %d = %d&quot;, n1, n2, n2, n3, n3, n4));
-                }
-            }
-            if (counter &lt; 2) {
-                System.out.println(String.format(&quot;\nThere is %d solution.&quot;, counter));
-            } else {
-                System.out.println(String.format(&quot;\nThere are %d solutions.&quot;, counter));
-            }
-        }).execute();
-    }
-
-}
-
-</code></pre>
-<p>就这样吧, 谢谢。</p>
+            <p>老年人又来水 video 了。</p>
+<p>嗯, 仍然是个根式化简题。为什么又做这样的 video 呢? 实在是因为没东西可做了。</p>
+<p>明明周一至周五都有课, 可是我真把这日子过成老年生活了。</p>
+<p>什么提高班、社团等, 都没去。也不想去。</p>
+<p>7:00 ~ 21:30。之前我 9 点睡。</p>
+<p>彳亍口巴。视频仍然叫 Untitled。</p>
+<p>嗯。现在的视频的编号应该使用 BV number。之前在别的地方搞 advertisement, 形如 avXXXXXXXXX 的表达很容易让人误会。</p>
+<p>很明显, AV 是 audio &amp; video 嘛(#`O′)。</p>
+<p>我是青结工。以后就不在我自己的 moments 等地方打广告了。反正没人看。我也懒得用 Programming languages 制作 animations。</p>
+<p>她应该康不到 (我没 blacklist 任何人)。她应该也不想康。也不好意思打扰她。</p>
+<p>以后就不发原创视频了。准确点说, 就算是自制我也会投转载。coins 不重要了。随缘吧。</p>
+<p>视频应该会等一段时间吧。哈哈。等它就好。</p>
+<p>害。不多说了。</p>
 
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="https://septsea.github.io/post/shui-0005/">
+            <a class="purple-link" href="https://septsea.github.io/post/shui-0008/">
               <h3 class="post-title">
-                next: 水 (0005)
+                next: 水 (0008)
               </h3>
             </a>
           </div>
