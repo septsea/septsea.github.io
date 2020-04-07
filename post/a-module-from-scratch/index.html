@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1586240216309">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1586241837653">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://septsea.github.io/">
-        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1586240216309" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1586241837653" alt="" width="32px" height="32px">
       </a>
       <a href="https://septsea.github.io/">
         <h1 class="site-title">septsea</h1>
@@ -82,7 +82,7 @@
           
           <h2 class="post-title">A module from scratch</h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> Tuesday, April 7, 2020, 11:55:14 am</span>
+            <span><i class="icon-calendar-outline"></i> Tuesday, April 7, 2020, 1:13:13 pm</span>
             
               <span>
                 <i class="icon-pricetags-outline"></i>
@@ -293,8 +293,13 @@ def ones(n: int):
     return [1 for i in range(n)]
 
 
-if __name__ == &quot;__main__&quot;:
-    print(&quot;&quot;&quot;
+def test() -&gt; None:
+    &quot;&quot;&quot;
+    This is a method used for testing and demonstrating the module.
+    &quot;&quot;&quot;
+    x = [0, 1, 2, 3, 4, 5, 6, 7]
+    y = [0.5, 2, 3, 3.5, 5, 6, 7.5, 8.5]
+    text1 = &quot;&quot;&quot;
 Example 1: Suppose (xi,yi) (i=1,...,8) are:
 
     (0,0.5),(1,2),(2,3),(3,3.5),(4,5),(5,6),(6,7.5),(7,8.5)
@@ -303,8 +308,8 @@ Model: y=a+bx
 
 y=a+bx can be seen as y=a*1+b*x. Hence
 
-    x = [0, 1, 2, 3, 4, 5, 6, 7]
-    y = [0.5, 2, 3, 3.5, 5, 6, 7.5, 8.5]
+    x = {1}
+    y = {2}
     print(leastsquares(y, ones(8), x))
 
 generates
@@ -314,10 +319,11 @@ generates
 which means
 
     y_hat = {0[0]} + {0[1]}x
-&quot;&quot;&quot;.format(
-        leastsquares([0.5, 2, 3, 3.5, 5, 6, 7.5, 8.5], ones(8),
-                     [0, 1, 2, 3, 4, 5, 6, 7])))
-    print(&quot;&quot;&quot;
+&quot;&quot;&quot;.format(leastsquares(y, ones(8), x), x, y)
+    x1 = [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3]
+    x2 = [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]
+    y = [1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9]
+    text2 = &quot;&quot;&quot;
 Example 2: Suppose (x1i,x2i,yi) (i=1,...,8) are:
 
     (0.5,1,1),(1.2,1.5,2.5),(1.5,2,3),(1.8,3,4.5),(2,3.5,5),(2.2,5,6.5),(2.5,6.5,7.5),(3,8,9)
@@ -326,9 +332,9 @@ Model: y=a*x1+b*x2 (Notice: no constant term here!)
 
 Hence
 
-    x1 = [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3]
-    x2 = [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]
-    y = [1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9]
+    x1 = {2}
+    x2 = {3}
+    y = {4}
     print(leastsquares(y, x1, x2))
 
 generates
@@ -341,9 +347,9 @@ which means
 
 However, if the model y=c+ax1+bx2 is used instead, then ones(8) must be used:
 
-    x1 = [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3]
-    x2 = [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]
-    y = [1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9]
+    x1 = {2}
+    x2 = {3}
+    y = {4}
     print(leastsquares(y, ones(8), x1, x2))
 
 generates
@@ -354,13 +360,14 @@ which means
 
     y_hat = {1[0]} + {1[1]}x1 + {1[2]}x2
 
-&quot;&quot;&quot;.format(
-        leastsquares([1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9],
-                     [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3],
-                     [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]),
-        leastsquares([1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9], ones(8),
-                     [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3],
-                     [1, 1.5, 2, 3, 3.5, 5, 6.5, 8])))
+&quot;&quot;&quot;.format(leastsquares(y, x1, x2), leastsquares(y, ones(8), x1, x2), x1, x2,
+           y)
+    text = text1 + text2
+    print(text)
+
+
+if __name__ == &quot;__main__&quot;:
+    test()
 
 </code></pre>
 

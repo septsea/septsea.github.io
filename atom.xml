@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://septsea.github.io/</id>
     <title>septsea</title>
-    <updated>2020-04-07T06:18:08.681Z</updated>
+    <updated>2020-04-07T06:44:01.783Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://septsea.github.io/"/>
     <link rel="self" href="https://septsea.github.io/atom.xml"/>
@@ -15,7 +15,7 @@
         <id>https://septsea.github.io/post/a-module-from-scratch/</id>
         <link href="https://septsea.github.io/post/a-module-from-scratch/">
         </link>
-        <updated>2020-04-07T03:55:14.000Z</updated>
+        <updated>2020-04-07T05:13:13.000Z</updated>
         <content type="html"><![CDATA[<p>最近要用最小二乘法处理一些数据。手算过慢 (其实总时间挺少的), 就考虑用 PC Apps 计算。MATLAB 用不太来; Excel 也用不太来 (不知道能不能作多元线性回归, 不过一元回归是相当容易与直观的, dummies 也会); SPSS 等软件也不是每个人都有。彳亍, 那就 JavaScript or Python? 想了一下, 为了照顾 them, 还是用 Python 吧。不过问题又来了: 标准的 Python 可安装 <code>numpy</code>, <code>scipy</code> 库; 我的魔改极速版 Python 不太方便安装第三方库。告诉 them 安装库, they tell me 下载太慢, failed。</p>
 <p>问题就挺多的, 害。想了一下, 老年人只有 build a module from scratch 才能满足各方面的需求了。管它是什么 Python, 只要 &gt;= 3.6 应该就能用。(就算没装, 也能找到一大堆 Python 3 online 吧) 实在不行, 就去掉类型注解。我没有引入别的包。这个 module 也是非常草, 很草, 只有一些最基本的功能 (矩阵运算部分只写了乘法、逆及其相关, 加减都没有; 为了快速写出 code, 我用行列式求矩阵逆, 这注定慢, 之后有 chances 再作 improvements 算了)。</p>
 <p>好了, 也不多说了, code 就 attached below 了。</p>
@@ -206,8 +206,13 @@ def ones(n: int):
     return [1 for i in range(n)]
 
 
-if __name__ == &quot;__main__&quot;:
-    print(&quot;&quot;&quot;
+def test() -&gt; None:
+    &quot;&quot;&quot;
+    This is a method used for testing and demonstrating the module.
+    &quot;&quot;&quot;
+    x = [0, 1, 2, 3, 4, 5, 6, 7]
+    y = [0.5, 2, 3, 3.5, 5, 6, 7.5, 8.5]
+    text1 = &quot;&quot;&quot;
 Example 1: Suppose (xi,yi) (i=1,...,8) are:
 
     (0,0.5),(1,2),(2,3),(3,3.5),(4,5),(5,6),(6,7.5),(7,8.5)
@@ -216,8 +221,8 @@ Model: y=a+bx
 
 y=a+bx can be seen as y=a*1+b*x. Hence
 
-    x = [0, 1, 2, 3, 4, 5, 6, 7]
-    y = [0.5, 2, 3, 3.5, 5, 6, 7.5, 8.5]
+    x = {1}
+    y = {2}
     print(leastsquares(y, ones(8), x))
 
 generates
@@ -227,10 +232,11 @@ generates
 which means
 
     y_hat = {0[0]} + {0[1]}x
-&quot;&quot;&quot;.format(
-        leastsquares([0.5, 2, 3, 3.5, 5, 6, 7.5, 8.5], ones(8),
-                     [0, 1, 2, 3, 4, 5, 6, 7])))
-    print(&quot;&quot;&quot;
+&quot;&quot;&quot;.format(leastsquares(y, ones(8), x), x, y)
+    x1 = [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3]
+    x2 = [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]
+    y = [1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9]
+    text2 = &quot;&quot;&quot;
 Example 2: Suppose (x1i,x2i,yi) (i=1,...,8) are:
 
     (0.5,1,1),(1.2,1.5,2.5),(1.5,2,3),(1.8,3,4.5),(2,3.5,5),(2.2,5,6.5),(2.5,6.5,7.5),(3,8,9)
@@ -239,9 +245,9 @@ Model: y=a*x1+b*x2 (Notice: no constant term here!)
 
 Hence
 
-    x1 = [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3]
-    x2 = [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]
-    y = [1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9]
+    x1 = {2}
+    x2 = {3}
+    y = {4}
     print(leastsquares(y, x1, x2))
 
 generates
@@ -254,9 +260,9 @@ which means
 
 However, if the model y=c+ax1+bx2 is used instead, then ones(8) must be used:
 
-    x1 = [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3]
-    x2 = [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]
-    y = [1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9]
+    x1 = {2}
+    x2 = {3}
+    y = {4}
     print(leastsquares(y, ones(8), x1, x2))
 
 generates
@@ -267,13 +273,14 @@ which means
 
     y_hat = {1[0]} + {1[1]}x1 + {1[2]}x2
 
-&quot;&quot;&quot;.format(
-        leastsquares([1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9],
-                     [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3],
-                     [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]),
-        leastsquares([1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9], ones(8),
-                     [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3],
-                     [1, 1.5, 2, 3, 3.5, 5, 6.5, 8])))
+&quot;&quot;&quot;.format(leastsquares(y, x1, x2), leastsquares(y, ones(8), x1, x2), x1, x2,
+           y)
+    text = text1 + text2
+    print(text)
+
+
+if __name__ == &quot;__main__&quot;:
+    test()
 
 </code></pre>
 ]]></content>
