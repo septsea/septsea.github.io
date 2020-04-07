@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>A module from scratch | septsea</title>
+<meta name="description" content="This is septsea&#39;s website.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1586233259325">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://septsea.github.io/">
+        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1586233259325" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://septsea.github.io/">
+        <h1 class="site-title">septsea</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            Home Page
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            Archives
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            Tags
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            About
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">A module from scratch</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> Tuesday, April 7, 2020, 11:55:14 am</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://septsea.github.io/tag/plZ3A9sSN/">
+                    programming
+                    
+                      　
+                    
+                  </a>
+                
+                  <a href="https://septsea.github.io/tag/VOH2uCZDx/">
+                    math
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>最近要用最小二乘法处理一些数据。手算过慢 (其实总时间挺少的), 就考虑用 PC Apps 计算。MATLAB 用不太来; Excel 也用不太来 (不知道能不能作多元线性回归, 不过一元回归是相当容易与直观的, dummies 也会); SPSS 等软件也不是每个人都有。彳亍, 那就 JavaScript or Python? 想了一下, 为了照顾 them, 还是用 Python 吧。不过问题又来了: 标准的 Python 可安装 <code>numpy</code>, <code>scipy</code> 库; 我的魔改极速版 Python 不太方便安装第三方库。告诉 them 安装库, they tell me 下载太慢, failed。</p>
+<p>问题就挺多的, 害。想了一下, 老年人只有 build a module from scratch 才能满足各方面的需求了。管它是什么 Python, 只要 &gt;= 3.6 应该就能用。(就算没装, 也能找到一大堆 Python 3 online 吧) 实在不行, 就去掉类型注解。我没有引入别的包。这个 module 也是非常草, 很草, 只有一些最基本的功能 (矩阵运算部分只写了乘法、逆及其相关, 加减都没有; 为了快速写出 code, 我用行列式求矩阵逆, 这注定慢, 之后有 chances 再作 improvements 算了)。</p>
+<p>好了, 也不多说了, code 就 attached below 了。</p>
+<pre><code class="language-python">class Matrix:
+    def __init__(self, row: int, column: int):
+        &quot;&quot;&quot;
+        Initialization.
+        &quot;&quot;&quot;
+        self.__row: int = row
+        self.__column: int = column
+        self.__mat = [[0 for j in range(self.__column)]
+                      for i in range(self.__row)]
+
+    def __str__(self):
+        &quot;&quot;&quot;
+        Gives the string representation of the matrix.
+        &quot;&quot;&quot;
+        return self.__mat.__str__()
+
+    def gets(self, rowIndex: int, columnIndex: int):
+        &quot;&quot;&quot;
+        Gets the (`rowIndex`, `columnIndex`)-entry.
+        &quot;&quot;&quot;
+        return self.__mat[rowIndex][columnIndex]
+
+    def sets(self, element, rowIndex: int, columnIndex: int):
+        &quot;&quot;&quot;
+        Assigns the (`rowIndex`, `columnIndex`)-entry to be `element`.
+        &quot;&quot;&quot;
+        self.__mat[rowIndex][columnIndex] = element
+
+    def rowNum(self) -&gt; int:
+        &quot;&quot;&quot;
+        Gives the number of rows.
+        &quot;&quot;&quot;
+        return self.__row
+
+    def columnNum(self) -&gt; int:
+        &quot;&quot;&quot;
+        Gives the number of columns.
+        &quot;&quot;&quot;
+        return self.__column
+
+    def subMatrix(self, rowIndex: int, columnIndex: int):
+        &quot;&quot;&quot;
+        Returns the matrix obtained by removing entries row `rowIndex` and
+        column `columnIndex`.
+        &quot;&quot;&quot;
+        rn: int = self.rowNum()
+        cn: int = self.columnNum()
+        if (rowIndex &gt;= rn or columnIndex &gt;= cn):
+            raise Exception(&quot;at least one of the indices is out of bound&quot;)
+        result = Matrix(rn - 1, cn - 1)
+        for i in range(rn - 1):
+            for j in range(cn - 1):
+                ti: int = i if (i &lt; rowIndex) else i + 1
+                tj: int = j if (j &lt; columnIndex) else j + 1
+                result.sets(self.gets(ti, tj), i, j)
+        return result
+
+    def det(self):
+        &quot;&quot;&quot;
+        Gives the determinant: the (1, 1)-entry if the order of the square matrix is 1,
+        `sum((-1) ^ j * a(0, j) * self.subMatrix(0, j).det(), 0 &lt;= j &lt; self.columnNum())`
+        otherwise.
+        &quot;&quot;&quot;
+        rn: int = self.rowNum()
+        cn: int = self.columnNum()
+        if (rn != cn):
+            raise Exception(&quot;Not a square matrix&quot;)
+        if (cn == 1):
+            return self.gets(0, 0)
+        else:
+            return sum([
+                ((-1)**j) * self.gets(0, j) * self.subMatrix(0, j).det()
+                for j in range(cn)
+            ])
+
+    def adjoint(self):
+        &quot;&quot;&quot;
+        Gives the the classical adjoint: `[(-1) ^ (i + j) * self.subMatrix(j, i).det()]`.
+        &quot;&quot;&quot;
+        rn: int = self.rowNum()
+        cn: int = self.columnNum()
+        if (rn != cn):
+            raise Exception(&quot;Not a square matrix&quot;)
+        result = Matrix(rn, rn)
+        if (rn == 1):
+            result.sets(1, 0, 0)
+        else:
+            for i in range(rn):
+                for j in range(rn):
+                    result.sets(((-1)**(i + j)) * self.subMatrix(j, i).det(),
+                                i, j)
+        return result
+
+    def inverse(self):
+        &quot;&quot;&quot;
+        Gives the inverse matrix: self.adjoint() / self.det()
+        &quot;&quot;&quot;
+        rn: int = self.rowNum()
+        cn: int = self.columnNum()
+        if (rn != cn):
+            raise Exception(&quot;Not a square matrix&quot;)
+        epsilon: float = 1e-5
+        d = self.det()
+        if (abs(d) &lt; epsilon):
+            raise Exception(&quot;Not invertible&quot;)
+        result = Matrix(rn, rn)
+        adj = self.adjoint()
+        for i in range(rn):
+            for j in range(rn):
+                result.sets(adj.gets(i, j) / d, i, j)
+        return result
+
+    def __mul__(self, other):
+        &quot;&quot;&quot;
+        Gives the product of `self` and `other`.
+        &quot;&quot;&quot;
+        rn: int = self.rowNum()
+        cn: int = other.columnNum()
+        if (self.columnNum() != other.rowNum()):
+            raise Exception()
+        s: int = self.columnNum()
+        ans = Matrix(rn, cn)
+        for i in range(rn):
+            for j in range(cn):
+                ans.sets(
+                    sum([self.gets(i, k) * other.gets(k, j)
+                         for k in range(s)]), i, j)
+        return ans
+
+
+def leastsquares(y, *x):
+    r&quot;&quot;&quot;
+    Gives the least-squares linear model of `y` and `x`:
+
+    `y = beta_0 + beta_1 * x1 + ... beta_k * xk`
+
+    Example 1:
+
+        (x1,y1)=(0,20), (x2,y2)=(1,21)
+
+    `print(leastsquares([20,21],[0,1]))` gives `[20.0, 1.0]`, which means
+
+    `y_hat = 20.0 + 1.0 * x`
+
+    Example 2:
+
+        (x11,x21,y1)=(0,0,3), (x12,x22,y2)=(0,1,8), (x13,x23,y3)=(1,0,7)
+
+    `print(leastsquares([3,8,7],[0,0,1],[0,1,0]))` gives `[3.0, 4.0, 5.0]`,
+    which means
+
+    `y_hat = 3.0 + 4.0 * x1 + 5.0 * x2`
+
+    y: a list containing n numbers (the dependent variable).
+
+    x: k lists, each containing n numbers (the k independent variables).
+    &quot;&quot;&quot;
+    length = len(y)
+    y_mean = sum(y) / length
+    x_mean = []
+    for l in x:
+        if len(l) != length:
+            raise Exception(&quot;!!!&quot;)
+        else:
+            x_mean.append(sum(l) / length)
+    size = len(x)
+    cov = Matrix(size, size)
+    u = 0
+    for i in range(size):
+        for j in range(i):
+            u = sum([(x[i][k] - x_mean[i]) * (x[j][k] - x_mean[j])
+                     for k in range(length)])
+            cov.sets(u, i, j)
+            cov.sets(u, j, i)
+        u = sum([(x[i][k] - x_mean[i])**2 for k in range(length)])
+        cov.sets(u, i, i)
+    rightHandSide = Matrix(size, 1)
+    for i in range(size):
+        u = sum([(x[i][k] - x_mean[i]) * (y[k] - y_mean)
+                 for k in range(length)])
+        rightHandSide.sets(u, i, 0)
+    coefficients = cov.inverse() * rightHandSide
+    beta = [coefficients.gets(i, 0) for i in range(size)]
+    beta_0 = y_mean - sum([beta[i] * x_mean[i] for i in range(size)])
+    beta = [beta_0] + beta
+    return beta
+
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://septsea.github.io/post/untitled-0000/">
+              <h3 class="post-title">
+                next: Untitled 0000
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">This is septsea's website.</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/septsea/septsea.github.io" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://gridea.dev/">Gridea</a>.
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
