@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://septsea.github.io/</id>
     <title>septsea</title>
-    <updated>2020-04-07T06:44:01.783Z</updated>
+    <updated>2020-04-07T06:56:22.708Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://septsea.github.io/"/>
     <link rel="self" href="https://septsea.github.io/atom.xml"/>
@@ -181,20 +181,20 @@ def leastsquares(y, *x):
         if len(l) != length:
             raise Exception(&quot;!!!&quot;)
     size = len(x)
-    cov = Matrix(size, size)
+    quadratic = Matrix(size, size)
     u = 0
     for i in range(size):
         for j in range(i):
             u = sum([x[i][k] * x[j][k] for k in range(length)])
-            cov.sets(u, i, j)
-            cov.sets(u, j, i)
+            quadratic.sets(u, i, j)
+            quadratic.sets(u, j, i)
         u = sum([(x[i][k])**2 for k in range(length)])
-        cov.sets(u, i, i)
+        quadratic.sets(u, i, i)
     rightHandSide = Matrix(size, 1)
     for i in range(size):
         u = sum([x[i][k] * y[k] for k in range(length)])
         rightHandSide.sets(u, i, 0)
-    coefficients = cov.inverse() * rightHandSide
+    coefficients = quadratic.inverse() * rightHandSide
     beta = [coefficients.gets(i, 0) for i in range(size)]
     return beta
 

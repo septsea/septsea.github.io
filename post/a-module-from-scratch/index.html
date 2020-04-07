@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1586241837653">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1586242579309">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://septsea.github.io/">
-        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1586241837653" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1586242579309" alt="" width="32px" height="32px">
       </a>
       <a href="https://septsea.github.io/">
         <h1 class="site-title">septsea</h1>
@@ -268,20 +268,20 @@ def leastsquares(y, *x):
         if len(l) != length:
             raise Exception(&quot;!!!&quot;)
     size = len(x)
-    cov = Matrix(size, size)
+    quadratic = Matrix(size, size)
     u = 0
     for i in range(size):
         for j in range(i):
             u = sum([x[i][k] * x[j][k] for k in range(length)])
-            cov.sets(u, i, j)
-            cov.sets(u, j, i)
+            quadratic.sets(u, i, j)
+            quadratic.sets(u, j, i)
         u = sum([(x[i][k])**2 for k in range(length)])
-        cov.sets(u, i, i)
+        quadratic.sets(u, i, i)
     rightHandSide = Matrix(size, 1)
     for i in range(size):
         u = sum([x[i][k] * y[k] for k in range(length)])
         rightHandSide.sets(u, i, 0)
-    coefficients = cov.inverse() * rightHandSide
+    coefficients = quadratic.inverse() * rightHandSide
     beta = [coefficients.gets(i, 0) for i in range(size)]
     return beta
 
