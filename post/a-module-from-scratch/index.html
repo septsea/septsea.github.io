@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1586233259325">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1586240216309">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://septsea.github.io/">
-        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1586233259325" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1586240216309" alt="" width="32px" height="32px">
       </a>
       <a href="https://septsea.github.io/">
         <h1 class="site-title">septsea</h1>
@@ -237,61 +237,130 @@
 
 
 def leastsquares(y, *x):
-    r&quot;&quot;&quot;
+    &quot;&quot;&quot;
     Gives the least-squares linear model of `y` and `x`:
 
-    `y = beta_0 + beta_1 * x1 + ... beta_k * xk`
+    `y = beta_0 * x0 + beta_1 * x1 + ... beta_k * xk`
 
     Example 1:
 
         (x1,y1)=(0,20), (x2,y2)=(1,21)
 
-    `print(leastsquares([20,21],[0,1]))` gives `[20.0, 1.0]`, which means
+    `print(leastsquares([20,21],ones(2),[0,1]))` gives `[20.0, 1.0]`, which means
 
-    `y_hat = 20.0 + 1.0 * x`
+    `y_hat = 20.0 * 1 + 1.0 * x`
 
     Example 2:
 
         (x11,x21,y1)=(0,0,3), (x12,x22,y2)=(0,1,8), (x13,x23,y3)=(1,0,7)
 
-    `print(leastsquares([3,8,7],[0,0,1],[0,1,0]))` gives `[3.0, 4.0, 5.0]`,
+    `print(leastsquares([3,8,7],ones(3),[0,0,1],[0,1,0]))` gives `[3.0, 4.0, 5.0]`,
     which means
 
-    `y_hat = 3.0 + 4.0 * x1 + 5.0 * x2`
+    `y_hat = 3.0 * 1 + 4.0 * x1 + 5.0 * x2`
 
     y: a list containing n numbers (the dependent variable).
 
-    x: k lists, each containing n numbers (the k independent variables).
+    x: k+1 lists, each containing n numbers (the k+1 independent variables).
     &quot;&quot;&quot;
     length = len(y)
-    y_mean = sum(y) / length
-    x_mean = []
     for l in x:
         if len(l) != length:
             raise Exception(&quot;!!!&quot;)
-        else:
-            x_mean.append(sum(l) / length)
     size = len(x)
     cov = Matrix(size, size)
     u = 0
     for i in range(size):
         for j in range(i):
-            u = sum([(x[i][k] - x_mean[i]) * (x[j][k] - x_mean[j])
-                     for k in range(length)])
+            u = sum([x[i][k] * x[j][k] for k in range(length)])
             cov.sets(u, i, j)
             cov.sets(u, j, i)
-        u = sum([(x[i][k] - x_mean[i])**2 for k in range(length)])
+        u = sum([(x[i][k])**2 for k in range(length)])
         cov.sets(u, i, i)
     rightHandSide = Matrix(size, 1)
     for i in range(size):
-        u = sum([(x[i][k] - x_mean[i]) * (y[k] - y_mean)
-                 for k in range(length)])
+        u = sum([x[i][k] * y[k] for k in range(length)])
         rightHandSide.sets(u, i, 0)
     coefficients = cov.inverse() * rightHandSide
     beta = [coefficients.gets(i, 0) for i in range(size)]
-    beta_0 = y_mean - sum([beta[i] * x_mean[i] for i in range(size)])
-    beta = [beta_0] + beta
     return beta
+
+
+def ones(n: int):
+    &quot;&quot;&quot;
+    Generates a list consisting of `n` ones.
+    &quot;&quot;&quot;
+    return [1 for i in range(n)]
+
+
+if __name__ == &quot;__main__&quot;:
+    print(&quot;&quot;&quot;
+Example 1: Suppose (xi,yi) (i=1,...,8) are:
+
+    (0,0.5),(1,2),(2,3),(3,3.5),(4,5),(5,6),(6,7.5),(7,8.5)
+
+Model: y=a+bx
+
+y=a+bx can be seen as y=a*1+b*x. Hence
+
+    x = [0, 1, 2, 3, 4, 5, 6, 7]
+    y = [0.5, 2, 3, 3.5, 5, 6, 7.5, 8.5]
+    print(leastsquares(y, ones(8), x))
+
+generates
+
+    {0}
+
+which means
+
+    y_hat = {0[0]} + {0[1]}x
+&quot;&quot;&quot;.format(
+        leastsquares([0.5, 2, 3, 3.5, 5, 6, 7.5, 8.5], ones(8),
+                     [0, 1, 2, 3, 4, 5, 6, 7])))
+    print(&quot;&quot;&quot;
+Example 2: Suppose (x1i,x2i,yi) (i=1,...,8) are:
+
+    (0.5,1,1),(1.2,1.5,2.5),(1.5,2,3),(1.8,3,4.5),(2,3.5,5),(2.2,5,6.5),(2.5,6.5,7.5),(3,8,9)
+
+Model: y=a*x1+b*x2 (Notice: no constant term here!)
+
+Hence
+
+    x1 = [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3]
+    x2 = [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]
+    y = [1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9]
+    print(leastsquares(y, x1, x2))
+
+generates
+
+    {0}
+
+which means
+
+    y_hat = {0[0]}x1 + {0[1]}x2
+
+However, if the model y=c+ax1+bx2 is used instead, then ones(8) must be used:
+
+    x1 = [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3]
+    x2 = [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]
+    y = [1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9]
+    print(leastsquares(y, ones(8), x1, x2))
+
+generates
+
+    {1}
+
+which means
+
+    y_hat = {1[0]} + {1[1]}x1 + {1[2]}x2
+
+&quot;&quot;&quot;.format(
+        leastsquares([1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9],
+                     [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3],
+                     [1, 1.5, 2, 3, 3.5, 5, 6.5, 8]),
+        leastsquares([1, 2.5, 3, 4.5, 5, 6.5, 7.5, 9], ones(8),
+                     [0.5, 1.2, 1.5, 1.8, 2, 2.2, 2.5, 3],
+                     [1, 1.5, 2, 3, 3.5, 5, 6.5, 8])))
 
 </code></pre>
 
