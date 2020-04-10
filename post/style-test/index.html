@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1586242579309">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1586505201172">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
 
@@ -30,7 +30,7 @@
   <div class="site-header">
     <div class="left">
       <a href="https://septsea.github.io/">
-        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1586242579309" alt="" width="32px" height="32px">
+        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1586505201172" alt="" width="32px" height="32px">
       </a>
       <a href="https://septsea.github.io/">
         <h1 class="site-title">septsea</h1>
@@ -332,6 +332,85 @@ __double underscores__
 <p>To use this feature, please enable it first in the <code>Preference</code> Panel -&gt; <code>Markdown</code> Tab. Then, use <code>==</code> to wrap highlight content. For example: <code>==highlight==</code>.</p>
 <h2 id="html">HTML</h2>
 <p>You can use HTML to style content what pure Markdown does not support. For example, use <code>&lt;span style=&quot;color:red&quot;&gt;this text is red&lt;/span&gt;</code> to add text with red color.</p>
+<script>
+function leastSquares(x, y) {
+    let l = x.length;
+    if (l !== y.length) {
+        throw new Error("エラー発生。");
+    }
+    let sum = arr => {
+        let s = 0;
+        for (let i = 0; i < arr.length; i++) {
+            s += arr[i];
+        }
+        return s;
+    };
+    let mean = arr => sum(arr) / arr.length;
+    let covariance = (arr1, arr2) => {
+        let mean1 = mean(arr1);
+        let mean2 = mean(arr2);
+        let l1 = arr1.length;
+        if (l1 !== arr2.length) {
+            throw new Error("エラー発生。");
+        }
+        let tt = new Array(l1);
+        for (let i = 0; i < l1; i++) {
+            tt[i] = (arr1[i] - mean1) * (arr2[i] - mean2);
+        }
+        return mean(tt);
+    }
+    let b = covariance(x, y) / covariance(x, x);
+    let a = mean(y) - b * mean(x);
+    return [a, b];
+}
+let t = [0.5, 1, 2, 3, 4, 5, 7, 9];
+let v = [6.36, 6.48, 7.26, 8.22, 8.66, 8.99, 9.43, 9.63];
+let y = v.map(x => Math.log(10 - x));
+let result = leastSquares(t, y);
+result[0] = 10 - Math.exp(result[0]);
+result[1] = -1 / result[1];
+alert(`V0 = ${result[0]}`);
+alert(`τ = ${result[1]}`);
+</script>
+<pre><code class="language-javascript">function leastSquares(x, y) {
+    let l = x.length;
+    if (l !== y.length) {
+        throw new Error(&quot;エラー発生。&quot;);
+    }
+    let sum = arr =&gt; {
+        let s = 0;
+        for (let i = 0; i &lt; arr.length; i++) {
+            s += arr[i];
+        }
+        return s;
+    };
+    let mean = arr =&gt; sum(arr) / arr.length;
+    let covariance = (arr1, arr2) =&gt; {
+        let mean1 = mean(arr1);
+        let mean2 = mean(arr2);
+        let l1 = arr1.length;
+        if (l1 !== arr2.length) {
+            throw new Error(&quot;エラー発生。&quot;);
+        }
+        let tt = new Array(l1);
+        for (let i = 0; i &lt; l1; i++) {
+            tt[i] = (arr1[i] - mean1) * (arr2[i] - mean2);
+        }
+        return mean(tt);
+    }
+    let b = covariance(x, y) / covariance(x, x);
+    let a = mean(y) - b * mean(x);
+    return [a, b];
+}
+let t = [0.5, 1, 2, 3, 4, 5, 7, 9];
+let v = [6.36, 6.48, 7.26, 8.22, 8.66, 8.99, 9.43, 9.63];
+let y = v.map(x =&gt; Math.log(10 - x));
+let result = leastSquares(t, y);
+result[0] = 10 - Math.exp(result[0]);
+result[1] = -1 / result[1];
+alert(`V0 = ${result[0]}`);
+alert(`τ = ${result[1]}`);
+</code></pre>
 <h3 id="embed-contents">Embed Contents</h3>
 <p>Some websites provide iframe-based embed code which you can also paste into Typora. For example:</p>
 <pre><code class="language-Markdown">&lt;iframe height='265' scrolling='no' title='Fancy Animated SVG Menu' src='http://codepen.io/jeangontijo/embed/OxVywj/?height=265&amp;theme-id=0&amp;default-tab=css,result&amp;embed-version=2' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'&gt;&lt;/iframe&gt;
