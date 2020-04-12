@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://septsea.github.io/</id>
     <title>septsea</title>
-    <updated>2020-04-10T07:57:19.267Z</updated>
+    <updated>2020-04-12T10:05:25.843Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://septsea.github.io/"/>
     <link rel="self" href="https://septsea.github.io/atom.xml"/>
@@ -59,6 +59,18 @@
         &quot;&quot;&quot;
         return self.__column
 
+    def transpose(self):
+        &quot;&quot;&quot;
+        Gives the transpose of the matrix.
+        &quot;&quot;&quot;
+        cn: int = self.rowNum()
+        rn: int = self.columnNum()
+        result = Matrix(rn, cn)
+        for i in range(rn):
+            for j in range(cn):
+                result.sets(self.gets(j, i), i, j)
+        return result
+
     def subMatrix(self, rowIndex: int, columnIndex: int):
         &quot;&quot;&quot;
         Returns the matrix obtained by removing entries row `rowIndex` and
@@ -94,7 +106,7 @@
                 for j in range(cn)
             ])
 
-    def adjoint(self):
+    def __adjoint(self):
         &quot;&quot;&quot;
         Gives the the classical adjoint: `[(-1) ^ (i + j) * self.subMatrix(j, i).det()]`.
         &quot;&quot;&quot;
@@ -125,11 +137,14 @@
         if (abs(d) &lt; epsilon):
             raise Exception(&quot;Not invertible&quot;)
         result = Matrix(rn, rn)
-        adj = self.adjoint()
+        adj = self.__adjoint()
         for i in range(rn):
             for j in range(rn):
                 result.sets(adj.gets(i, j) / d, i, j)
         return result
+
+    def toList(self) -&gt; list:
+        return self.__mat
 
     def __mul__(self, other):
         &quot;&quot;&quot;
@@ -140,13 +155,23 @@
         if (self.columnNum() != other.rowNum()):
             raise Exception()
         s: int = self.columnNum()
-        ans = Matrix(rn, cn)
+        result = Matrix(rn, cn)
         for i in range(rn):
             for j in range(cn):
-                ans.sets(
+                result.sets(
                     sum([self.gets(i, k) * other.gets(k, j)
                          for k in range(s)]), i, j)
-        return ans
+        return result
+
+    @staticmethod
+    def convertLists2Matrix(*ls: list):
+        rn: int = len(ls)
+        cn: int = len(ls[0])
+        result = Matrix(rn, cn)
+        for i in range(rn):
+            for j in range(cn):
+                result.sets(ls[i][j], i, j)
+        return result
 
 
 def leastsquares(y, *x):
@@ -159,7 +184,7 @@ def leastsquares(y, *x):
 
         (x1,y1)=(0,20), (x2,y2)=(1,21)
 
-    `print(leastsquares([20,21],ones(2),[0,1]))` gives `[20.0, 1.0]`, which means
+    `print(leastsquares([20,21],ones(2),[0,1]))` gives `[20.0, 1.0]`, which meresult
 
     `y_hat = 20.0 * 1 + 1.0 * x`
 
@@ -168,7 +193,7 @@ def leastsquares(y, *x):
         (x11,x21,y1)=(0,0,3), (x12,x22,y2)=(0,1,8), (x13,x23,y3)=(1,0,7)
 
     `print(leastsquares([3,8,7],ones(3),[0,0,1],[0,1,0]))` gives `[3.0, 4.0, 5.0]`,
-    which means
+    which meresult
 
     `y_hat = 3.0 * 1 + 4.0 * x1 + 5.0 * x2`
 
@@ -180,23 +205,13 @@ def leastsquares(y, *x):
     for l in x:
         if len(l) != length:
             raise Exception(&quot;!!!&quot;)
-    size = len(x)
-    quadratic = Matrix(size, size)
-    u = 0
-    for i in range(size):
-        for j in range(i):
-            u = sum([x[i][k] * x[j][k] for k in range(length)])
-            quadratic.sets(u, i, j)
-            quadratic.sets(u, j, i)
-        u = sum([(x[i][k])**2 for k in range(length)])
-        quadratic.sets(u, i, i)
-    rightHandSide = Matrix(size, 1)
-    for i in range(size):
-        u = sum([x[i][k] * y[k] for k in range(length)])
-        rightHandSide.sets(u, i, 0)
-    coefficients = quadratic.inverse() * rightHandSide
-    beta = [coefficients.gets(i, 0) for i in range(size)]
-    return beta
+    a = Matrix.convertLists2Matrix(*x).transpose()
+    a_t = a.transpose()
+    b = a_t * a
+    rhs = Matrix.convertLists2Matrix(y).transpose()
+    # Solves A'A * x = A' * RHS
+    # x = inv(A'A) * (A' * RHS)
+    return (b.inverse() * a_t * rhs).transpose().toList()[0]
 
 
 def ones(n: int):
@@ -229,7 +244,7 @@ generates
 
     {0}
 
-which means
+which meresult
 
     y_hat = {0[0]} + {0[1]}x
 &quot;&quot;&quot;.format(leastsquares(y, ones(8), x), x, y)
@@ -254,7 +269,7 @@ generates
 
     {0}
 
-which means
+which meresult
 
     y_hat = {0[0]}x1 + {0[1]}x2
 
@@ -269,7 +284,7 @@ generates
 
     {1}
 
-which means
+which meresult
 
     y_hat = {1[0]} + {1[1]}x1 + {1[2]}x2
 
