@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://septsea.github.io/</id>
     <title>septsea</title>
-    <updated>2020-04-12T10:05:25.843Z</updated>
+    <updated>2020-04-14T05:20:43.771Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://septsea.github.io/"/>
     <link rel="self" href="https://septsea.github.io/atom.xml"/>
@@ -10,6 +10,121 @@
     <logo>https://septsea.github.io/images/avatar.png</logo>
     <icon>https://septsea.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, septsea</rights>
+    <entry>
+        <title type="html"><![CDATA[Another module (2)]]></title>
+        <id>https://septsea.github.io/post/another-module-2/</id>
+        <link href="https://septsea.github.io/post/another-module-2/">
+        </link>
+        <updated>2020-04-14T05:13:13.000Z</updated>
+        <content type="html"><![CDATA[<p>又写了个 module, 用来近似计算积分的。写这玩意儿大概用了 20 min 吧。害。也许会有 update。</p>
+<pre><code class="language-python">def trapezoidal(f, a, b, n: int = 1, exactValue=None) -&gt; list:
+    &quot;&quot;&quot;
+    A method for approximating ∫[a,b] f(x)dx using the trapezoidal method.
+
+    The formula is
+
+    h/2 * (f(x_0) + 2 * sum(f(x_i), 1&lt;=i&lt;n) + f(x_n))
+
+    where x_j = a + h * j, 0&lt;=j&lt;=n, h = (b-a)/n
+
+    `f`: the function.
+
+    `a`, `b`: the limits of the integral.
+
+    `n`: (optional) the number of subintervals. If not specified, it is 1.
+
+    `exactValue`: (optional) the exact value of the integral.
+    If it is provided, the (absolute) error (approx - exact) will be given.
+
+    The result is a list containing two elements: `[approx, error]`.
+    If `exactValue` is not provided, `error` will be `None`.
+    &quot;&quot;&quot;
+    h = (b - a) / n
+    approx = h / 2 * (f(a) + 2 * sum(map(f, [a + i * h
+                                             for i in range(1, n)])) + f(b))
+    error = None
+    if (exactValue != None):
+        error = approx - exactValue
+    return [approx, error]
+
+
+def parabolic(f, a, b, n: int = 1, exactValue=None) -&gt; list:
+    &quot;&quot;&quot;
+    A method for approximating ∫[a,b] f(x)dx using the parabolic method.
+
+    The formula is
+
+    h/3 * (f(x_0) + 4 * sum(f(x_(2*i-1)), 1&lt;=i&lt;=n) + 2 * sum(f_(2*i), 1&lt;=i&lt;n) + f(x_(2*n)))
+
+    where x_j = a + h * j, 0&lt;=j&lt;=2*n, h = (b-a)/(2*n)
+
+    `f`: the function.
+
+    `a`, `b`: the limits of the integral.
+
+    `n`: (optional) HALF of the number of subintervals.
+    (That is to say, 2*n subintervals will be used.)
+    If not specified, it is 1.
+
+    `exactValue`: (optional) the exact value of the integral.
+    If it is provided, the (absolute) error (approx - exact) will be given.
+
+    The result is a list containing two elements: `[approx, error]`.
+    If `exactValue` is not provided, `error` will be `None`.
+    &quot;&quot;&quot;
+    h = (b - a) / (2 * n)
+    approx = h / 3 * (
+        f(a) + 4 * sum(map(f, [a + (2 * i - 1) * h
+                               for i in range(1, n + 1)])) +
+        2 * sum(map(f, [a + (2 * i) * h for i in range(1, n)])) + f(b))
+    error = None
+    if (exactValue != None):
+        error = approx - exactValue
+    return [approx, error]
+
+
+def comparison(f, a, b, n: int = 2, exactValue=None) -&gt; str:
+    &quot;&quot;&quot;
+    A comparison of 2 methods: the trapezoidal method &amp; the parabolic method.
+
+    `f`: the function.
+
+    `a`, `b`: the limits of the integral.
+
+    `n`: (optional) the number of subintervals.
+    `n` must be even and &gt; 0. If not, an exception will be raised.
+    If `n` is not specified, it is 2.
+
+    `exactValue`: (optional) the exact value of the integral.
+    If it is provided, the absolute error (approx - exact) will be given.
+
+    The result is a list containing two elements: `[approx, error]`.
+    If `exactValue` is not provided, `error` will be `None`.
+    &quot;&quot;&quot;
+    if (n % 2 != 0 or n &lt;= 0):
+        raise Exception(&quot;n must be an even integer &gt; 0&quot;)
+    l1 = trapezoidal(f, a, b, n, exactValue)
+    l2 = parabolic(f, a, b, n // 2, exactValue)
+    info1 = f&quot;&quot;&quot;The approximate value by the trapezoidal method is {l1[0]}.
+The approximate value by the parabolic method is   {l2[0]}.&quot;&quot;&quot;
+    if (exactValue != None):
+        info2 = f&quot;&quot;&quot;Output:
+
+The exact value is                                 {exactValue}.
+{info1}
+
+Error (using the trapezoidal method):              {l1[1]}
+Error (using the parabolic method):                {l2[1]}
+
+the {&quot;trapezoidal&quot; if abs(l1[1]) &lt; abs(l2[1]) else &quot;parabolic&quot;} method is better.
+&quot;&quot;&quot;
+        return info2
+    else:
+        return info1
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[A module from scratch]]></title>
         <id>https://septsea.github.io/post/a-module-from-scratch/</id>
@@ -1153,229 +1268,6 @@ Time elapsed: 125 milliseconds.
 <p>A + B = 12 =&gt; 2 * C * x0 = 132 =&gt; C * x0 = 66 =&gt; (C, x0) = (22, 3) or (11, 6)。x0 为 3 时解出 B - A = 2, 从而 A = 5, B = 7。经检验, xx - 22x + 57 = 0 与 xx + 22x - 75 = 0 都有一个根为 3。x0 为 6 时 B - A = 8, 从而 A = 2, B = 10 (舍弃)。</p>
 <p>结论: 公共根 = 3。</p>
 <p>就这样。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[水 (0003)]]></title>
-        <id>https://septsea.github.io/post/shui-0003/</id>
-        <link href="https://septsea.github.io/post/shui-0003/">
-        </link>
-        <updated>2020-01-26T00:00:00.000Z</updated>
-        <content type="html"><![CDATA[<p>正月初二! 新年快乐呀!</p>
-<p>好了, 今天我们再来看一个题。</p>
-<p>ATOM = (A + TO + M) squared</p>
-<p>A, T, O, M 的取值范围是 1 ~ 9 的整数, 且任意二个字母代表不同的数字。</p>
-<p>思考一下, 一个完全平方数, 末尾必定是 0, 1, 4, 9, 6, 5 的一个。</p>
-<p>从而 M 只有可能是 1, 4, 5, 6, 9 的一个。</p>
-<p>既然 ATOM 是 4 位数, 那么 A + TO + M 必定不小于 32。</p>
-<p>嗯, 事实上 32, 33, 34, 35 都不行 (要么就是有 0, 要么就是有重复出现的数字)。</p>
-<p>36 squared = 1296, 1 + 29 + 6 = 36。一个解就这么找到了。</p>
-<p>有没有什么窍门呀。毕竟, 这个暴力求解很快的, 但是人到 20, 智商滑坡。</p>
-<p>有什么好办法一定要告诉我呀。</p>
-<p>还有, 这次 Python 挺快的。</p>
-<p>还有, 第二个 (没有第三个了) 解是 6724。</p>
-<p>Python:</p>
-<pre><code class="language-python">from time import time
-from math import ceil
-
-
-def main(*args) -&gt; None:
-    t: float = 0
-    t = time()
-    print(&quot;&quot;)
-    solve()
-    t = time() - t
-    ms: int = ceil(1000 * t)
-    print(&quot;\nTime elapsed: &quot; + str(ms) + &quot; millisecond&quot; +
-          (&quot;&quot; if ms &lt; 2 else &quot;s&quot;) + &quot;.\n&quot;)
-
-
-def isDistinct(*elements) -&gt; bool:
-    l: int = len(elements)
-    for i in range(0, l - 1):
-        for j in range(i + 1, l):
-            if (elements[i] == elements[j]):
-                return False
-    return True
-
-
-def solve() -&gt; None:
-    # ATOM = (A + TO + M) squared
-    counter: int = 0
-    for i1 in range(1, 10):
-        for i2 in range(1, 10):
-            for i3 in range(1, 10):
-                for i4 in range(1, 10):
-                    # Checks whether the numbers are distinct
-                    if (not isDistinct(i1, i2, i3, i4)):
-                        continue
-                    if ((1000 * i1 + 100 * i2 + 10 * i3 + i4) == (i1 + 10 * i2 + i3 + i4) * (i1 + 10 * i2 + i3 + i4)):
-                        counter += 1
-                        print(&quot;%d%d%d%d = (%d + %d%d + %d) squared&quot; %
-                              (i1, i2, i3, i4, i1, i2, i3, i4))
-    if (counter &lt; 2):
-        print(&quot;\nThere is %d solution.&quot; % (counter))
-    else:
-        print(&quot;\nThere are %d solutions.&quot; % (counter))
-
-
-if __name__ == &quot;__main__&quot;:
-    main()
-
-</code></pre>
-<p>Python Output:</p>
-<pre><code class="language-python">
-1296 = (1 + 29 + 6) squared
-6724 = (6 + 72 + 4) squared
-
-There are 2 solutions.
-
-Time elapsed: 13 milliseconds.
-
-</code></pre>
-<p>Java:</p>
-<p><em>Package name</em>: <code>math_puzzle</code>; <em>File name</em>: <code>Pr_3.java</code></p>
-<pre><code class="language-java">package math_puzzle;
-
-/**
- * Pr_3
- */
-public class Pr_3 {
-
-    public static void main(final String... args) {
-        long time = 0;
-        time = System.currentTimeMillis();
-        System.out.println(&quot;&quot;);
-        Pr_3.solve();
-        time = System.currentTimeMillis() - time;
-        System.out.println(String.format(&quot;\nTime elapsed: %d millisecond&quot;, time) + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
-    }
-
-    public static boolean isDistinct(final int... elements) {
-        final int l = elements.length;
-        for (int i = 0; i &lt; l - 1; i++) {
-            for (int j = i + 1; j &lt; l; j++) {
-                if (elements[i] == elements[j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    public static void solve() {
-        // ATOM = (A + TO + M) squared
-        int counter = 0;
-        for (int i1 = 1; i1 &lt; 10; i1++) {
-            for (int i2 = 1; i2 &lt; 10; i2++) {
-                for (int i3 = 1; i3 &lt; 10; i3++) {
-                    for (int i4 = 1; i4 &lt; 10; i4++) {
-                        // Checks whether the numbers are distinct
-                        if (!Pr_3.isDistinct(i1, i2, i3, i4)) {
-                            continue;
-                        }
-                        if ((1000 * i1 + 100 * i2 + 10 * i3 + i4) == (i1 + 10 * i2 + i3 + i4)
-                                * (i1 + 10 * i2 + i3 + i4)) {
-                            counter++;
-                            System.out.println(String.format(&quot;%d%d%d%d = (%d + %d%d + %d) squared&quot;, i1, i2, i3, i4, i1,
-                                    i2, i3, i4));
-                        }
-                    }
-                }
-            }
-        }
-        if (counter &lt; 2) {
-            System.out.println(String.format(&quot;\nThere is %d solution.&quot;, counter));
-        } else {
-            System.out.println(String.format(&quot;\nThere are %d solutions.&quot;, counter));
-        }
-    }
-
-}
-
-</code></pre>
-<p>Java Output:</p>
-<pre><code class="language-java">
-1296 = (1 + 29 + 6) squared
-6724 = (6 + 72 + 4) squared
-
-There are 2 solutions.
-
-Time elapsed: 5 milliseconds.
-
-</code></pre>
-<p>JavaScript:</p>
-<pre><code class="language-javascript">&quot;use strict&quot;;
-
-function main() {
-    let args = [];
-    for (let _i = 0; _i &lt; arguments.length; _i++) {
-        args[_i] = arguments[_i];
-    }
-    let time = 0;
-    time = (new Date()).valueOf();
-    console.log(&quot;&quot;);
-    solve();
-    time = (new Date()).valueOf() - time;
-    console.log(`\nTime elapsed: ${time} millisecond` + (time &lt; 2 ? &quot;&quot; : &quot;s&quot;) + &quot;.\n&quot;);
-}
-
-function isDistinct() {
-    let elements = [];
-    for (let _i = 0; _i &lt; arguments.length; _i++) {
-        elements[_i] = arguments[_i];
-    }
-    let l = elements.length;
-    for (let i = 0; i &lt; l - 1; i++) {
-        for (let j = i + 1; j &lt; l; j++) {
-            if (elements[i] === elements[j]) {
-                return false;
-            }
-        }
-    }
-    return true;
-}
-
-function solve() {
-    // ATOM = (A + TO + M) squared
-    let counter = 0;
-    for (let i1 = 1; i1 &lt; 10; i1++) {
-        for (let i2 = 1; i2 &lt; 10; i2++) {
-            for (let i3 = 1; i3 &lt; 10; i3++) {
-                for (let i4 = 1; i4 &lt; 10; i4++) {
-                    // Checks whether the numbers are distinct
-                    if (!isDistinct(i1, i2, i3, i4)) {
-                        continue;
-                    }
-                    if ((1000 * i1 + 100 * i2 + 10 * i3 + i4) == (i1 + 10 * i2 + i3 + i4) * (i1 + 10 * i2 + i3 + i4)) {
-                        counter++;
-                        console.log(`${i1}${i2}${i3}${i4} = (${i1} + ${i2}${i3} + ${i4}) squared`);
-                    }
-                }
-            }
-        }
-    }
-    if (counter &lt; 2) {
-        console.log(`\nThere is ${counter} solution.`);
-    }
-    else {
-        console.log(`\nThere are ${counter} solutions.`);
-    }
-}
-
-main();
-
-</code></pre>
-<p>JavaScript Output:</p>
-<pre><code class="language-javascript">
-1296 = (1 + 29 + 6) squared
-6724 = (6 + 72 + 4) squared
-
-There are 2 solutions.
-
-Time elapsed: 8 milliseconds.
-
-</code></pre>
 ]]></content>
     </entry>
 </feed>

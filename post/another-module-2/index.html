@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Another module (2) | septsea</title>
+<meta name="description" content="This is septsea&#39;s website.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1586841639323">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://septsea.github.io/">
+        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1586841639323" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://septsea.github.io/">
+        <h1 class="site-title">septsea</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            Home Page
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            Archives
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            Tags
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            About
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Another module (2)</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> Tuesday, April 14, 2020, 1:13:13 pm</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://septsea.github.io/tag/plZ3A9sSN/">
+                    programming
+                    
+                      　
+                    
+                  </a>
+                
+                  <a href="https://septsea.github.io/tag/VOH2uCZDx/">
+                    math
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>又写了个 module, 用来近似计算积分的。写这玩意儿大概用了 20 min 吧。害。也许会有 update。</p>
+<pre><code class="language-python">def trapezoidal(f, a, b, n: int = 1, exactValue=None) -&gt; list:
+    &quot;&quot;&quot;
+    A method for approximating ∫[a,b] f(x)dx using the trapezoidal method.
+
+    The formula is
+
+    h/2 * (f(x_0) + 2 * sum(f(x_i), 1&lt;=i&lt;n) + f(x_n))
+
+    where x_j = a + h * j, 0&lt;=j&lt;=n, h = (b-a)/n
+
+    `f`: the function.
+
+    `a`, `b`: the limits of the integral.
+
+    `n`: (optional) the number of subintervals. If not specified, it is 1.
+
+    `exactValue`: (optional) the exact value of the integral.
+    If it is provided, the (absolute) error (approx - exact) will be given.
+
+    The result is a list containing two elements: `[approx, error]`.
+    If `exactValue` is not provided, `error` will be `None`.
+    &quot;&quot;&quot;
+    h = (b - a) / n
+    approx = h / 2 * (f(a) + 2 * sum(map(f, [a + i * h
+                                             for i in range(1, n)])) + f(b))
+    error = None
+    if (exactValue != None):
+        error = approx - exactValue
+    return [approx, error]
+
+
+def parabolic(f, a, b, n: int = 1, exactValue=None) -&gt; list:
+    &quot;&quot;&quot;
+    A method for approximating ∫[a,b] f(x)dx using the parabolic method.
+
+    The formula is
+
+    h/3 * (f(x_0) + 4 * sum(f(x_(2*i-1)), 1&lt;=i&lt;=n) + 2 * sum(f_(2*i), 1&lt;=i&lt;n) + f(x_(2*n)))
+
+    where x_j = a + h * j, 0&lt;=j&lt;=2*n, h = (b-a)/(2*n)
+
+    `f`: the function.
+
+    `a`, `b`: the limits of the integral.
+
+    `n`: (optional) HALF of the number of subintervals.
+    (That is to say, 2*n subintervals will be used.)
+    If not specified, it is 1.
+
+    `exactValue`: (optional) the exact value of the integral.
+    If it is provided, the (absolute) error (approx - exact) will be given.
+
+    The result is a list containing two elements: `[approx, error]`.
+    If `exactValue` is not provided, `error` will be `None`.
+    &quot;&quot;&quot;
+    h = (b - a) / (2 * n)
+    approx = h / 3 * (
+        f(a) + 4 * sum(map(f, [a + (2 * i - 1) * h
+                               for i in range(1, n + 1)])) +
+        2 * sum(map(f, [a + (2 * i) * h for i in range(1, n)])) + f(b))
+    error = None
+    if (exactValue != None):
+        error = approx - exactValue
+    return [approx, error]
+
+
+def comparison(f, a, b, n: int = 2, exactValue=None) -&gt; str:
+    &quot;&quot;&quot;
+    A comparison of 2 methods: the trapezoidal method &amp; the parabolic method.
+
+    `f`: the function.
+
+    `a`, `b`: the limits of the integral.
+
+    `n`: (optional) the number of subintervals.
+    `n` must be even and &gt; 0. If not, an exception will be raised.
+    If `n` is not specified, it is 2.
+
+    `exactValue`: (optional) the exact value of the integral.
+    If it is provided, the absolute error (approx - exact) will be given.
+
+    The result is a list containing two elements: `[approx, error]`.
+    If `exactValue` is not provided, `error` will be `None`.
+    &quot;&quot;&quot;
+    if (n % 2 != 0 or n &lt;= 0):
+        raise Exception(&quot;n must be an even integer &gt; 0&quot;)
+    l1 = trapezoidal(f, a, b, n, exactValue)
+    l2 = parabolic(f, a, b, n // 2, exactValue)
+    info1 = f&quot;&quot;&quot;The approximate value by the trapezoidal method is {l1[0]}.
+The approximate value by the parabolic method is   {l2[0]}.&quot;&quot;&quot;
+    if (exactValue != None):
+        info2 = f&quot;&quot;&quot;Output:
+
+The exact value is                                 {exactValue}.
+{info1}
+
+Error (using the trapezoidal method):              {l1[1]}
+Error (using the parabolic method):                {l2[1]}
+
+the {&quot;trapezoidal&quot; if abs(l1[1]) &lt; abs(l2[1]) else &quot;parabolic&quot;} method is better.
+&quot;&quot;&quot;
+        return info2
+    else:
+        return info1
+
+</code></pre>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://septsea.github.io/post/a-module-from-scratch/">
+              <h3 class="post-title">
+                next: A module from scratch
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">This is septsea's website.</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/septsea/septsea.github.io" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://gridea.dev/">Gridea</a>.
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
