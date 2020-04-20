@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    
+<meta charset="utf-8" >
+
+<title>Solving optimal problems with Python | septsea</title>
+<meta name="description" content="This is septsea&#39;s website.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://septsea.github.io//favicon.ico?v=1587380515820">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://septsea.github.io//styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://septsea.github.io/">
+        <img class="avatar" src="https://septsea.github.io//images/avatar.png?v=1587380515820" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://septsea.github.io/">
+        <h1 class="site-title">septsea</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
+  </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            Home Page
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            Archives
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            Tags
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            About
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+        <div class="post-detail">
+          
+          <h2 class="post-title">Solving optimal problems with Python</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> Monday, April 20, 2020, 2:30:00 pm</span>
+            
+              <span>
+                <i class="icon-pricetags-outline"></i>
+                
+                  <a href="https://septsea.github.io/tag/plZ3A9sSN/">
+                    programming
+                    
+                      　
+                    
+                  </a>
+                
+                  <a href="https://septsea.github.io/tag/VOH2uCZDx/">
+                    math
+                    
+                  </a>
+                
+              </span>
+            
+          </div>
+          <div class="post-content">
+            <p>这里我用 Python 解优化问题。若本机无 Python, 可以在 <code>https://c.runoob.com/compile/9</code> 运行这些程序。</p>
+<p>Question 1. 用 0.618 法求以下问题的近似解</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><munder><mi>min</mi><mo>⁡</mo><mrow><mi>t</mi><mo>≥</mo><mn>0</mn></mrow></munder><mrow><mi>φ</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>=</mo><mo>−</mo><mn>2</mn><msup><mi>t</mi><mn>3</mn></msup><mo>+</mo><mn>21</mn><msup><mi>t</mi><mn>2</mn></msup><mo>−</mo><mn>60</mn><mi>t</mi><mo>+</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">\min_{t \geq 0} {\varphi(t)} = -2t^3+21t^2-60t+50
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.562287em;vertical-align:-0.812287em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-2.082892em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mrel mtight">≥</span><span class="mord mtight">0</span></span></span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.812287em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">φ</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">2</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord">1</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">6</span><span class="mord">0</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span><span class="mord">0</span></span></span></span></span></p>
+<p>已知函数的单谷区间 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mn>0.5</mn><mo separator="true">,</mo><mn>3.5</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">[0.5,3.5]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mord">.</span><span class="mord">5</span><span class="mclose">]</span></span></span></span>, 要求最后区间精度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ε</mi><mo>=</mo><mn>0.8</mn></mrow><annotation encoding="application/x-tex">\varepsilon = 0.8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span></span></span></span>。</p>
+<p>Solution. 可以编写如下程序进行运算:</p>
+<pre><code class="language-python">def approxGolden(func, a0, b0, epsilon):
+    &quot;&quot;&quot;
+    Given [a0, b0], epsilon (accuracy),
+    minimize the function by the 0.618 method.
+
+    func: the function.
+
+    a0, b0: the interval in which the optimal solution is.
+
+    epsilon: the (interval) accuracy.
+
+    A dictionary will be returned.
+    &quot;&quot;&quot;
+    info = []
+    a: float = a0
+    b: float = b0
+    omega: float = 0.618
+    t1: float = b - omega * (b - a)
+    t2: float = a + omega * (b - a)
+    p1: float = func(t1)
+    p2: float = func(t2)
+    p1_not_greater_p2: bool = p1 &lt;= p2
+    change: str = &quot;a&quot; if p1_not_greater_p2 else &quot;b&quot;
+    info.append([a, b, t1, t2, p1, p2, p1_not_greater_p2, change])
+    while (True):
+        if (p1_not_greater_p2):
+            if (t2 - a &lt;= epsilon):
+                return {&quot;iterationInfo&quot;: info, &quot;t_star&quot;: t1}
+            else:
+                b = t2
+                t2 = t1
+                t1 = b - omega * (b - a)
+                p2 = p1
+                p1 = func(t1)
+                p1_not_greater_p2: bool = p1 &lt;= p2
+                change: str = &quot;a&quot; if p1_not_greater_p2 else &quot;b&quot;
+                info.append([a, b, t1, t2, p1, p2, p1_not_greater_p2, change])
+        else:
+            if (b - t1 &lt;= epsilon):
+                return {&quot;iterationInfo&quot;: info, &quot;t_star&quot;: t2}
+            else:
+                a = t1
+                t1 = t2
+                t2 = a + omega * (b - a)
+                p1 = p2
+                p2 = func(t2)
+                p1_not_greater_p2: bool = p1 &lt;= p2
+                change: str = &quot;a&quot; if p1_not_greater_p2 else &quot;b&quot;
+                info.append([a, b, t1, t2, p1, p2, p1_not_greater_p2, change])
+
+
+def main(*args, **kwargs):
+    &quot;&quot;&quot;
+    The entrance of the program.
+    &quot;&quot;&quot;
+    f = lambda t: -2 * t**3 + 21 * t**2 - 60 * t + 50  # a**b means a^b
+    a: float = 0.5
+    b: float = 3.5
+    e: float = 0.8
+    ans = approxGolden(f, a, b, e)
+    it = ans[&quot;iterationInfo&quot;]  # it: iterationTable
+    t_star: float = ans[&quot;t_star&quot;]
+    titles = [&quot;a&quot;, &quot;b&quot;, &quot;t1&quot;, &quot;t2&quot;, &quot;φ1&quot;, &quot;φ2&quot;, &quot;φ1&lt;=φ2?&quot;, &quot;Change&quot;]
+    print(&quot;\t&quot;.join(titles))
+    for item in it:
+        print(&quot;%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t&quot; %
+              (item[0], item[1], item[2], item[3], item[4], item[5]) +
+              &quot;{0}\t{1}&quot;.format(&quot;Y&quot; if item[6] else &quot;N&quot;, item[7]))
+    print(&quot;%.4f\t%.4f&quot; % (it[-1][2], it[-1][3]))
+    print(&quot;&quot;)
+    print(&quot;The approximate optimal solution: %g&quot; % (t_star))
+    print(&quot;The approximate optimal value: %g&quot; % (f(t_star)))
+
+
+main()
+</code></pre>
+<p>结果如下:</p>
+<pre><code>a       b       t1      t2      φ1      φ2      φ1&lt;=φ2? Change
+0.5000  3.5000  1.6460  2.3540  -0.7834 -0.9609 N       b
+1.6460  3.5000  2.3540  2.7918  -0.9609 2.6494  Y       a
+1.6460  2.7918  2.0837  2.3540  -1.9381 -0.9609 Y       a
+2.0837  2.3540
+
+The approximate optimal solution: 2.08368
+The approximate optimal value: -1.93814
+</code></pre>
+<hr>
+<p>Question 2. 用 Newton 法求以下问题的近似最优解</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>min</mi><mo>⁡</mo><mrow><mi>φ</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow><mo>=</mo><msup><mi>t</mi><mn>4</mn></msup><mo>−</mo><mn>4</mn><msup><mi>t</mi><mn>3</mn></msup><mo>−</mo><mn>6</mn><msup><mi>t</mi><mn>2</mn></msup><mo>−</mo><mn>16</mn><mi>t</mi><mo>+</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">    \min {\varphi(t)} = t^4-4t^3-6t^2-16t+4
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">min</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">φ</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord">4</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.9474379999999999em;vertical-align:-0.08333em;"></span><span class="mord">6</span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">6</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span></span></p>
+<p>给定 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mn>1</mn></msub><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">t_1=6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span>, <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>ε</mi><mo>=</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>3</mn></mrow></msup></mrow><annotation encoding="application/x-tex">\varepsilon=10^{-3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">ε</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span>。并用解析方法求出该问题的精确最优解, 然后比较二者结果。</p>
+<p>Solution. 可以编写如下程序进行运算:</p>
+<pre><code class="language-python">def newton(func, df1, df2, in_pt, epsilon):
+    &quot;&quot;&quot;
+    Given the initial point in_pt, epsilon (accuracy),
+    minimize the function by the Newton method.
+
+    func: the function.
+
+    d1: the first-order derivative.
+
+    d2: the second-order derivative.
+
+    (It is not easy to implement the calculation
+    module of derivatives.)
+
+    in_pt: the initial point.
+
+    epsilon: the accuracy.
+
+    A dictionary will be returned.
+    &quot;&quot;&quot;
+    info = []
+    t1: float = in_pt
+    t2: float = 0  # for initialization
+    d1: float = df1(t1)
+    d2: float = df2(t1)
+    info.append([t1, d1, 1 / d2])
+    while (True):
+        if (abs(d1) &lt; epsilon):
+            return {&quot;iterationInfo&quot;: info, &quot;t_star&quot;: t1}
+        elif (abs(d2) &lt; 1e-10):  # if d2 == 0
+            raise Exception(&quot;Failed!&quot;)
+        else:
+            t2 = t1 - d1 / d2
+            if (abs(t2 - t1) &lt; epsilon):
+                return {&quot;iterationInfo&quot;: info, &quot;t_star&quot;: t2}
+            else:
+                t1 = t2
+                d1 = df1(t1)
+                d2 = df2(t1)
+                info.append([t1, d1, 1 / d2])
+
+
+def main(*args, **kwargs):
+    &quot;&quot;&quot;
+    The entrance.
+    &quot;&quot;&quot;
+    f = lambda t: t**4 - 4 * t**3 - 6 * t**2 - 16 * t + 4  # a**b means a^b
+    df1 = lambda t: 4 * t**3 - 12 * t**2 - 12 * t - 16
+    df2 = lambda t: 12 * t**2 - 24 * t - 12
+    initial_point: float = 6
+    e: float = 1e-3
+    ans = newton(f, df1, df2, initial_point, e)
+    it = ans[&quot;iterationInfo&quot;]  # it: iterationTable
+    t_star: float = ans[&quot;t_star&quot;]
+    titles = [&quot;tk&quot;, &quot;φ'(tk)&quot;, &quot;1/φ''(tk)&quot;]
+    print(&quot;\t&quot;.join(titles))
+    for item in it:
+        print(&quot;%.10f\t%.10f\t%.10f\t&quot; % (item[0], item[1], item[2]))
+    print(&quot;%.10f&quot; % (t_star))
+    print(&quot;&quot;)
+    print(&quot;The approximate optimal solution: %.10f&quot; % (t_star))
+    print(&quot;The approximate optimal value: %.10f&quot; % (f(t_star)))
+
+
+main()
+</code></pre>
+<p>结果如下:</p>
+<pre><code>tk              φ'(tk)                  1/φ''(tk)
+6.000000000000  344.000000000000        0.003623188406
+4.753623188406  85.462547449233         0.006892927257
+4.164536065619  14.813443078421         0.010398095005
+4.010504477134  0.886353101087          0.011798345536
+4.000046976980  0.003946145789          0.011904282563
+4.000000000946
+
+The approximate optimal solution: 4.000000000946
+The approximate optimal value: -156.000000000000
+</code></pre>
+<p>注意到</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>φ</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mo>(</mo><mi>t</mi><mo>−</mo><mn>4</mn><msup><mo>)</mo><mn>2</mn></msup><mo>(</mo><mo>(</mo><mi>t</mi><mo>+</mo><mn>2</mn><msup><mo>)</mo><mn>2</mn></msup><mo>+</mo><mn>6</mn><mo>)</mo><mo>−</mo><mn>156</mn></mrow><annotation encoding="application/x-tex">\varphi(t) = (t-4)^2 ((t+2)^2+6) - 156
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">φ</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">6</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span><span class="mord">6</span></span></span></span></span></p>
+<p>由此易知 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>φ</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\varphi(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">φ</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span> 在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>=</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">t=4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 有最小值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>156</mn></mrow><annotation encoding="application/x-tex">-156</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span><span class="mord">5</span><span class="mord">6</span></span></span></span>。</p>
+
+          </div>
+        </div>
+
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://septsea.github.io/post/another-module-2/">
+              <h3 class="post-title">
+                next: Another module (2)
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
+  <div class="slogan">This is septsea's website.</div>
+  <div class="social-container">
+    
+      
+        <a href="https://github.com/septsea/septsea.github.io" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://gridea.dev/">Gridea</a>.
+</div>
+
+
+    </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>
