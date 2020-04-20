@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://septsea.github.io/</id>
     <title>septsea</title>
-    <updated>2020-04-20T11:04:26.374Z</updated>
+    <updated>2020-04-20T12:17:54.455Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://septsea.github.io/"/>
     <link rel="self" href="https://septsea.github.io/atom.xml"/>
@@ -44,7 +44,7 @@
     p1: float = func(t1)
     p2: float = func(t2)
     p1_not_greater_p2: bool = p1 &lt;= p2
-    change: str = &quot;a&quot; if p1_not_greater_p2 else &quot;b&quot;
+    change: str = &quot;b&quot; if p1_not_greater_p2 else &quot;a&quot;
     info.append([a, b, t1, t2, p1, p2, p1_not_greater_p2, change])
     while (True):
         if (p1_not_greater_p2):
@@ -56,8 +56,8 @@
                 t1 = b - omega * (b - a)
                 p2 = p1
                 p1 = func(t1)
-                p1_not_greater_p2: bool = p1 &lt;= p2
-                change: str = &quot;a&quot; if p1_not_greater_p2 else &quot;b&quot;
+                p1_not_greater_p2 = p1 &lt;= p2
+                change = &quot;b&quot; if p1_not_greater_p2 else &quot;a&quot;
                 info.append([a, b, t1, t2, p1, p2, p1_not_greater_p2, change])
         else:
             if (b - t1 &lt;= epsilon):
@@ -68,8 +68,8 @@
                 t2 = a + omega * (b - a)
                 p1 = p2
                 p2 = func(t2)
-                p1_not_greater_p2: bool = p1 &lt;= p2
-                change: str = &quot;a&quot; if p1_not_greater_p2 else &quot;b&quot;
+                p1_not_greater_p2 = p1 &lt;= p2
+                change = &quot;b&quot; if p1_not_greater_p2 else &quot;a&quot;
                 info.append([a, b, t1, t2, p1, p2, p1_not_greater_p2, change])
 
 
@@ -90,23 +90,26 @@ def main(*args, **kwargs):
         print(&quot;%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t%.4f\t&quot; %
               (item[0], item[1], item[2], item[3], item[4], item[5]) +
               &quot;{0}\t{1}&quot;.format(&quot;Y&quot; if item[6] else &quot;N&quot;, item[7]))
-    print(&quot;%.4f\t%.4f&quot; % (it[-1][2], it[-1][3]))
+    if (it[-1][7] == &quot;a&quot;):  # if a is changed
+        print(&quot;%.4f\t%.4f&quot; % (it[-1][2], it[-1][1]))
+    else:
+        print(&quot;%.4f\t%.4f&quot; % (it[-1][0], it[-1][3]))
     print(&quot;&quot;)
-    print(&quot;The approximate optimal solution: %g&quot; % (t_star))
-    print(&quot;The approximate optimal value: %g&quot; % (f(t_star)))
+    print(&quot;The approximate optimal solution: %.4f&quot; % (t_star))
+    print(&quot;The approximate optimal value: %.4f&quot; % (f(t_star)))
 
 
 main()
 </code></pre>
 <p>结果如下:</p>
-<pre><code>a       b       t1      t2      φ1      φ2      φ1&lt;=φ2? Change
-0.5000  3.5000  1.6460  2.3540  -0.7834 -0.9609 N       b
-1.6460  3.5000  2.3540  2.7918  -0.9609 2.6494  Y       a
-1.6460  2.7918  2.0837  2.3540  -1.9381 -0.9609 Y       a
-2.0837  2.3540
+<pre><code>a       b       t1      t2      φ1      φ2      φ1≤φ2?  Change
+0.5000  3.5000  1.6460  2.3540  -0.7834 -0.9609 N       a
+1.6460  3.5000  2.3540  2.7918  -0.9609 2.6494  Y       b
+1.6460  2.7918  2.0837  2.3540  -1.9381 -0.9609 Y       b
+1.6460  2.3540
 
-The approximate optimal solution: 2.08368
-The approximate optimal value: -1.93814
+The approximate optimal solution: 2.0837
+The approximate optimal value: -1.9381
 </code></pre>
 <hr>
 <p>Question 2. 用 Newton 法求以下问题的近似最优解</p>
